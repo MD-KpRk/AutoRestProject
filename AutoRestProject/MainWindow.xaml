@@ -5,9 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoRestProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" WindowStyle="None">
+        Title="MainWindow" Width="1920" Height="1080" WindowState="Maximized" WindowStyle="None">
     <Grid>
-        <Rectangle Fill="{StaticResource C_Brown}" Margin="100"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="{StaticResource C_DarkGray}"  >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock 
+                    FontFamily="{StaticResource IconFont}" 
+                    Foreground="{StaticResource C_DimGray}" 
+                    FontSize="30"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="&#xE74C;" />
+                <TextBlock
+                    FontFamily="{StaticResource Roboto}"
+                    Foreground="{StaticResource C_DimGray}"
+                    FontSize="26"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center">
+                    <Run Text="{Binding Path=ProgramTitle, TargetNullValue=ProgramTitle}" />
+                    <Run Text=" | " />
+                    <Run Text="{Binding Path=Date, TargetNullValue=Date}" />
+                </TextBlock>
+            </StackPanel>
+        </Border>
 
     </Grid>
 </Window>
