@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoRestProject"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1920" Height="1080" WindowState="Maximized" WindowStyle="None">
+        Title="MainWindow" Width="1920" Height="1080" WindowState="Maximized" WindowStyle="None" Background="{DynamicResource C_Gray}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40px"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Background="{StaticResource C_DarkGray}"  >
+        <Border Background="{StaticResource C_DarkGray}" Grid.Row="0" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock 
                     FontFamily="{StaticResource IconFont}" 
@@ -33,6 +33,8 @@
                 </TextBlock>
             </StackPanel>
         </Border>
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden">
 
+        </Frame>
     </Grid>
 </Window>

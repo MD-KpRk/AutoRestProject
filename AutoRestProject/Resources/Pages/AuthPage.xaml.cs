@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using AutoRestProject.Resources.Pages;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -16,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
-namespace AutoRestProject
+namespace AutoRestProject.Resources.Pages
 {
-
-
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для AuthPage.xaml
+    /// </summary>
+    public partial class AuthPage : Page
     {
-        //PageController pagecontroller;
-        public MainWindow()
+        public AuthPage()
         {
-            DataContext = TitleModel.getInstance();
             InitializeComponent();
-            PageController.getInstance(MainFrame).Goto(new AuthPage());
         }
     }
 }
