@@ -34,7 +34,7 @@ namespace AutoRestProject.Resources.Pages
             switch (tag)
             {
                 case "Apply":
-                    MessageBox.Show(ViewModel.Password);
+                    ApplyPass(ViewModel.Password);
                     return;
 
                 case "Delete":
@@ -42,9 +42,12 @@ namespace AutoRestProject.Resources.Pages
                     return;
             }
             ViewModel.AddPassDigit(Convert.ToInt32(tag));
-
         }
 
+        void ApplyPass(string Password)
+        {
+
+        }
 
     }
 }

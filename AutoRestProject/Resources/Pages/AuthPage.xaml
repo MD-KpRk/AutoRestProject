@@ -25,7 +25,7 @@
                         Background="{x:Null}" 
                         Foreground="{StaticResource C_DarkGray}"
                         FontSize="70"
-                        Margin="50,40,50,0"
+                        Margin="70,40,70,0"
                         FontFamily="{StaticResource Roboto}" TextWrapping="Wrap" TextAlignment="Center">
                     </TextBlock>
                     <TextBox
