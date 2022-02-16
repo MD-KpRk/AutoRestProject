@@ -12,16 +12,47 @@ namespace AutoRestProject.ViewModels
     class AuthWindowViewModel : INotifyPropertyChanged
     {
         string password = "";
-        int intpass;
+
 
         public string Password
         {
             get { return password; }
             set 
             { 
-                OnPropertyChanged("Password");
                 password = value; 
             }
+        }
+
+        public string StarPassword
+        {
+            get 
+            {  
+                StringBuilder stringBuilder = new StringBuilder(); 
+                for (int i = 0; i < Password.Length; i++)
+                {
+                    stringBuilder.Append("∗");
+                }
+                return stringBuilder.ToString();
+            }
+            set
+            {
+                Password = value;
+                OnPropertyChanged("StarPassword");
+            }
+
+        }
+
+
+        public void RemovePassDigit()
+        {
+            if (Password.Length == 0) return;
+            StarPassword = Password.Substring(0, Password.Length - 1);
+        }
+
+        public void AddPassDigit(int digit)
+        {
+            if (Password.Length >= 8) return;
+            StarPassword = Password + digit;
         }
 
         public AuthWindowViewModel()

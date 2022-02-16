@@ -34,15 +34,17 @@ namespace AutoRestProject.Resources.Pages
             switch (tag)
             {
                 case "Apply":
-                    MessageBox.Show("a");
+                    MessageBox.Show(ViewModel.Password);
                     return;
 
                 case "Delete":
-                    MessageBox.Show("d");
+                    ViewModel.RemovePassDigit();
                     return;
             }
-            MessageBox.Show(tag);
+            ViewModel.AddPassDigit(Convert.ToInt32(tag));
 
         }
+
+
     }
 }
