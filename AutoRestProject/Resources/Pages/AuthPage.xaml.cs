@@ -21,7 +21,7 @@ namespace AutoRestProject.Resources.Pages
     /// </summary>
     public partial class AuthPage : Page
     {
-        ViewModels.AuthWindowViewModel ViewModel = new ViewModels.AuthWindowViewModel();
+        ViewModels.AuthWindowViewModel ViewModel = new();
 
         public AuthPage()
         {

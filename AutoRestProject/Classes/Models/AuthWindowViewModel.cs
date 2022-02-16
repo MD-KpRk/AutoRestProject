@@ -27,7 +27,7 @@ namespace AutoRestProject.ViewModels
         {
             get 
             {  
-                StringBuilder stringBuilder = new StringBuilder(); 
+                StringBuilder stringBuilder = new(); 
                 for (int i = 0; i < Password.Length; i++)
                 {
                     stringBuilder.Append("∗");
@@ -61,8 +61,7 @@ namespace AutoRestProject.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
