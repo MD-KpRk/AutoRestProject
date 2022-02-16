@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,28 @@ namespace AutoRestProject.Resources.Pages
     /// </summary>
     public partial class AuthPage : Page
     {
+        ViewModels.AuthWindowViewModel ViewModel = new ViewModels.AuthWindowViewModel();
+
         public AuthPage()
         {
+            DataContext = ViewModel;
             InitializeComponent();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string tag = (string)((Button)sender).Tag;
+            switch (tag)
+            {
+                case "Apply":
+                    MessageBox.Show("a");
+                    return;
+
+                case "Delete":
+                    MessageBox.Show("d");
+                    return;
+            }
+            MessageBox.Show(tag);
+
         }
     }
 }
