@@ -8,8 +8,62 @@
       d:DesignHeight="1040" d:DesignWidth="1920"
       Title="AuthPage">
 
-    <Grid>
-        <Button Margin="100" Content="awdawd" FontSize="50"/> 
+    <Grid Background="{StaticResource C_Gray}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="{StaticResource C_White}" Grid.Column="1"/>
+        <StackPanel Grid.Column="0">
+            <TextBlock 
+                Text="Введите ПИН для доступа к системе"   
+                Background="{x:Null}" 
+                Foreground="{StaticResource C_DarkGray}"
+                FontSize="70"
+                Width="620"
+                Margin="0,60,0,0"
+                FontFamily="{StaticResource Roboto}" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBox
+                Margin="0,50,0,0"
+                MinHeight="80"
+                BorderThickness="2"
+                Width="620" BorderBrush="{StaticResource C_DarkGray}"
+                />
+            <Grid
+                Margin="0,30,0,0"
+                HorizontalAlignment="Center"
+                MinWidth="360">
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="120"/>
+                    <RowDefinition MinHeight="120"/>
+                    <RowDefinition MinHeight="120"/>
+                    <RowDefinition MinHeight="120"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
+
+                <Button Style="{StaticResource AuthButton}" Content="1" Grid.Column="0" Grid.Row="0" />
+                <Button Style="{StaticResource AuthButton}" Content="2" Grid.Column="1" Grid.Row="0"/>
+                <Button Style="{StaticResource AuthButton}" Content="3" Grid.Column="2" Grid.Row="0"/>
+                <Button Style="{StaticResource AuthButton}" Content="4" Grid.Column="0" Grid.Row="1"/>
+                <Button Style="{StaticResource AuthButton}" Content="5" Grid.Column="1" Grid.Row="1"/>
+                <Button Style="{StaticResource AuthButton}" Content="6" Grid.Column="2" Grid.Row="1"/>
+                <Button Style="{StaticResource AuthButton}" Content="7" Grid.Column="0" Grid.Row="2"/>
+                <Button Style="{StaticResource AuthButton}" Content="8" Grid.Column="1" Grid.Row="2"/>
+                <Button Style="{StaticResource AuthButton}" Content="9" Grid.Column="2" Grid.Row="2"/>
+                <Button Style="{StaticResource AuthButton}" Content="A" Grid.Column="0" Grid.Row="3"/>
+                <Button Style="{StaticResource AuthButton}" Content="0" Grid.Column="1" Grid.Row="3"/>
+                <Button Style="{StaticResource AuthButton}" Content="-" Grid.Column="2" Grid.Row="3"/>
+
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+
+        </StackPanel>
     </Grid>
 </Page>
