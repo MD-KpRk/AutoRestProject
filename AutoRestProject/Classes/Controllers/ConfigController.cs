@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -20,21 +21,13 @@ namespace AutoRestProject
 
         public string? OrgTitle;
         public string? ConStr;
-
+        public DbContextOptions<AutoRestBDContext> ConOptions;
 
         ConfigController()
         {
             OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
             ConStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            /*
-            string connectionString =
-                ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            if (sAttr != null)
-                MessageBox.Show(sAttr);
-            MessageBox.Show(connectionString);
-            */
+            ConOptions = new DbContextOptionsBuilder<AutoRestBDContext>().UseSqlServer(ConStr).Options;
         }
     }
 }

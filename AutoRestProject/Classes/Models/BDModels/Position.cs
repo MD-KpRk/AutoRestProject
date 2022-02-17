@@ -8,5 +8,6 @@ namespace AutoRestProject.Classes.Models.BDModels
 {
     public class Position
     {
+
     }
 }

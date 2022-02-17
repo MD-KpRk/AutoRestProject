@@ -46,6 +46,10 @@ namespace AutoRestProject.Resources.Pages
 
         void ApplyPass(string Password)
         {
+            using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+
+            }
 
         }
 
