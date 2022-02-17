@@ -30,7 +30,6 @@ namespace AutoRestProject
             DataContext = TitleModel.getInstance();
             InitializeComponent();
             PageController.getInstance(MainFrame).Goto(new AuthPage());
-            var a = new ConfigController();
         }
     }
 }

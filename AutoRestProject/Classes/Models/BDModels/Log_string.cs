@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoRestProject.Classes.Models.BDModels
 {
-    internal class Log_string
+    public class Log_string
     {
     }
 }

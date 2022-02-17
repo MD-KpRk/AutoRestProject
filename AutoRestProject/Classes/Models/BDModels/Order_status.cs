@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoRestProject.Classes.Models.BDModels
 {
-    internal class Order_status
+    public class Order_status
     {
     }
 }

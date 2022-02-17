@@ -24,8 +24,8 @@ namespace AutoRestProject
 
         TitleModel()
         {
-            // Json настройка
-            programtitle = "Title";
+            string? title = ConfigController.getInstance().OrgTitle;
+            programtitle = title == null ? "" : title;
             date = "";
             SetCurrentDate();
             timer.Interval = TimeSpan.FromSeconds(1);

@@ -18,11 +18,15 @@ namespace AutoRestProject
             return instance;
         }
 
-        //public string? sAttr = ConfigurationManager.AppSettings.Get("Key0");
+        public string? OrgTitle;
+        public string? ConStr;
 
 
         ConfigController()
         {
+            OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
+            ConStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
             /*
             string connectionString =
                 ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
