@@ -1,32 +1,24 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Threading;
 
-namespace AutoRestProject
+namespace AutoRestProject.ViewModels
 {
-    /// <summary>
-    /// Класс для описания модели заголовка окна
-    /// </summary>
-    public class TitleModel : INotifyPropertyChanged
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private static TitleModel? instance;
+
         string programtitle;
-        string date;
+        string date = "";
         DispatcherTimer timer = new DispatcherTimer();
 
-        public static TitleModel getInstance()
-        {
-            if (instance == null)
-                instance = new TitleModel();
-            return instance;
-        }
+        public ErrorBox ErrorBox { get; set; } = ErrorController.ErrorBox;
 
-        TitleModel()
+        public MainWindowViewModel()
         {
             string? title = ConfigController.getInstance().OrgTitle;
             programtitle = title == null ? "" : title;
-            date = "";
             SetCurrentDate();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
@@ -55,8 +47,7 @@ namespace AutoRestProject
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
         void timer_Tick(object? sender, EventArgs e) => SetCurrentDate();
         void SetCurrentDate() =>

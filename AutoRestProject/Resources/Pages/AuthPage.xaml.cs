@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoRestProject.Classes.Models.BDModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -48,6 +49,11 @@ namespace AutoRestProject.Resources.Pages
         {
             using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
+                if (string.IsNullOrEmpty(ViewModel.Password)) return;
+                int pin = Convert.ToInt32(ViewModel.Password);
+                Personal? personal = db.Personals?.Where(pers => pers.pin == pin).FirstOrDefault();
+
+                //if (personal == null) ErrorBox.getInstance().Show("Не найден сотрудник с таким PIN кодом");
 
             }
 

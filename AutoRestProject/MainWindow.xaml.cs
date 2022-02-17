@@ -24,12 +24,21 @@ namespace AutoRestProject
 
     public partial class MainWindow : Window
     {
-        //PageController pagecontroller;
+        ViewModels.MainWindowViewModel ViewModel = new();
+
         public MainWindow()
         {
-            DataContext = TitleModel.getInstance();
+            DataContext = ViewModel;
             InitializeComponent();
+            //ViewModel.ErrorBox.Show("awd");
+            ErrorController.ErrorBox.Show("Hello Error");
+
             PageController.getInstance(MainFrame).Goto(new AuthPage());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) 
+        {
+            ViewModel.ErrorBox.Hide();
         }
     }
 }

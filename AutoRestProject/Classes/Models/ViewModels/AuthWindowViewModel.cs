@@ -16,11 +16,8 @@ namespace AutoRestProject.ViewModels
 
         public string Password
         {
-            get { return password; }
-            set 
-            { 
-                password = value; 
-            }
+            get => password; 
+            set => password = value; 
         }
 
         public string StarPassword
@@ -29,9 +26,7 @@ namespace AutoRestProject.ViewModels
             {  
                 StringBuilder stringBuilder = new(); 
                 for (int i = 0; i < Password.Length; i++)
-                {
                     stringBuilder.Append("∗");
-                }
                 return stringBuilder.ToString();
             }
             set
