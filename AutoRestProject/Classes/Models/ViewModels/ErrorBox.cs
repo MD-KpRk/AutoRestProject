@@ -6,6 +6,15 @@ namespace AutoRestProject.ViewModels
 {
     public class ErrorBox : INotifyPropertyChanged
     {
+        private static ErrorBox? instance;
+        public static ErrorBox getInstance()
+        {
+            if(instance == null)
+                instance = new ErrorBox();
+            return instance;
+        }
+
+
         string message = "";
         Visibility visibility = Visibility.Collapsed;
         public string Message
@@ -27,10 +36,8 @@ namespace AutoRestProject.ViewModels
             }
         }
 
-        public ErrorBox() { }
+        ErrorBox() { }
        
-
-
         public void Show(string message)
         {
             Visibility = Visibility.Visible;

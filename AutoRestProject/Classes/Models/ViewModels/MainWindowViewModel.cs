@@ -13,7 +13,7 @@ namespace AutoRestProject.ViewModels
         string date = "";
         DispatcherTimer timer = new DispatcherTimer();
 
-        public ErrorBox ErrorBox { get; set; } = ErrorController.ErrorBox;
+        public ErrorBox ErrorBox { get; set; } = ErrorBox.getInstance();
 
         public MainWindowViewModel()
         {

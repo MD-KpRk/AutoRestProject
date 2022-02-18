@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using AutoRestProject.ViewModels;
 
 namespace AutoRestProject
 {
@@ -30,8 +31,7 @@ namespace AutoRestProject
         {
             DataContext = ViewModel;
             InitializeComponent();
-            //ViewModel.ErrorBox.Show("awd");
-            ErrorController.ErrorBox.Show("Hello Error");
+            ErrorBox.getInstance().Show("Hello Error");
 
             PageController.getInstance(MainFrame).Goto(new AuthPage());
         }
