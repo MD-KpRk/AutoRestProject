@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 
-namespace AutoRestProject.ViewModels
+namespace AutoRestProject
 {
     public class ErrorBox : INotifyPropertyChanged
     {

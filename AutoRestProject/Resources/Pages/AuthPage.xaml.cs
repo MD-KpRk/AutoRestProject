@@ -1,4 +1,5 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -49,15 +50,30 @@ namespace AutoRestProject.Resources.Pages
         {
             using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                if (string.IsNullOrEmpty(ViewModel.Password)) return;
-                int pin = Convert.ToInt32(ViewModel.Password);
-                Personal? personal = db.Personals?.Where(pers => pers.pin == pin).FirstOrDefault();
+                if (string.IsNullOrEmpty(ViewModel.Password))
+                {
+                    ErrorBox.getInstance().Show("Введите PIN код");
+                    return;
+                }
 
-                //if (personal == null) ErrorBox.getInstance().Show("Не найден сотрудник с таким PIN кодом");
+                Personal? personal = db.Personals?.FirstOrDefault(pers => pers.pin == Convert.ToInt32(ViewModel.Password));
+
+
+
+                if (personal == null)
+                {
+                    ErrorBox.getInstance().Show("Не найден сотрудник с таким PIN кодом");
+                    return;
+                }
+
+
+
+
 
             }
 
         }
+
 
     }
 }
