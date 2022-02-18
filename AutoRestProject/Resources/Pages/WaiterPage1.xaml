@@ -8,9 +8,27 @@
       d:Height="1040" d:Width="1920"
       Title="WaiterPage1">
 
-    <Viewbox Stretch="Fill">
-        <Grid Width="1920" Height="1040">
-            <TextBlock Text="Dadwawd" FontSize="100" />
-        </Grid>
-    </Viewbox>
+    <Page.Resources>
+        <Style TargetType="TextBlock" >
+            <Setter Property="Foreground" Value="{StaticResource C_Gray}" />
+            <Setter Property="FontFamily" Value="{StaticResource Roboto}" />
+        </Style>
+    </Page.Resources>
+
+
+        <StackPanel Width="1920" Height="1040" Background="{StaticResource C_DarkGray}">
+            <TextBlock Margin="100,30,100,0" FontSize="70" TextAlignment="Center" TextWrapping="Wrap" >
+                <Run Text="Добро пожаловать в систему, " />
+                <Run Text="" />
+            </TextBlock>
+            <TextBlock TextAlignment="Center" FontSize="50" >
+                <Run Text="Вы" />
+                <Run Text="Бинд" />
+            </TextBlock>
+            <Separator Margin="0,20,0,40" Background="{DynamicResource C_Gray}" Height="5" />
+            <ScrollViewer >
+            <!--сюда надо написать свой элемент для описания заказа-->
+            </ScrollViewer>
+    </StackPanel>
+
 </Page>
