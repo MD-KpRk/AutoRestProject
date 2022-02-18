@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages"
+      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages" xmlns:viewmodels="clr-namespace:AutoRestProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:WaiterPage1ViewModel}"
       mc:Ignorable="d" 
       d:Height="1040" d:Width="1920"
       Title="WaiterPage1">
@@ -19,11 +19,11 @@
         <StackPanel Width="1920" Height="1040" Background="{StaticResource C_DarkGray}">
             <TextBlock Margin="100,30,100,0" FontSize="70" TextAlignment="Center" TextWrapping="Wrap" >
                 <Run Text="Добро пожаловать в систему, " />
-                <Run Text="" />
+                <Run Text="{Binding Path=PersName}" />
             </TextBlock>
             <TextBlock TextAlignment="Center" FontSize="50" >
                 <Run Text="Вы" />
-                <Run Text="Бинд" />
+                <Run Text="{Binding Path=PersPos}" />
             </TextBlock>
             <Separator Margin="0,20,0,40" Background="{DynamicResource C_Gray}" Height="5" />
             <ScrollViewer >

@@ -22,6 +22,7 @@ namespace AutoRestProject.Resources.Pages
     {
         public WaiterPage1()
         {
+            DataContext = new ViewModels.WaiterPage1ViewModel();
             InitializeComponent();
         }
     }
