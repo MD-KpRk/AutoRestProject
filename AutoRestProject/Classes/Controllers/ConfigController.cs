@@ -21,11 +21,13 @@ namespace AutoRestProject
 
         public string? OrgTitle;
         public string? ConStr;
+        public string? Waiter;
         public DbContextOptions<AutoRestBDContext> ConOptions;
 
         ConfigController()
         {
             OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
+            Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
             ConStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             ConOptions = new DbContextOptionsBuilder<AutoRestBDContext>().UseSqlServer(ConStr).Options;
         }

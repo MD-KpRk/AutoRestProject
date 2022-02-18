@@ -56,9 +56,9 @@ namespace AutoRestProject.Resources.Pages
                     return;
                 }
 
-                Personal? personal = db.Personals?.FirstOrDefault(pers => pers.pin == Convert.ToInt32(ViewModel.Password));
-
-
+                Personal? personal = db.Personals?
+                    .Include(u => u.Position)
+                    .FirstOrDefault(pers => pers.pin == Convert.ToInt32(Password));
 
                 if (personal == null)
                 {
@@ -66,7 +66,12 @@ namespace AutoRestProject.Resources.Pages
                     return;
                 }
 
+                string PosTitle = personal.Position.Title;
 
+                if (PosTitle == ConfigController.getInstance().Waiter)
+                {
+                    PageController.getInstance()?.Goto(new WaiterPage1());
+                }
 
 
 

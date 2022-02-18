@@ -21,6 +21,7 @@ namespace AutoRestProject.Classes.Models.BDModels
 
         //public List<Order> Orders { get; set; }
         public int positionId { get; set; }
+        public Position Position { get; set; }
 
 
         public override string ToString() => id + ": " + first_name;
