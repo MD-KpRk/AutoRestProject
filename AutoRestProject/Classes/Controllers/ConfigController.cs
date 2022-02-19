@@ -19,6 +19,10 @@ namespace AutoRestProject
             return instance;
         }
 
+        public string? OrderProcessing;
+        public string? OrderWaitingPayment;
+        public string? OrderDone;
+
         public string? OrgTitle;
         public string? ConStr;
         public string? Waiter;
@@ -28,6 +32,11 @@ namespace AutoRestProject
         {
             OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
             Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
+
+            OrderProcessing = ConfigurationManager.AppSettings.Get("OrderProcessing");
+            OrderWaitingPayment = ConfigurationManager.AppSettings.Get("OrderWaitingPayment");
+            OrderDone = ConfigurationManager.AppSettings.Get("OrderDone");
+
             ConStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             ConOptions = new DbContextOptionsBuilder<AutoRestBDContext>().UseSqlServer(ConStr).Options;
         }

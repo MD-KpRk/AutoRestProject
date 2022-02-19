@@ -26,6 +26,9 @@ namespace AutoRestProject.Resources.UserControls
         public OrderUserControl(WaiterPage1 page, Order order)
         {
             ViewModel.OrderNum = order.Id;
+            ViewModel.OrderStatus = order.Order_status.Title;
+            ViewModel.TableNum = order.Table.Id;
+            ViewModel.EmpName = order.Personal.Second_name + " " + order.Personal.First_name;
             DataContext = ViewModel;
             InitializeComponent();
         }

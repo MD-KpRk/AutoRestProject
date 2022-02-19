@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AutoRestProject.Resources.UserControls"
+             xmlns:local="clr-namespace:AutoRestProject.Resources.UserControls" xmlns:viewmodels="clr-namespace:AutoRestProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:OrderUserControlViewModel}"
              mc:Ignorable="d" 
              d:Height="500" d:Width="460">
 
@@ -18,15 +18,18 @@
         <Border Margin="20,20,20,20" Background="{DynamicResource C_Gray}">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top">
-                    <TextBlock>
+                    <TextBlock TextAlignment="Center">
                         <Run Text="Заказ" />
                         <Run Text="{Binding Path=OrderNum}" />
                         <LineBreak/>
-                        <Run Text="Ожидание" />
+                        <Run Text="{Binding Path=OrderStatus}" Foreground="{Binding Color}" />
                     </TextBlock>
                     <Button Height="150"/>
                     <Separator />
-                    <TextBlock Text="Столик" />
+                    <TextBlock >
+                        <Run Text="Столик" />
+                        <Run Text="{Binding Path=TableNum}" />
+                    </TextBlock>
                     <DataGrid />
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" Height="50" VerticalAlignment="Bottom">
@@ -37,7 +40,7 @@
                             <ColumnDefinition Width="17*"/>
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Имя официантаawdawd" TextAlignment="Center" Grid.Column="0" />
+                        <TextBlock Text="{Binding Path=EmpName}" TextAlignment="Center" Grid.Column="0" />
                         <TextBlock Text="X" TextAlignment="Center" Grid.Column="1"/>
                     </Grid>
 

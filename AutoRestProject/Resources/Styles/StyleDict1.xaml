@@ -3,12 +3,14 @@
 
     <!-- Colors -->
     <SolidColorBrush x:Key="C_White" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="C_Gray" Color="#FFF2F2F2" />
+    <SolidColorBrush x:Key="C_Gray" Color="#F2F2F2" />
     <SolidColorBrush x:Key="C_DimGray" Color="#B1B1B1" />
     <SolidColorBrush x:Key="C_DarkGray" Color="#3B3B40" />
     <SolidColorBrush x:Key="C_Brown" Color="#A68365" />
     <SolidColorBrush x:Key="C_LightBrown" Color="#FFCEB299" />
-    
+    <SolidColorBrush x:Key="C_Orange" Color="#EBA51D" />
+    <SolidColorBrush x:Key="C_Green" Color="#009C10" />
+
     <!-- Fonts -->
     <FontFamily x:Key="IconFont">Segoe MDL2 Assets</FontFamily>
     <FontFamily x:Key="Roboto">pack://application:,,,/Resources/Fonts/#Roboto</FontFamily>

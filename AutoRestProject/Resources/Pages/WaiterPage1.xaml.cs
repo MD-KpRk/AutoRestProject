@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoRestProject.Resources.Pages
 {
@@ -29,16 +30,20 @@ namespace AutoRestProject.Resources.Pages
 
             InitializeComponent();
 
-            List<Order> list = new List<Order>();
+            List<Order>? list = new List<Order>();
 
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                list = bd.Orders.ToList();
+                list = bd.Orders?
+                    .Include(u => u.Table)
+                    .Include(u => u.Personal)
+                    .Include(u => u.Order_status)
+                    .ToList();
             }
 
             //UserControls.OrderUserControl[] d = new UserControls.OrderUserControl[10];
 
-            for(int i=0;i<list.Count();i++)
+            for(int i=0;i<list?.Count();i++)
             {
                 stack.Children.Add(new UserControls.OrderUserControl(this,list[i]));
             }

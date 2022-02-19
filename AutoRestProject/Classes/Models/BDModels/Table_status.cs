@@ -8,7 +8,7 @@ namespace AutoRestProject.Classes.Models.BDModels
 {
     public class Table_status
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
     }
 }
