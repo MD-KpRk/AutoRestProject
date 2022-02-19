@@ -13,7 +13,7 @@ namespace AutoRestProject
         }
 
         //public DbSet<Check>? Checks { get; set; }
-        //public DbSet<Food>? Foods { get; set; }
+        public DbSet<Food>? Foods { get; set; }
         //public DbSet<Log_string>? Log_strings { get; set; }
         //public DbSet<Menu_string>? Menu_strings { get; set; }
         public DbSet<Order>? Orders { get; set; }

@@ -19,5 +19,7 @@ namespace AutoRestProject.Classes.Models.BDModels
         public int TableId { get; set; }
         public Table Table { get; set; }
 
+        public List<Order_string> Order_strings { get; set; } = new List<Order_string>();
+
     }
 }

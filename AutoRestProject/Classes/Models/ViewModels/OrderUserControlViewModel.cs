@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AutoRestProject.Classes.Models.BDModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,6 +16,8 @@ namespace AutoRestProject.ViewModels
     {
         int orderNum = 0, tableNum;
         string orderStatus = "", empName = "";
+
+        public ObservableCollection<Order_string> Order_Strings { get; set; } = new ObservableCollection<Order_string>();
         public SolidColorBrush Color
         {
             get

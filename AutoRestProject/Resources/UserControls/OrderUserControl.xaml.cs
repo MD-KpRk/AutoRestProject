@@ -2,6 +2,7 @@
 using AutoRestProject.Resources.Pages;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +30,14 @@ namespace AutoRestProject.Resources.UserControls
             ViewModel.OrderStatus = order.Order_status.Title;
             ViewModel.TableNum = order.Table.Id;
             ViewModel.EmpName = order.Personal.Second_name + " " + order.Personal.First_name;
+            ViewModel.Order_Strings = new ObservableCollection<Order_string>(order.Order_strings);
             DataContext = ViewModel;
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("hELLO");
         }
     }
 }

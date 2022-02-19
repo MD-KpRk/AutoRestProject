@@ -38,6 +38,8 @@ namespace AutoRestProject.Resources.Pages
                     .Include(u => u.Table)
                     .Include(u => u.Personal)
                     .Include(u => u.Order_status)
+                    .Include(u => u.Order_strings)
+                        .ThenInclude(u => u.Food)
                     .ToList();
             }
 
