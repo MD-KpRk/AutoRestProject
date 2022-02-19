@@ -18,19 +18,20 @@
         <Border Margin="20,20,20,20" Background="{DynamicResource C_Gray}">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top">
-                    <TextBlock TextAlignment="Center">
-                        <Run Text="Заказ" />
-                        <Run Text="{Binding Path=OrderNum}" />
+                    <TextBlock TextAlignment="Center" LineHeight="24" Foreground="{StaticResource C_DarkGray}">
+                        <Run Text="Заказ #" FontSize="40" />
+                        <Run Text="{Binding Path=OrderNum}" FontSize="40" />
                         <LineBreak/>
-                        <Run Text="{Binding Path=OrderStatus}" Foreground="{Binding Color}" />
+                        <Run Text="{Binding Path=OrderStatus}" Foreground="{Binding Color}" FontSize="20"  />
                     </TextBlock>
-                    <Button Height="150"/>
-                    <Separator />
-                    <TextBlock >
+                    <Separator Margin="0,10,0,10" Foreground="{StaticResource C_DarkGray}" />
+                    <TextBlock FontSize="20" TextAlignment="Center" Foreground="{StaticResource C_DarkGray}" Margin="0,0,0,10">
                         <Run Text="Столик" />
                         <Run Text="{Binding Path=TableNum}" />
                     </TextBlock>
-                    <DataGrid />
+                    <DataGrid Margin="40,0,40,0" >
+
+                    </DataGrid>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" Height="50" VerticalAlignment="Bottom">
                     <Separator />
