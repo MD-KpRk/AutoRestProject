@@ -1,4 +1,5 @@
-﻿using AutoRestProject.Resources.Pages;
+﻿using AutoRestProject.Classes.Models.BDModels;
+using AutoRestProject.Resources.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,11 @@ namespace AutoRestProject.Resources.UserControls
     /// </summary>
     public partial class OrderUserControl : UserControl
     {
-        public OrderUserControl(WaiterPage1 page)
+        ViewModels.OrderUserControlViewModel ViewModel = new();
+        public OrderUserControl(WaiterPage1 page, Order order)
         {
+            ViewModel.OrderNum = order.Id;
+            DataContext = ViewModel;
             InitializeComponent();
         }
     }

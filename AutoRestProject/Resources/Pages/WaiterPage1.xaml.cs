@@ -29,18 +29,18 @@ namespace AutoRestProject.Resources.Pages
 
             InitializeComponent();
 
+            List<Order> list = new List<Order>();
 
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                //List < Order > = new List<Order>();
+                list = bd.Orders.ToList();
             }
 
-            UserControls.OrderUserControl[] d = new UserControls.OrderUserControl[10];
+            //UserControls.OrderUserControl[] d = new UserControls.OrderUserControl[10];
 
-            for(int i=0;i<d.Length;i++)
+            for(int i=0;i<list.Count();i++)
             {
-                d[i] = new UserControls.OrderUserControl(this);
-                stack.Children.Add(d[i]);
+                stack.Children.Add(new UserControls.OrderUserControl(this,list[i]));
             }
 
             //List <UserControls.OrderUserControl> = new List<UserControls.OrderUserControl>();

@@ -19,9 +19,10 @@
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top">
                     <TextBlock>
-                    <Run Text="Заказ" />
-                    <LineBreak/>
-                    <Run Text="Ожидание" />
+                        <Run Text="Заказ" />
+                        <Run Text="{Binding Path=OrderNum}" />
+                        <LineBreak/>
+                        <Run Text="Ожидание" />
                     </TextBlock>
                     <Button Height="150"/>
                     <Separator />
