@@ -17,11 +17,11 @@
 
 
         <StackPanel Width="1920" Height="1040" Background="{StaticResource C_DarkGray}">
-            <TextBlock Margin="100,30,100,0" FontSize="70" TextAlignment="Center" TextWrapping="Wrap" >
+            <TextBlock Margin="100,30,100,0" FontSize="60" TextAlignment="Center" TextWrapping="Wrap" >
                 <Run Text="Добро пожаловать в систему, " />
                 <Run Text="{Binding Path=PersName}" />
             </TextBlock>
-            <TextBlock TextAlignment="Center" FontSize="50" >
+            <TextBlock TextAlignment="Center" FontSize="40" >
                 <Run Text="Вы" />
                 <Run Text="{Binding Path=PersPos}" />
             </TextBlock>
@@ -32,20 +32,7 @@
                       PreviewMouseLeftButtonDown="scrollViewer_PreviewMouseLeftButtonDown" 
                       PreviewMouseLeftButtonUp="scrollViewer_PreviewMouseLeftButtonUp" 
                       PreviewMouseMove ="scrollViewer_PreviewMouseMove">
-            <StackPanel x:Name="stack" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <!--сюда надо написать свой элемент для описания заказа-->
-                <!--<Border Background="Aqua" Width="200" Height="200" />
-                <Border Background="Turquoise" Width="200" Height="200" />
-                <Border Background="Cyan" Width="200" Height="200" />
-                <Border Background="ForestGreen" Width="200" Height="200" />
-                <Border Background="Aqua" Width="200" Height="200" />
-                <Border Background="DodgerBlue" Width="200" Height="200" />
-                <Border Background="Aqua" Width="200" Height="200" />
-                <Border Background="Aqua" Width="200" Height="200" />
-                <Border Background="Aqua" Width="200" Height="200" />
-                <Border Background="Aqua" Width="200" Height="200" />
-                <Border Background="Wheat" Width="200" Height="200" />
-                <Border Background="Aqua" Width="200" Height="200" />-->
+            <StackPanel x:Name="stack" Orientation="Horizontal" HorizontalAlignment="Stretch" >
             </StackPanel>
         </ScrollViewer>
     </StackPanel>

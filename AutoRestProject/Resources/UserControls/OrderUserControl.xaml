@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AutoRestProject.Resources.UserControls"
              mc:Ignorable="d" 
-             d:Height="240" d:Width="200">
+             d:Height="500" d:Width="460">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -14,32 +14,35 @@
     </UserControl.Resources>
 
 
-    <Border Height="240" Width="200" Background="{DynamicResource C_Gray}">
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top">
-                <TextBlock>
+    <Border Height="500" Width="460">
+        <Border Margin="20,20,20,20" Background="{DynamicResource C_Gray}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top">
+                    <TextBlock>
                     <Run Text="Заказ" />
                     <LineBreak/>
                     <Run Text="Ожидание" />
-                </TextBlock>
-                <Separator />
-                <TextBlock Text="Столик" />
-                <DataGrid />
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Bottom" Height="50" VerticalAlignment="Bottom">
-                <Separator />
+                    </TextBlock>
+                    <Button Height="150"/>
+                    <Separator />
+                    <TextBlock Text="Столик" />
+                    <DataGrid />
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom" Height="50" VerticalAlignment="Bottom">
+                    <Separator />
 
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="3*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Имя официантаawdawd" TextAlignment="Center" Grid.Column="0" />
-                    <TextBlock Text="X" TextAlignment="Center" Grid.Column="1"/>
-                </Grid>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="17*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Имя официантаawdawd" TextAlignment="Center" Grid.Column="0" />
+                        <TextBlock Text="X" TextAlignment="Center" Grid.Column="1"/>
+                    </Grid>
 
 
-            </StackPanel>
-        </DockPanel>
+                </StackPanel>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

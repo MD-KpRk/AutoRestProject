@@ -13,17 +13,17 @@ namespace AutoRestProject.Classes.Models.BDModels
     {
         
         public int id { get; set; }
-        public string first_name { get; set; }
-        public string second_name { get; set; }
-        public string patronymic { get; set; }
-        public int pin { get; set; }
-        public string phone_number { get; set; }
+        public string First_name { get; set; }
+        public string Second_name { get; set; }
+        public string Patronymic { get; set; }
+        public int Pin { get; set; }
+        public string Phone_number { get; set; }
 
         //public List<Order> Orders { get; set; }
-        public int positionId { get; set; }
+        public int PositionId { get; set; }
         public Position Position { get; set; }
 
 
-        public override string ToString() => id + ": " + first_name;
+        public override string ToString() => id + ": " + First_name;
     }
 }

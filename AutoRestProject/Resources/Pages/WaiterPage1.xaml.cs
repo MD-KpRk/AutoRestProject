@@ -24,15 +24,29 @@ namespace AutoRestProject.Resources.Pages
         ViewModels.WaiterPage1ViewModel ViewModel = new();
         public WaiterPage1(Personal emp)
         {
-            ViewModel.SetPerson(emp.first_name + " " + emp.second_name,emp.Position.Title);
+            ViewModel.SetPerson(emp.First_name + " " + emp.Second_name,emp.Position.Title);
             DataContext = ViewModel;
 
             InitializeComponent();
 
-            UserControls.OrderUserControl d = new();
-            
 
-            stack.Children.Add(d); 
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                //List < Order > = new List<Order>();
+            }
+
+            UserControls.OrderUserControl[] d = new UserControls.OrderUserControl[10];
+
+            for(int i=0;i<d.Length;i++)
+            {
+                d[i] = new UserControls.OrderUserControl(this);
+                stack.Children.Add(d[i]);
+            }
+
+            //List <UserControls.OrderUserControl> = new List<UserControls.OrderUserControl>();
+
+
+            //stack.Children.Add(d); 
 
 
         }

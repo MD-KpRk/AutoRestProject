@@ -58,7 +58,7 @@ namespace AutoRestProject.Resources.Pages
 
                 Personal? personal = db.Personals?
                     .Include(u => u.Position)
-                    .FirstOrDefault(pers => pers.pin == Convert.ToInt32(Password));
+                    .FirstOrDefault(pers => pers.Pin == Convert.ToInt32(Password));
 
                 if (personal == null)
                 {

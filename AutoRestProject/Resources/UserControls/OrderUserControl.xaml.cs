@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoRestProject.Resources.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace AutoRestProject.Resources.UserControls
     /// </summary>
     public partial class OrderUserControl : UserControl
     {
-        public OrderUserControl()
+        public OrderUserControl(WaiterPage1 page)
         {
             InitializeComponent();
         }

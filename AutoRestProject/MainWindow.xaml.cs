@@ -13,7 +13,6 @@ namespace AutoRestProject
             DataContext = ViewModel;
             InitializeBD();
             InitializeComponent();
-            ErrorBox.getInstance().Show("Hello Error");
 
             PageController.getInstance(MainFrame).Goto(new AuthPage());
         }
