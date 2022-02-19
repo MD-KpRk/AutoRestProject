@@ -9,8 +9,8 @@ namespace AutoRestProject.Classes.Models.BDModels
     public class Order
     {
         public int Id { get; set; }
-        public string time { get; set; }
-        public string date { get; set; }
+        public string Time { get; set; }
+        public string Date { get; set; }
 
         public int Order_StatusId { get; set; }
         public Order_status Order_status { get; set; }
