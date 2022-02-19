@@ -25,5 +25,33 @@ namespace AutoRestProject.Resources.Pages
             DataContext = new ViewModels.WaiterPage1ViewModel();
             InitializeComponent();
         }
+
+
+
+
+
+        Point scrollMousePoint = new Point();
+        double hOff = 1;
+        private void scrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            scrollMousePoint = e.GetPosition(scrollviewer);
+            hOff = scrollviewer.HorizontalOffset;
+            scrollviewer.CaptureMouse();
+        }
+        private void scrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (scrollviewer.IsMouseCaptured)
+                scrollviewer.ScrollToHorizontalOffset(hOff + (scrollMousePoint.X - e.GetPosition(scrollviewer).X));
+        }
+        private void scrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            scrollviewer.ReleaseMouseCapture();
+        }
+
+        private void scrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            scrollviewer.ScrollToHorizontalOffset(scrollviewer.HorizontalOffset + e.Delta);
+        }
+
     }
 }
