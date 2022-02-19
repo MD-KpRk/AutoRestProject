@@ -26,9 +26,19 @@ namespace AutoRestProject.Resources.Pages
         {
             ViewModel.SetPerson(emp.first_name + " " + emp.second_name,emp.Position.Title);
             DataContext = ViewModel;
+
             InitializeComponent();
+
+            UserControls.OrderUserControl d = new();
+            
+
+            stack.Children.Add(d); 
+
+
         }
 
+
+        // Scroll Panel
         Point scrollMousePoint = new Point();
         double hOff = 1;
         private void scrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -32,9 +32,9 @@
                       PreviewMouseLeftButtonDown="scrollViewer_PreviewMouseLeftButtonDown" 
                       PreviewMouseLeftButtonUp="scrollViewer_PreviewMouseLeftButtonUp" 
                       PreviewMouseMove ="scrollViewer_PreviewMouseMove">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <StackPanel x:Name="stack" Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <!--сюда надо написать свой элемент для описания заказа-->
-                <Border Background="Aqua" Width="200" Height="200" />
+                <!--<Border Background="Aqua" Width="200" Height="200" />
                 <Border Background="Turquoise" Width="200" Height="200" />
                 <Border Background="Cyan" Width="200" Height="200" />
                 <Border Background="ForestGreen" Width="200" Height="200" />
@@ -45,7 +45,7 @@
                 <Border Background="Aqua" Width="200" Height="200" />
                 <Border Background="Aqua" Width="200" Height="200" />
                 <Border Background="Wheat" Width="200" Height="200" />
-                <Border Background="Aqua" Width="200" Height="200" />
+                <Border Background="Aqua" Width="200" Height="200" />-->
             </StackPanel>
         </ScrollViewer>
     </StackPanel>
