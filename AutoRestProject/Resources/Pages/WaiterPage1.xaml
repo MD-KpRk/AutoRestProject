@@ -27,6 +27,7 @@
             </TextBlock>
             <Separator Margin="0,20,0,40" Background="{DynamicResource C_Gray}" Height="5" />
         <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" 
+                      Margin="100,0,100,0"
                       VerticalScrollBarVisibility="Hidden"
                       PreviewMouseLeftButtonDown="scrollViewer_PreviewMouseLeftButtonDown" 
                       PreviewMouseLeftButtonUp="scrollViewer_PreviewMouseLeftButtonUp" 

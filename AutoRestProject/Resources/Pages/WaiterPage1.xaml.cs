@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using AutoRestProject.Classes.Models.BDModels;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -20,15 +21,13 @@ namespace AutoRestProject.Resources.Pages
     /// </summary>
     public partial class WaiterPage1 : Page
     {
-        public WaiterPage1()
+        ViewModels.WaiterPage1ViewModel ViewModel = new();
+        public WaiterPage1(Personal emp)
         {
-            DataContext = new ViewModels.WaiterPage1ViewModel();
+            ViewModel.SetPerson(emp.first_name + " " + emp.second_name,emp.Position.Title);
+            DataContext = ViewModel;
             InitializeComponent();
         }
-
-
-
-
 
         Point scrollMousePoint = new Point();
         double hOff = 1;

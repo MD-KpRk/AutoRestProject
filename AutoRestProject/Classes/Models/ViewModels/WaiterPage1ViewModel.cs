@@ -32,6 +32,12 @@ namespace AutoRestProject.ViewModels
             }
         }
 
+        public void SetPerson(string name, string position)
+        {
+            PersName = name;
+            PersPos = position;
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
