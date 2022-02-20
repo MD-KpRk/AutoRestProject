@@ -99,7 +99,9 @@ namespace AutoRestProject.Resources.Pages
                 //try
                 //{
                     db.Menu_strings?.Add(menu_String);
+                    
                     db.SaveChanges();
+
                     ViewModel.UpdateMenuStrings();
                 //}
                 //catch (Exception ex)

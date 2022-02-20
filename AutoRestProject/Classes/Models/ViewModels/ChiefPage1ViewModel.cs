@@ -14,10 +14,31 @@ namespace AutoRestProject.ViewModels
 {
     public class ChiefPage1ViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Menu_string> Menu_Strings { get; set; } = new ObservableCollection<Menu_string>();
-        public ObservableCollection<Food> Foods { get; set; } = new ObservableCollection<Food>();
-
+        public ObservableCollection<Menu_string> menu_Strings = new ObservableCollection<Menu_string>();
+        public ObservableCollection<Food> foods = new ObservableCollection<Food>();
         public string currPersName = "", currPersPos = "";
+
+
+        public ObservableCollection<Menu_string> Menu_Strings
+        {
+            get { return menu_Strings; }
+            set
+            {
+                menu_Strings = value;
+                OnPropertyChanged("Menu_Strings");
+            }
+        }
+
+        public ObservableCollection<Food> Foods
+        {
+            get { return foods; }
+            set
+            {
+                foods = value;
+                OnPropertyChanged("Foods");
+            }
+        }
+
 
         public string CurrPersName
         {
@@ -39,22 +60,12 @@ namespace AutoRestProject.ViewModels
             }
         }
 
-
-
         public ChiefPage1ViewModel()
         {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                List<Menu_string>? menu_strings = bd.Menu_strings?.Include(u => u.Food).ToList();
-                if (menu_strings != null)
-                    Menu_Strings = new ObservableCollection<Menu_string>(menu_strings);
-                else
-                    ErrorBox.getInstance().Show("Меню не загружено либо отсуствует");
-
-                List<Food>? foods = bd.Foods?.ToList();
-
-                if (foods != null)
-                    Foods = new ObservableCollection<Food>(foods);
+                UpdateFoods();
+                UpdateMenuStrings();
             }
         }
 
@@ -62,24 +73,19 @@ namespace AutoRestProject.ViewModels
         {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                Menu_Strings.Clear();
-
-
                 List<Menu_string>? menu_strings = bd.Menu_strings?.Include(u => u.Food).ToList();
-                if (menu_strings != null)
-                {
-                    for(int i=0;i< menu_strings.Count();i++)
-                    {
-                        Menu_Strings.Add(menu_strings[i]);
-                    }
-
-                }
-                else
-                    ErrorBox.getInstance().Show("Меню не загружено либо отсуствует");
+                if (menu_strings != null) Menu_Strings = new ObservableCollection<Menu_string>(menu_strings);
             }
         }
 
-
+        public void UpdateFoods()
+        {
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                List<Food>? foods = bd.Foods?.ToList();
+                if (foods != null) Foods = new ObservableCollection<Food>(foods);
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
