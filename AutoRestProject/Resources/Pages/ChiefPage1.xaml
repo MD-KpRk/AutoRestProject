@@ -27,7 +27,7 @@
                     </Grid>
                 </Button.Content>
             </Button>
-            
+
             <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
             <Button Style="{StaticResource ButtonStyle}" Width="170" Click="Button_Click_1" >
                 <Button.Content>
@@ -67,10 +67,16 @@
         <Grid Background="{StaticResource C_Gray}" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xF745;" FontSize="160" Height="200" Padding="1,-60,1,1" Click="Button_Click_2"  />
+                <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xF743;" FontSize="160" Height="200" Padding="1,-60,1,1" Click="Button_Click_3"/>
+            </StackPanel>
+
             <!--Datagrids-->
             <Grid>
                 <Border Margin="100,60,100,100" Background="{StaticResource C_White}" >
@@ -137,7 +143,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="110"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Текущий ассортимент" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30"/>
                             <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="1"  Content="&#xE713;" FontSize="40" />

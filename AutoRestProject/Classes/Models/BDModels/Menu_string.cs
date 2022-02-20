@@ -10,6 +10,6 @@ namespace AutoRestProject.Classes.Models.BDModels
     {
         public int Id { get; set; }
         public int FoodId { get; set; }
-        public Food Food { get; set; } = new Food();
+        public Food Food { get; set; }
     }
 }

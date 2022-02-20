@@ -50,5 +50,62 @@ namespace AutoRestProject.Resources.Pages
         {
             PageController.getInstance()?.Goto(new WaiterPage1(Emp));
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) // убрать из меню
+        {
+            Menu_string? menu_String = (dg1.SelectedItem as Menu_string);
+
+            if(menu_String == null)
+            {
+                ErrorBox.getInstance().Show("Блюдо из меню не выбрано. Для выбора блюда нажмите на него в списке");
+                return;
+            }
+
+            using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                try
+                {
+                    ViewModel.Menu_Strings.Remove(menu_String);
+                    db.Menu_strings?.Remove(menu_String);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ErrorBox.getInstance().Show(ex.Message);
+                }
+            }
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e) // добавить в меню
+        {
+
+            using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Food? food = (dg2.SelectedItem as Food);
+                if (food == null) return;
+
+                //if (food == null)
+                //{
+                //    ErrorBox.getInstance().Show("Блюдо из ассортимента не выбрано. Для выбора блюда нажмите на него в списке");
+                //    return;
+                //}
+
+                Menu_string menu_String = new Menu_string { FoodId = food.Id };
+
+
+
+                //try
+                //{
+                    db.Menu_strings.Add(menu_String);
+                    db.SaveChanges();
+                    ViewModel.Menu_Strings.Add(menu_String);
+                //}
+                //catch (Exception ex)
+                //{
+                //    ErrorBox.getInstance().Show(ex.Message);
+                //}
+            }
+        }
     }
 }
