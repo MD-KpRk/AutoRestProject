@@ -39,6 +39,7 @@ namespace AutoRestProject.Resources.Pages
                 list = bd.Orders?
                     .Include(u => u.Table)
                     .Include(u => u.Personal)
+                        .ThenInclude(u => u.Position)
                     .Include(u => u.Order_status)
                     .Include(u => u.Order_strings)
                         .ThenInclude(u => u.Food)
@@ -86,5 +87,17 @@ namespace AutoRestProject.Resources.Pages
             scrollviewer.ScrollToHorizontalOffset(scrollviewer.HorizontalOffset + e.Delta);
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PanelClose();
+        }
+
+        public void ShowPanel(Order order)
+        {
+            ViewModel.OrderNum = order.Id;
+            ViewModel.OrderPersName = order.Personal.First_name + " " + order.Personal.Second_name;
+            ViewModel.OrderPersPos = order.Personal.Position.Title;
+            ViewModel.PanelShow();
+        }
     }
 }

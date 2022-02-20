@@ -25,13 +25,16 @@ namespace AutoRestProject
 
         public string? OrgTitle;
         public string? ConStr;
+
         public string? Waiter;
+        public string? Chief;
         public DbContextOptions<AutoRestBDContext> ConOptions;
 
         ConfigController()
         {
             OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
             Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
+            Waiter = ConfigurationManager.AppSettings.Get("ChiefTitle");
 
             OrderProcessing = ConfigurationManager.AppSettings.Get("OrderProcessing");
             OrderWaitingPayment = ConfigurationManager.AppSettings.Get("OrderWaitingPayment");

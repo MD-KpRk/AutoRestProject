@@ -26,9 +26,11 @@ namespace AutoRestProject.Resources.UserControls
         ViewModels.OrderUserControlViewModel ViewModel = new();
 
         WaiterPage1 page;
+        Order Order;
 
         public OrderUserControl(WaiterPage1 page, Order order)
         {
+            Order = order;
             ViewModel.OrderNum = order.Id;
             ViewModel.OrderStatus = order.Order_status.Title;
             ViewModel.TableNum = order.Table.Id;
@@ -42,8 +44,7 @@ namespace AutoRestProject.Resources.UserControls
 
         private void Button_MouseDown(object sender, RoutedEventArgs e)
         {
-            // Open Panel
-            MessageBox.Show("awdawd");
+            page.ShowPanel(Order);
         }
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)

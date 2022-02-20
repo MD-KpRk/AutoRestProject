@@ -71,8 +71,13 @@ namespace AutoRestProject.Resources.Pages
                 if (PosTitle == ConfigController.getInstance().Waiter)
                 {
                     PageController.getInstance()?.Goto(new WaiterPage1(personal));
+                    return;
                 }
-
+                if (PosTitle == ConfigController.getInstance().Chief)
+                {
+                    PageController.getInstance()?.Goto(new ChiefPage1(personal));
+                    return;
+                }
 
 
             }
