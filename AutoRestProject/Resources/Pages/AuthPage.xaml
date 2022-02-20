@@ -38,6 +38,7 @@
                         Foreground="{StaticResource C_DarkGray}"
                         HorizontalContentAlignment="Center"
                         Text="{Binding Path=StarPassword}"
+                        IsReadOnly="True"
                         BorderBrush="{StaticResource C_DarkGray}">
                     </TextBox>
                     <Grid

@@ -23,8 +23,12 @@ namespace AutoRestProject.Resources.Pages
     public partial class ChiefPage1 : Page
     {
         ChiefPage1ViewModel ViewModel = new ChiefPage1ViewModel();
+
+        Personal Emp;
+
         public ChiefPage1(Personal personal)
         {
+            Emp = personal;
             ViewModel.currPersPos = personal.Position.Title;
             ViewModel.currPersName = personal.First_name + " " + personal.Second_name;
             DataContext = ViewModel;
@@ -40,6 +44,11 @@ namespace AutoRestProject.Resources.Pages
         private void Button_Click(object sender, RoutedEventArgs e) // выход
         {
             PageController.getInstance()?.Goto(new AuthPage());
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) // заказы
+        {
+            PageController.getInstance()?.Goto(new WaiterPage1(Emp));
         }
     }
 }

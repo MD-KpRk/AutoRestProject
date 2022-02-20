@@ -29,7 +29,7 @@
             </Button>
             
             <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
-            <Button Style="{StaticResource ButtonStyle}"  Width="170" >
+            <Button Style="{StaticResource ButtonStyle}" Width="170" Click="Button_Click_1" >
                 <Button.Content>
                     <Grid Height="80" Width ="170" FlowDirection="LeftToRight">
                         <Grid.ColumnDefinitions>
@@ -70,6 +70,8 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
+            <!--Datagrids-->
             <Grid>
                 <Border Margin="100,60,100,100" Background="{StaticResource C_White}" >
                     <Border.Effect>
@@ -80,7 +82,7 @@
                     <StackPanel>
                         <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Текущее меню" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30"/>
                         <Separator Background="{StaticResource C_DarkGray}"/>
-                        <DataGrid Margin="40,20,40,0" x:Name="dg2"
+                        <DataGrid Margin="40,20,40,0" x:Name="dg1"
                               Background="{StaticResource C_White}"
                               FontFamily="{StaticResource Roboto}"
                               GridLinesVisibility="None" 
@@ -103,8 +105,8 @@
                             <DataGrid.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="FontSize" Value="18"/>
-                                    <Setter Property="Height" Value="26"/>
+                                    <Setter Property="FontSize" Value="22"/>
+                                    <Setter Property="Height" Value="30"/>
                                 </Style>
                             </DataGrid.CellStyle>
                             <DataGrid.RowStyle>
@@ -123,6 +125,68 @@
                     </StackPanel>
                 </Border>
             </Grid>
+
+            <Grid Grid.Column="2">
+                <Border Margin="100,60,100,100" Background="{StaticResource C_White}" >
+                    <Border.Effect>
+                        <DropShadowEffect Opacity="0.3"/>
+                    </Border.Effect>
+                </Border>
+                <Border Margin="100,60,100,100" >
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="130"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Текущий ассортимент" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30"/>
+                            <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="1"  Content="&#xE713;" FontSize="40" />
+                        </Grid>
+                        <Separator Background="{StaticResource C_DarkGray}"/>
+                        <DataGrid Margin="40,20,40,0" x:Name="dg2"
+                              Background="{StaticResource C_White}"
+                              FontFamily="{StaticResource Roboto}"
+                              GridLinesVisibility="None" 
+                              SelectionUnit="FullRow" 
+                              AutoGenerateColumns="False" 
+                              HeadersVisibility="None" 
+                              IsReadOnly="True" 
+                              CanUserResizeColumns="False"                               
+                              CanUserReorderColumns="False" 
+                              CanUserSortColumns="False" 
+                              CanUserResizeRows="False" 
+                              AlternatingRowBackground="{x:Null}" 
+                              AlternationCount="2" 
+                              BorderBrush="{x:Null}" 
+                              ItemsSource="{Binding Foods}" SelectionChanged="dg2_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Title}" Width="1*" />
+
+                            </DataGrid.Columns>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="FontSize" Value="22"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=Selectable}" Value="False">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="Background" Value="Gray" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
         </Grid>
 
     </Grid>
