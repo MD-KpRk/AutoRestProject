@@ -34,7 +34,7 @@ namespace AutoRestProject
         {
             OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
             Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
-            Waiter = ConfigurationManager.AppSettings.Get("ChiefTitle");
+            Chief = ConfigurationManager.AppSettings.Get("ChiefTitle");
 
             OrderProcessing = ConfigurationManager.AppSettings.Get("OrderProcessing");
             OrderWaitingPayment = ConfigurationManager.AppSettings.Get("OrderWaitingPayment");

@@ -3,18 +3,62 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages"
+      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages" xmlns:viewmodels="clr-namespace:AutoRestProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ChiefPage1ViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="ChiefPage1">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="83*"/>
         </Grid.RowDefinitions>
-        <StackPanel Background="{StaticResource C_Brown}">
-
+        <StackPanel Background="{StaticResource C_Brown}" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
+            <Button Style="{StaticResource ButtonStyle}"  Width="170" >
+                <Button.Content>
+                    <Grid Height="80" Width ="170" FlowDirection="LeftToRight">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.ColumnSpan="2" />
+                        <TextBlock FontFamily="{StaticResource Roboto}" FontSize="30" Text="Выход" Grid.Column="0" TextAlignment="Center" Padding="10,20,20,20" />
+                        <TextBlock FontFamily="{StaticResource IconFont}" Text="&#xF3B1;" FontSize="40" Grid.Column="1" TextAlignment="Center" Padding="5,20,20,10" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+            
+            <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
+            <Button Style="{StaticResource ButtonStyle}"  Width="170" >
+                <Button.Content>
+                    <Grid Height="80" Width ="170" FlowDirection="LeftToRight">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.ColumnSpan="2" />
+                        <TextBlock FontFamily="{StaticResource Roboto}" FontSize="30" Text="Заказы" Grid.Column="0" TextAlignment="Center" Padding="10,20,20,20" />
+                        <TextBlock FontFamily="{StaticResource IconFont}" Text="&#xE71D;" FontSize="40" Grid.Column="1" TextAlignment="Center" Padding="5,20,20,10" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+            <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
+            <Button Style="{StaticResource ButtonStyle}"  Width="170" >
+                <Button.Content>
+                    <Grid Height="80" Width ="170" FlowDirection="LeftToRight">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.ColumnSpan="2" />
+                        <TextBlock FontFamily="{StaticResource Roboto}" FontSize="30" Text="Кухня" Grid.Column="0" TextAlignment="Center" Padding="15,20,20,20" />
+                        <TextBlock FontFamily="{StaticResource IconFont}" Text="&#xED56;" FontSize="40" Grid.Column="1" TextAlignment="Center" Padding="0,20,20,10" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+            
+            <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
         </StackPanel>
 
         <Grid Background="{StaticResource C_Gray}" Grid.Row="1">
@@ -24,18 +68,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid>
-                <Border Margin="50,50,50,50" Background="{StaticResource C_White}" >
+                <Border Margin="100,60,100,100" Background="{StaticResource C_White}" >
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.3"/>
                     </Border.Effect>
                 </Border>
-                <Border Margin="50,50,50,50" >
+                <Border Margin="100,60,100,100" >
                     <StackPanel>
-                        <TextBlock Text="Текущее меню" FontFamily="{StaticResource Roboto}" FontSize="20" TextAlignment="Center" Margin="0,10,0,10"/>
-                        <Separator/>
-                        <DataGrid Margin="40,0,40,0" x:Name="dg2"
-                              Height="258"
-                                  
+                        <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Текущее меню" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30"/>
+                        <Separator Background="{StaticResource C_DarkGray}"/>
+                        <DataGrid Margin="40,20,40,0" x:Name="dg2"
                               Background="{StaticResource C_White}"
                               FontFamily="{StaticResource Roboto}"
                               GridLinesVisibility="None" 
@@ -50,10 +92,10 @@
                               AlternatingRowBackground="{x:Null}" 
                               AlternationCount="2" 
                               BorderBrush="{x:Null}" 
-                              ItemsSource="{Binding Order_Strings}">
+                              ItemsSource="{Binding Menu_Strings}" SelectionChanged="dg2_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Food_count}" Width="1*" />
-                                <DataGridTextColumn Binding="{Binding Food.Title}" Width="9*" />
+                                <DataGridTextColumn Binding="{Binding Food.Title}" Width="1*" />
+
                             </DataGrid.Columns>
                             <DataGrid.CellStyle>
                                 <Style TargetType="DataGridCell">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoRestProject.Classes.Models.BDModels;
+using AutoRestProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,17 @@ namespace AutoRestProject.Resources.Pages
     /// </summary>
     public partial class ChiefPage1 : Page
     {
-        public ChiefPage1()
+        ChiefPage1ViewModel ViewModel = new ChiefPage1ViewModel();
+        public ChiefPage1(Personal personal)
         {
+            DataContext = ViewModel;
+
             InitializeComponent();
+        }
+
+        private void dg2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
