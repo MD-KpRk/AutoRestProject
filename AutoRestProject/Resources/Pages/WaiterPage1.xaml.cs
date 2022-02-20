@@ -23,6 +23,8 @@ namespace AutoRestProject.Resources.Pages
     public partial class WaiterPage1 : Page
     {
         ViewModels.WaiterPage1ViewModel ViewModel = new();
+        public bool CanScroll { get; set; } = true;
+
         public WaiterPage1(Personal emp)
         {
             ViewModel.SetPerson(emp.First_name + " " + emp.Second_name,emp.Position.Title);
@@ -66,7 +68,8 @@ namespace AutoRestProject.Resources.Pages
         {
             scrollMousePoint = e.GetPosition(scrollviewer);
             hOff = scrollviewer.HorizontalOffset;
-            scrollviewer.CaptureMouse();
+            if(CanScroll == true)
+                scrollviewer.CaptureMouse();
         }
         private void scrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
         {

@@ -16,7 +16,12 @@
     </Page.Resources>
 
 
-        <StackPanel Width="1920" Height="1040" Background="{StaticResource C_DarkGray}">
+    <Grid Width="1920" Height="1040" Background="{StaticResource C_DarkGray}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="160"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.RowSpan="2" >
             <TextBlock Margin="100,30,100,0" FontSize="60" TextAlignment="Center" TextWrapping="Wrap" >
                 <Run Text="Добро пожаловать в систему, " />
                 <Run Text="{Binding Path=PersName}" />
@@ -26,15 +31,17 @@
                 <Run Text="{Binding Path=PersPos}" />
             </TextBlock>
             <Separator Margin="0,20,0,40" Background="{DynamicResource C_Gray}" Height="5" />
-        <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" 
+            <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" 
                       Margin="100,0,100,0"
                       VerticalScrollBarVisibility="Hidden"
                       PreviewMouseLeftButtonDown="scrollViewer_PreviewMouseLeftButtonDown" 
                       PreviewMouseLeftButtonUp="scrollViewer_PreviewMouseLeftButtonUp" 
                       PreviewMouseMove ="scrollViewer_PreviewMouseMove">
-            <StackPanel x:Name="stack" Orientation="Horizontal" HorizontalAlignment="Stretch" >
-            </StackPanel>
-        </ScrollViewer>
-    </StackPanel>
+                <StackPanel x:Name="stack" Orientation="Horizontal" HorizontalAlignment="Stretch" >
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+
+    </Grid>
 
 </Page>

@@ -24,20 +24,36 @@ namespace AutoRestProject.Resources.UserControls
     public partial class OrderUserControl : UserControl
     {
         ViewModels.OrderUserControlViewModel ViewModel = new();
+
+        WaiterPage1 page;
+
         public OrderUserControl(WaiterPage1 page, Order order)
         {
             ViewModel.OrderNum = order.Id;
             ViewModel.OrderStatus = order.Order_status.Title;
             ViewModel.TableNum = order.Table.Id;
+            this.page = page;
             ViewModel.EmpName = order.Personal.Second_name + " " + order.Personal.First_name;
             ViewModel.Order_Strings = new ObservableCollection<Order_string>(order.Order_strings);
             DataContext = ViewModel;
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Button_MouseDown(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("hELLO");
+            // Open Panel
+            MessageBox.Show("awdawd");
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            page.CanScroll = false;
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            page.CanScroll = true;
         }
     }
 }
