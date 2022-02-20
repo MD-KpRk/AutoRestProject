@@ -84,6 +84,7 @@ namespace AutoRestProject.Resources.Pages
             {
                 Food? food = (dg2.SelectedItem as Food);
                 if (food == null) return;
+                //Food? foodfrombd = db.Foods?.Where(u => u.Id == food.Id).FirstOrDefault();
 
                 //if (food == null)
                 //{
@@ -91,15 +92,15 @@ namespace AutoRestProject.Resources.Pages
                 //    return;
                 //}
 
-                Menu_string menu_String = new Menu_string { FoodId = food.Id };
+                Menu_string menu_String = new Menu_string() { FoodId = food.Id};
 
 
 
                 //try
                 //{
-                    db.Menu_strings.Add(menu_String);
+                    db.Menu_strings?.Add(menu_String);
                     db.SaveChanges();
-                    ViewModel.Menu_Strings.Add(menu_String);
+                    ViewModel.UpdateMenuStrings();
                 //}
                 //catch (Exception ex)
                 //{

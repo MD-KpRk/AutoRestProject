@@ -43,11 +43,6 @@ namespace AutoRestProject.ViewModels
 
         public ChiefPage1ViewModel()
         {
-            UpdateContent();
-        }
-
-        public void UpdateContent()
-        {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 List<Menu_string>? menu_strings = bd.Menu_strings?.Include(u => u.Food).ToList();
@@ -60,6 +55,27 @@ namespace AutoRestProject.ViewModels
 
                 if (foods != null)
                     Foods = new ObservableCollection<Food>(foods);
+            }
+        }
+
+        public void UpdateMenuStrings()
+        {
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Menu_Strings.Clear();
+
+
+                List<Menu_string>? menu_strings = bd.Menu_strings?.Include(u => u.Food).ToList();
+                if (menu_strings != null)
+                {
+                    for(int i=0;i< menu_strings.Count();i++)
+                    {
+                        Menu_Strings.Add(menu_strings[i]);
+                    }
+
+                }
+                else
+                    ErrorBox.getInstance().Show("Меню не загружено либо отсуствует");
             }
         }
 
