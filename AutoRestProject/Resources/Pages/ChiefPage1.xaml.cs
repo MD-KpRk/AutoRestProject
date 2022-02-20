@@ -25,6 +25,8 @@ namespace AutoRestProject.Resources.Pages
         ChiefPage1ViewModel ViewModel = new ChiefPage1ViewModel();
         public ChiefPage1(Personal personal)
         {
+            ViewModel.currPersPos = personal.Position.Title;
+            ViewModel.currPersName = personal.First_name + " " + personal.Second_name;
             DataContext = ViewModel;
 
             InitializeComponent();
@@ -33,6 +35,11 @@ namespace AutoRestProject.Resources.Pages
         private void dg2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) // выход
+        {
+            PageController.getInstance()?.Goto(new AuthPage());
         }
     }
 }

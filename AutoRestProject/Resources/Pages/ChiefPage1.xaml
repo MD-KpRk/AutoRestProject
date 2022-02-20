@@ -14,8 +14,7 @@
             <RowDefinition Height="83*"/>
         </Grid.RowDefinitions>
         <StackPanel Background="{StaticResource C_Brown}" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
-            <Button Style="{StaticResource ButtonStyle}"  Width="170" >
+            <Button Style="{StaticResource ButtonStyle}" Width="170" Click="Button_Click" >
                 <Button.Content>
                     <Grid Height="80" Width ="170" FlowDirection="LeftToRight">
                         <Grid.ColumnDefinitions>
@@ -57,8 +56,12 @@
                     </Grid>
                 </Button.Content>
             </Button>
-            
             <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
+            <TextBlock VerticalAlignment="Center" FontSize="30" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_Gray}" Margin="10,0,0,0">
+                <Run Text="{Binding Path=CurrPersPos}" />
+                <Run Text="{Binding Path=CurrPersName}" />
+            </TextBlock>
+
         </StackPanel>
 
         <Grid Background="{StaticResource C_Gray}" Grid.Row="1">

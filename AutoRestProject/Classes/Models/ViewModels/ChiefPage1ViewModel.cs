@@ -15,6 +15,30 @@ namespace AutoRestProject.ViewModels
     {
         public ObservableCollection<Menu_string> Menu_Strings { get; set; } = new ObservableCollection<Menu_string>();
 
+        public string currPersName = "", currPersPos = "";
+
+        public string CurrPersName
+        {
+            get => currPersName;
+            set
+            {
+                currPersName = value;
+                OnPropertyChanged("CurrPersName");
+            }
+        }
+
+        public string CurrPersPos
+        {
+            get => currPersPos;
+            set
+            {
+                currPersPos = value;
+                OnPropertyChanged("CurrPersPos");
+            }
+        }
+
+
+
         public ChiefPage1ViewModel()
         {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
