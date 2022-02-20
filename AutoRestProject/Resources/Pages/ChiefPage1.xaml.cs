@@ -83,32 +83,30 @@ namespace AutoRestProject.Resources.Pages
             using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 Food? food = (dg2.SelectedItem as Food);
-                if (food == null) return;
-                //Food? foodfrombd = db.Foods?.Where(u => u.Id == food.Id).FirstOrDefault();
 
-                //if (food == null)
-                //{
-                //    ErrorBox.getInstance().Show("Блюдо из ассортимента не выбрано. Для выбора блюда нажмите на него в списке");
-                //    return;
-                //}
+                if (food == null)
+                {
+                    ErrorBox.getInstance().Show("Блюдо из ассортимента не выбрано. Для выбора блюда нажмите на него в списке");
+                    return;
+                }
 
-                Menu_string menu_String = new Menu_string() { FoodId = food.Id};
+                if (db.Menu_strings?.Where(u => u.FoodId == food.Id).FirstOrDefault() != null)
+                {
+                    ErrorBox.getInstance().Show(food.Title + " уже есть в меню");
+                    return;
+                }
 
-
-
-                //try
-                //{
-                    db.Menu_strings?.Add(menu_String);
-                    
+                try
+                {
+                    db.Menu_strings?.Add(new Menu_string() { FoodId = food.Id });
                     db.SaveChanges();
-
                     ViewModel.UpdateMenuStrings();
-                //}
-                //catch (Exception ex)
-                //{
-                //    ErrorBox.getInstance().Show(ex.Message);
-                //}
-            }
+                }
+                catch (Exception ex)
+                {
+                    ErrorBox.getInstance().Show(ex.Message);
+                }
+        }
         }
     }
 }
