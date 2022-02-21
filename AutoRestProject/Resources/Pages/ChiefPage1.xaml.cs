@@ -157,7 +157,11 @@ namespace AutoRestProject.Resources.Pages
             }
 
             ViewModel.FoodPanelEdit(food);
-            ViewModel.PanelVisible = Visibility.Visible;
+        }
+
+        private void Button_Click_12(object sender, RoutedEventArgs e) // Добавить элемент
+        {
+            ViewModel.FoodPanelAdd();
         }
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
@@ -191,13 +195,17 @@ namespace AutoRestProject.Resources.Pages
                     ViewModel.UpdateMenuStrings();
                     ViewModel.PanelVisible = Visibility.Collapsed;
                 }
-
-
-                    //edit food elem
             }
             else if(panelmode == PanelMode.ADD)
             {
-                //add elem
+                using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+                {
+                    db.Foods?.Add(new Food { Price = ViewModel.PanelFoodPrice, Title = ViewModel.PanelFoodTitle, Is_cooking = ViewModel.PanelFoodCook});
+                    db.SaveChanges();
+                    ViewModel.UpdateFoods();
+                    ViewModel.UpdateMenuStrings();
+                    ViewModel.PanelVisible = Visibility.Collapsed;
+                }
             }
         }
 
@@ -205,5 +213,7 @@ namespace AutoRestProject.Resources.Pages
         {
             ViewModel.PanelVisible = Visibility.Collapsed;
         }
+
+
     }
 }

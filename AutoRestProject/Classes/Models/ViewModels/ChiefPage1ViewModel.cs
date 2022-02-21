@@ -47,7 +47,7 @@ namespace AutoRestProject.ViewModels
         public void FoodPanelAdd()
         {
             PanelFoodTitle = "";
-            PanelFoodPrice = 0;
+            PanelFoodPrice = 1;
             PanelFoodCook = false;
             mode = PanelMode.ADD;
             PanelVisible = Visibility.Visible;
