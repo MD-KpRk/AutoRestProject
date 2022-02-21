@@ -132,11 +132,11 @@ namespace AutoRestProject.Resources.Pages
                     ErrorBox.getInstance().Show("Блюдо из ассортимента не выбрано. Для выбора блюда нажмите на него в списке");
                     return;
                 }
-
-                ViewModel.Foods.Remove(food);
                 db.Foods?.Remove(food);
                 db.SaveChanges();
 
+                ViewModel.UpdateFoods();
+                ViewModel.UpdateMenuStrings();
             }
         }
 
