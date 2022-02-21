@@ -29,16 +29,16 @@
                 <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xE8BB;" Margin="0,10,10,0" Width="60" Height="60" FontSize="40" HorizontalAlignment="Right" Click="Button_Click_9" />
                 <TextBlock Margin="0,10,0,10" Text="Данные блюда:" FontFamily="{StaticResource Roboto}" FontSize="50" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center" />
                 <TextBlock Margin="0,20,0,20" VerticalAlignment="Center" Text="Наименование блюда:" FontFamily="{StaticResource Roboto}" FontSize="30" Foreground="#6B6B6B" TextAlignment="Center" />
-                <TextBox Width="350" FontSize="30" VerticalAlignment="Center" Height="60" Text="{Binding Path=PanelFoodTitle}" VerticalContentAlignment="Center" />
+                <TextBox MaxLength="29" Width="350" FontSize="30" VerticalAlignment="Center" Height="60" Text="{Binding Path=PanelFoodTitle}" VerticalContentAlignment="Center" />
                 <TextBlock Margin="0,20,0,20" VerticalAlignment="Center" Text="Цена блюда, BYN:" FontFamily="{StaticResource Roboto}" FontSize="30" Foreground="#6B6B6B" TextAlignment="Center" />
-                <TextBox Width="350" FontSize="30" VerticalAlignment="Center" Height="60" Text="{Binding Path=PanelFoodPrice}" VerticalContentAlignment="Center" />
+                <TextBox MaxLength="10" Width="350" FontSize="30" VerticalAlignment="Center" Height="60" Text="{Binding Path=PanelFoodPrice}" VerticalContentAlignment="Center" />
                 <Viewbox Margin="0,30,0,0" Height="40">
-                    <CheckBox Content="Требует приготовления" Foreground="#6B6B6B" IsChecked="{Binding Path=PanelFoodCook}"/>
+                    <CheckBox Content="Требует приготовления" Foreground="#6B6B6B" IsChecked="{Binding Path=PanelFoodCook}" />
                 </Viewbox>
             </StackPanel>
 
             <StackPanel Background="{StaticResource C_Gray}" Grid.Row="1">
-                    <Button Style="{StaticResource ButtonStyle}" Content="{Binding Path=PanelButtonTitle}" Width="400" FontSize="30" Height="60" Margin="0,30,0,30" Click="Button_Click_10"  />
+                    <Button Style="{StaticResource ButtonStyle}" Content="Подтвердить" Width="400" FontSize="30" Height="60" Margin="0,30,0,30" Click="Button_Click_10"  />
                     <Button Style="{StaticResource ButtonStyle}" Content="Отменить" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_11"  />
 
             </StackPanel>

@@ -167,7 +167,38 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_10(object sender, RoutedEventArgs e) // Подвердить редактирование
         {
+            PanelMode panelmode = ViewModel.mode;
 
+            if(panelmode == PanelMode.EDIT)
+            {
+                Food? food = dg2.SelectedItem as Food;
+
+                if (food == null)
+                {
+                    ErrorBox.getInstance().Show("Блюдо из ассортимента не выбрано. Для выбора блюда нажмите на него в списке");
+                    return;
+                }
+
+                using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+                {
+                    var food2 = db.Foods?.Where(u => u.Id == food.Id).FirstOrDefault();
+                    if (food2 == null) return;
+                    food2.Title = ViewModel.PanelFoodTitle;
+                    food2.Price = ViewModel.PanelFoodPrice;
+                    food2.Is_cooking = ViewModel.PanelFoodCook;
+                    db.SaveChanges();
+                    ViewModel.UpdateFoods();
+                    ViewModel.UpdateMenuStrings();
+                    ViewModel.PanelVisible = Visibility.Collapsed;
+                }
+
+
+                    //edit food elem
+            }
+            else if(panelmode == PanelMode.ADD)
+            {
+                //add elem
+            }
         }
 
         private void Button_Click_11(object sender, RoutedEventArgs e)

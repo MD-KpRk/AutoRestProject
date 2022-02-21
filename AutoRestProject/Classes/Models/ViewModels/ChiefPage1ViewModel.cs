@@ -12,13 +12,21 @@ using System.Windows;
 
 namespace AutoRestProject.ViewModels
 {
+    public enum PanelMode
+    {
+        EDIT = 1, ADD
+    }
+
     public class ChiefPage1ViewModel : INotifyPropertyChanged
     {
+
+        public PanelMode mode;
+
         public ObservableCollection<Menu_string> menu_Strings = new ObservableCollection<Menu_string>();
         public ObservableCollection<Food> foods = new ObservableCollection<Food>();
         string currPersName = "", currPersPos = "";
         string panelFoodTitle = "";
-        string panelButtonTitle = "";
+        string panelButtonMode = "";
         double panelFoodPrice;
         bool panelFoodCook = false;
 
@@ -32,21 +40,26 @@ namespace AutoRestProject.ViewModels
             PanelFoodTitle = food.Title;
             PanelFoodPrice = food.Price;
             PanelFoodCook = food.Is_cooking;
-            PanelButtonTitle = "Подтвердить";
+            mode = PanelMode.EDIT;
+            PanelVisible = Visibility.Visible;
         }
 
         public void FoodPanelAdd()
         {
-            PanelButtonTitle = "Добавить";
+            PanelFoodTitle = "";
+            PanelFoodPrice = 0;
+            PanelFoodCook = false;
+            mode = PanelMode.ADD;
+            PanelVisible = Visibility.Visible;
         }
 
-        public string PanelButtonTitle
+        public string PanelButtonMode
         {
-            get { return panelButtonTitle; }
+            get { return panelButtonMode; }
             set
             {
-                panelButtonTitle = value;
-                OnPropertyChanged("PanelButtonTitle");
+                panelButtonMode = value;
+                OnPropertyChanged("PanelButtonMode");
             }
         }
 
