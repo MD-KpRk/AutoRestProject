@@ -169,7 +169,7 @@ namespace AutoRestProject.Resources.Pages
             ViewModel.PanelVisible = Visibility.Collapsed;
         }
 
-        private void Button_Click_10(object sender, RoutedEventArgs e) // Подвердить редактирование
+        private void Button_Click_10(object sender, RoutedEventArgs e) // Подвердить редактирование или добавление
         {
             PanelMode panelmode = ViewModel.mode;
 

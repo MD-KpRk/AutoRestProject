@@ -171,7 +171,7 @@
                                 <ColumnDefinition Width="110"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="0"  Content="&#xE711;" FontSize="50" Click="Button_Click_5" />
+                            <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="0"  Content="&#xE711;" FontSize="50" Click="Button_Click_5" Panel.ZIndex="2" />
                             <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Действия" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30" Grid.ColumnSpan="2"/>
                         </Grid>
 
