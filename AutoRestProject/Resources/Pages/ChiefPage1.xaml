@@ -13,6 +13,39 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="83*"/>
         </Grid.RowDefinitions>
+
+        <!--Панель блюда-->
+        <Grid Grid.Row="1" Panel.ZIndex="10" Visibility="{Binding Path=PanelVisible}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1" Background="#46585858" Grid.RowSpan="2"  />
+            <StackPanel Grid.Column="0" Background="{StaticResource C_Gray}" Grid.Row="0" >
+                <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xE8BB;" Margin="0,10,10,0" Width="60" Height="60" FontSize="40" HorizontalAlignment="Right" Click="Button_Click_9" />
+                <TextBlock Margin="0,10,0,10" Text="Данные блюда:" FontFamily="{StaticResource Roboto}" FontSize="50" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center" />
+                <TextBlock Margin="0,20,0,20" VerticalAlignment="Center" Text="Наименование блюда:" FontFamily="{StaticResource Roboto}" FontSize="30" Foreground="#6B6B6B" TextAlignment="Center" />
+                <TextBox Width="350" FontSize="30" VerticalAlignment="Center" Height="60" Text="{Binding Path=PanelFoodTitle}" VerticalContentAlignment="Center" />
+                <TextBlock Margin="0,20,0,20" VerticalAlignment="Center" Text="Цена блюда, BYN:" FontFamily="{StaticResource Roboto}" FontSize="30" Foreground="#6B6B6B" TextAlignment="Center" />
+                <TextBox Width="350" FontSize="30" VerticalAlignment="Center" Height="60" Text="{Binding Path=PanelFoodPrice}" VerticalContentAlignment="Center" />
+                <Viewbox Margin="0,30,0,0" Height="40">
+                    <CheckBox Content="Требует приготовления" Foreground="#6B6B6B" IsChecked="{Binding Path=PanelFoodCook}"/>
+                </Viewbox>
+            </StackPanel>
+
+            <StackPanel Background="{StaticResource C_Gray}" Grid.Row="1">
+                    <Button Style="{StaticResource ButtonStyle}" Content="{Binding Path=PanelButtonTitle}" Width="400" FontSize="30" Height="60" Margin="0,30,0,30" Click="Button_Click_10"  />
+                    <Button Style="{StaticResource ButtonStyle}" Content="Отменить" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_11"  />
+
+            </StackPanel>
+
+        </Grid>
+
+        <!--Верхнее меню-->
         <StackPanel Background="{StaticResource C_Brown}" Orientation="Horizontal" FlowDirection="RightToLeft">
             <Button Style="{StaticResource ButtonStyle}" Width="170" Click="Button_Click" >
                 <Button.Content>
@@ -130,6 +163,28 @@
                         </DataGrid>
                     </StackPanel>
                 </Border>
+                <Border Margin="100,60,100,100" Background="{StaticResource C_White}" Panel.ZIndex="2" Visibility="{Binding Path=MenuVisible}" >
+                    <StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="0"  Content="&#xE711;" FontSize="50" Click="Button_Click_5" />
+                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Действия" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30" Grid.ColumnSpan="2"/>
+                        </Grid>
+
+
+                        <Separator Background="{StaticResource C_DarkGray}" Margin="0,0,0,40"/>
+
+                        <Button Style="{StaticResource ButtonStyle}" Content="Удалить выделенное" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_6" />
+                        <Button Style="{StaticResource ButtonStyle}" Content="Обновление данных" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_7" />
+                        <Button Style="{StaticResource ButtonStyle}" Content="Редактировать элемент" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_8" />
+                        <Button Style="{StaticResource ButtonStyle}" Content="Добавить блюдо" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" />
+
+                    </StackPanel>
+                </Border>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -145,8 +200,8 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="110"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Текущий ассортимент" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30"/>
-                            <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="1"  Content="&#xE713;" FontSize="40" />
+                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Текущий ассортимент" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30" HorizontalAlignment="Right"/>
+                            <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="1"  Content="&#xE713;" FontSize="40" Click="Button_Click_4" />
                         </Grid>
                         <Separator Background="{StaticResource C_DarkGray}"/>
                         <DataGrid Margin="40,20,40,0" x:Name="dg2"

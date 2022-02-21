@@ -29,8 +29,8 @@ namespace AutoRestProject.Resources.Pages
         public ChiefPage1(Personal personal)
         {
             Emp = personal;
-            ViewModel.currPersPos = personal.Position.Title;
-            ViewModel.currPersName = personal.First_name + " " + personal.Second_name;
+            ViewModel.CurrPersPos = personal.Position.Title;
+            ViewModel.CurrPersName = personal.First_name + " " + personal.Second_name;
             DataContext = ViewModel;
 
             InitializeComponent();
@@ -38,7 +38,6 @@ namespace AutoRestProject.Resources.Pages
 
         private void dg2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) // выход
@@ -107,6 +106,73 @@ namespace AutoRestProject.Resources.Pages
                     ErrorBox.getInstance().Show(ex.Message);
                 }
         }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e) // Переключить меню
+        {
+            if (ViewModel.MenuVisible == Visibility.Collapsed)
+                ViewModel.MenuVisible = Visibility.Visible;
+            else
+                ViewModel.MenuVisible = Visibility.Collapsed;
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e) // Закрыть меню
+        {
+            ViewModel.MenuVisible = Visibility.Collapsed;
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e) // удалить выделенное
+        {
+            using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Food? food = (dg2.SelectedItem as Food);
+
+                if (food == null)
+                {
+                    ErrorBox.getInstance().Show("Блюдо из ассортимента не выбрано. Для выбора блюда нажмите на него в списке");
+                    return;
+                }
+
+                ViewModel.Foods.Remove(food);
+                db.Foods?.Remove(food);
+                db.SaveChanges();
+
+            }
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e) // Обновить данные
+        {
+            ViewModel.UpdateFoods();
+            ViewModel.UpdateMenuStrings();
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e) // Редактировать элемент
+        {
+            Food? food = dg2.SelectedItem as Food;
+
+            if (food == null)
+            {
+                ErrorBox.getInstance().Show("Блюдо из ассортимента не выбрано. Для выбора блюда нажмите на него в списке");
+                return;
+            }
+
+            ViewModel.FoodPanelEdit(food);
+            ViewModel.PanelVisible = Visibility.Visible;
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PanelVisible = Visibility.Collapsed;
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e) // Подвердить редактирование
+        {
+
+        }
+
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PanelVisible = Visibility.Collapsed;
         }
     }
 }
