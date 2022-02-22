@@ -14,6 +14,8 @@ namespace AutoRestProject.Classes.Models.BDModels
         public int FoodId { get; set; }
         public int OrderId { get; set; }
         public Order Order { get; set; }
+        public int OrderStringStatusId { get; set; }
+        public OrderStringStatus OrderStringStatus { get; set; }
 
     }
 }
