@@ -27,7 +27,15 @@ namespace AutoRestProject.Resources.Pages
         {
             InitializeComponent();
 
-            stack.Children.Add(new OrderStringUserControl());
+            OrderStringUserControl[] os = new OrderStringUserControl[10];
+
+            for(int i =0;i<os.Length;i++)
+            {
+                os[i] = new OrderStringUserControl();
+                stack.Children.Add(new OrderStringUserControl());
+
+            }
+
         }
 
 

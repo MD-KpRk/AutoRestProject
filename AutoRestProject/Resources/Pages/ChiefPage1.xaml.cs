@@ -214,6 +214,9 @@ namespace AutoRestProject.Resources.Pages
             ViewModel.PanelVisible = Visibility.Collapsed;
         }
 
-
+        private void Button_Click_13(object sender, RoutedEventArgs e) // кухня
+        {
+            PageController.getInstance()?.Goto(new CookPage1());
+        }
     }
 }
