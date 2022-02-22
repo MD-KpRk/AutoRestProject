@@ -3,10 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AutoRestProject.Resources.UserControls"
+             xmlns:local="clr-namespace:AutoRestProject.Resources.UserControls" xmlns:viewmodels="clr-namespace:AutoRestProject.Classes.Models.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:OrderStringUserControlViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="260" d:DesignWidth="360">
-    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}">
-            
+    <Grid Width="360" Height="260" >
+        <Border Margin="0,0,40,40" Background="{StaticResource C_Gray}">
+            <StackPanel>
+                <Grid VerticalAlignment="Stretch" Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource WhiteButtonStyle}" Grid.Column="0"  Content="&#xE713;" FontSize="40" Click="Button_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" />
+                    <Viewbox Grid.Column="1" Margin="10,10,10,10" Stretch="Uniform">
+                        <TextBlock Text="{Binding Path=OrderString}" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"  />
+                    </Viewbox>
+                </Grid>
+                <Separator Background="{StaticResource C_DarkGray}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

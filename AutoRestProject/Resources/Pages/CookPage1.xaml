@@ -23,11 +23,11 @@
         <StackPanel  >
             <TextBlock Margin="100,30,100,0" FontSize="60" TextAlignment="Center" TextWrapping="Wrap" >
                 <Run Text="Добро пожаловать в систему, " />
-                <Run Text="{Binding Path=PersName}" />
+                <Run Text="{Binding Path=CurrentPersName}" />
             </TextBlock>
             <TextBlock TextAlignment="Center" FontSize="40" >
                 <Run Text="Вы" />
-                <Run Text="{Binding Path=PersPos}" />
+                <Run Text="{Binding Path=CurrentPersPos}" />
             </TextBlock>
             <Separator Margin="0,20,0,40" Background="{DynamicResource C_Gray}" Height="5" />
             <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" Height="600" 

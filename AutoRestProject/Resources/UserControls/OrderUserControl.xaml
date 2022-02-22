@@ -92,10 +92,6 @@
                             <ColumnDefinition Width="17*"/>
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-
-
-
-
                         <TextBlock Text="{Binding Path=EmpName}" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Grid.Column="0" TextWrapping="Wrap"  />
                         <Button Style="{StaticResource WhiteButtonStyle}" Grid.Column="1"  Content="&#xE713;" FontSize="40" Click="Button_MouseDown" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" />
                     </Grid>

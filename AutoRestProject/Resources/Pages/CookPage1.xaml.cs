@@ -27,14 +27,14 @@ namespace AutoRestProject.Resources.Pages
         {
             InitializeComponent();
 
-            OrderStringUserControl[] os = new OrderStringUserControl[10];
+            //OrderStringUserControl[] os = new OrderStringUserControl[10];
 
-            for(int i =0;i<os.Length;i++)
-            {
-                os[i] = new OrderStringUserControl();
-                stack.Children.Add(new OrderStringUserControl());
+            //for(int i =0;i<os.Length;i++)
+            //{
+            //    os[i] = new OrderStringUserControl(this);
+            //    stack.Children.Add(os[i]);
 
-            }
+            //}
 
         }
 
@@ -47,14 +47,14 @@ namespace AutoRestProject.Resources.Pages
         private void scrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             scrollMousePoint = e.GetPosition(scrollviewer);
-            hOff = scrollviewer.HorizontalOffset;
+            hOff = scrollviewer.VerticalOffset;
             if (CanScroll == true)
                 scrollviewer.CaptureMouse();
         }
         private void scrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (scrollviewer.IsMouseCaptured)
-                scrollviewer.ScrollToHorizontalOffset(hOff + (scrollMousePoint.X - e.GetPosition(scrollviewer).X));
+                scrollviewer.ScrollToVerticalOffset(hOff + (scrollMousePoint.Y - e.GetPosition(scrollviewer).Y));
         }
         private void scrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -63,7 +63,7 @@ namespace AutoRestProject.Resources.Pages
 
         private void scrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            scrollviewer.ScrollToHorizontalOffset(scrollviewer.HorizontalOffset + e.Delta);
+            scrollviewer.ScrollToHorizontalOffset(scrollviewer.VerticalOffset + e.Delta);
         }
     }
 }
