@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace AutoRestProject.Classes.Models.BDModels
 {
@@ -16,6 +18,9 @@ namespace AutoRestProject.Classes.Models.BDModels
         public Order Order { get; set; }
         public int OrderStringStatusId { get; set; }
         public OrderStringStatus OrderStringStatus { get; set; }
+        public int CookPersId { get; set; }
+
+        public Personal? CookPers { get; set; } = null;
 
     }
 }
