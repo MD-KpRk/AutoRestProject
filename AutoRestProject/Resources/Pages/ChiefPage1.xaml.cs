@@ -216,7 +216,7 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_13(object sender, RoutedEventArgs e) // кухня
         {
-            PageController.getInstance()?.Goto(new CookPage1());
+            PageController.getInstance()?.Goto(new CookPage1(Emp));
         }
     }
 }

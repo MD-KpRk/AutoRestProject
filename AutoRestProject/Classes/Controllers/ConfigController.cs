@@ -19,6 +19,12 @@ namespace AutoRestProject
             return instance;
         }
 
+        public int? GoodTimeSecond;  
+        public int? AverageTimeSecond;  
+        public int? BadTimeSecond;  
+
+
+
         public string? OrderProcessing;
         public string? OrderWaitingPayment;
         public string? OrderDone;
@@ -35,6 +41,10 @@ namespace AutoRestProject
             OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
             Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
             Chief = ConfigurationManager.AppSettings.Get("ChiefTitle");
+
+            GoodTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("GoodTimeSecond"));
+            AverageTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AverageTimeSecond"));
+            BadTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("BadTimeSecond"));
 
             OrderProcessing = ConfigurationManager.AppSettings.Get("OrderProcessing");
             OrderWaitingPayment = ConfigurationManager.AppSettings.Get("OrderWaitingPayment");

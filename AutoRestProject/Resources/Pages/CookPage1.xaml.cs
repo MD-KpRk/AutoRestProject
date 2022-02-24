@@ -1,4 +1,5 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
+using AutoRestProject.Classes.Models.ViewModels;
 using AutoRestProject.Resources.UserControls;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace AutoRestProject.Resources.Pages
 {
@@ -24,19 +26,38 @@ namespace AutoRestProject.Resources.Pages
     public partial class CookPage1 : Page
     {
         public bool CanScroll { get; set; } = true;
+        CookPage1ViewModel ViewModel = new CookPage1ViewModel();
+        DispatcherTimer timer = new DispatcherTimer();
 
-        public CookPage1()
+
+        public CookPage1(Personal pers)
         {
+            ViewModel.SetPerson(pers);
+            DataContext = ViewModel;
+
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
             InitializeComponent();
+            UpdateInfo();
 
-            MessageBox.Show("awd");
-            //Получение всех заказов
-            //Получение всех строк заказов из заказов
-            //Создание  юзер контрола с передачей данных по строке заказа
+        }
 
+        void timer_Tick(object? sender, EventArgs e)
+        {
+            foreach (object? a in stack.Children)
+                (a as OrderStringUserControl)?.UpdateTime();
+        }
+
+
+        void UpdateInfo()
+        {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-               var list = bd.Orders?
+
+                stack.Children.Clear();
+                List<Order>? list = bd.Orders?
                     .Include(u => u.Table)
                     .Include(u => u.Personal)
                         .ThenInclude(u => u.Position)
@@ -45,57 +66,18 @@ namespace AutoRestProject.Resources.Pages
                         .ThenInclude(u => u.Food)
                     .ToList();
 
+                if (list == null) return;
 
-
-
-
-                StringBuilder str = new StringBuilder();
                 foreach (var o in list)
                 {
-                    //var order_strgs = bd.Order_strings?.Where(u => u.OrderId == o.Id)
-                    //    .Include(u=>u.CookPers).ToList();
-
-                    foreach(var a in o.Order_strings)
+                    foreach (var a in o.Order_strings)
                     {
-                        if (a.CookPers == null)
-                        {
-                            MessageBox.Show(a.Food.Title + " не готовится");
-                        }
-                        else
-                        {
-                            MessageBox.Show(a.Food.Title + " готовится " + a.CookPers.First_name);
-                        }
-                        //MessageBox.Show(o.Order_strings.Count().ToString() +"   "+ a.Food.Title);
+                        stack.Children.Add(new OrderStringUserControl(this, a));
                     }
-
-
-
-                    //if (o.Order_strings.Count() != 0)
-                    //{
-                    //    foreach (Order_string a in o.Order_strings)
-                    //    {
-
-                    //        str.Append(a.Food.Title + a.CookPers.First_name);
-                    //    }
-                    //    MessageBox.Show(str.ToString());
-                    //}
-                    //else
-                    //    MessageBox.Show("Заказ пуст");
                 }
 
 
             }
-
-
-            //OrderStringUserControl[] os = new OrderStringUserControl[10];
-
-            //for(int i =0;i<os.Length;i++)
-            //{
-            //    os[i] = new OrderStringUserControl(this);
-            //    stack.Children.Add(os[i]);
-
-            //}
-
         }
 
 

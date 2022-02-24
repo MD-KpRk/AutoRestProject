@@ -18,6 +18,10 @@ namespace AutoRestProject.ViewModels
         string orderStatus = "", empName = "";
 
         public ObservableCollection<Order_string> Order_Strings { get; set; } = new ObservableCollection<Order_string>();
+
+
+
+
         public SolidColorBrush Color
         {
             get

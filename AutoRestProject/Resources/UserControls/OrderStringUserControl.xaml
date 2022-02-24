@@ -9,17 +9,25 @@
     <Grid Width="360" Height="260" >
         <Border Margin="0,0,40,40" Background="{StaticResource C_Gray}">
             <StackPanel>
-                <Grid VerticalAlignment="Stretch" Height="60">
+                <Grid VerticalAlignment="Stretch" Height="40">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="84"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource WhiteButtonStyle}" Grid.Column="0"  Content="&#xE713;" FontSize="40" Click="Button_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" />
-                    <Viewbox Grid.Column="1" Margin="10,10,10,10" Stretch="Uniform">
-                        <TextBlock Text="{Binding Path=OrderString}" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"  />
-                    </Viewbox>
+                    <TextBlock Text="{Binding Path=OrderNum}" FontFamily="{StaticResource Roboto}" FontSize="26" Grid.Column="1" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Path=CurrTime}" FontFamily="{StaticResource Roboto}" FontSize="26" Grid.Column="2" Foreground="{Binding Path=TimerBrush}" TextAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Style="{StaticResource WhiteButtonStyle}" Grid.Column="0"  Content="&#xE713;" FontSize="30" Click="Button_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" />
                 </Grid>
                 <Separator Background="{StaticResource C_DarkGray}" />
+
+
+                <Viewbox Margin="0,10,0,0"  Grid.Column="1" Height="26" Stretch="Uniform">
+                    <TextBlock Text="{Binding Path=OrderString}" Grid.Column="1" VerticalAlignment="Center" FontSize="12" TextAlignment="Center" Foreground="{StaticResource C_DarkGray}"  TextWrapping="Wrap" />
+                </Viewbox>
+                <Viewbox Margin="0,10,0,0"  Grid.Column="1" Height="26" Stretch="Uniform">
+                    <TextBlock Text="{Binding Path=OrderPers}" Grid.Column="1" VerticalAlignment="Center" FontSize="12" TextAlignment="Center" Foreground="{StaticResource C_DarkGray}"  TextWrapping="Wrap" />
+                </Viewbox>
             </StackPanel>
         </Border>
     </Grid>

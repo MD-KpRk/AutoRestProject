@@ -23,7 +23,7 @@ namespace AutoRestProject.Resources.UserControls
     /// </summary>
     public partial class OrderStringUserControl : UserControl
     {
-        OrderStringUserControlViewModel ViewModel = new OrderStringUserControlViewModel();
+        OrderStringUserControlViewModel ViewModel;
 
         CookPage1 page;
         Order_string order_String;
@@ -32,9 +32,26 @@ namespace AutoRestProject.Resources.UserControls
         {
             this.page = page;
             this.order_String = order_String;
+
+            ViewModel = new OrderStringUserControlViewModel(order_String);
+
+            ViewModel.OrderString = this.order_String.Food.Title;
+            ViewModel.OrderNum = this.order_String.OrderId.ToString();
+            if (this.order_String.CookPers == null)
+            {
+                ViewModel.OrderPers = "Не принят";
+            }
+            else
+            {
+                ViewModel.OrderPers = this.order_String.CookPers.First_name + " " + this.order_String.CookPers.Second_name;
+            }
             DataContext = ViewModel;
-            ViewModel.OrderString = order_String.Food.Title;
             InitializeComponent();
+        }
+
+        public void UpdateTime()
+        {
+            ViewModel.UpdateTimer();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
