@@ -22,6 +22,15 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         SolidColorBrush brush = new SolidColorBrush(Colors.Black);
 
+        public SolidColorBrush CookBrush
+        {
+            get => this.Order_String.CookPers == null ? new SolidColorBrush(Colors.Red) : new SolidColorBrush(Colors.Green);
+            set
+            {
+                OnPropertyChanged("CookBrush");
+            }
+        }
+
         public SolidColorBrush TimerBrush
         {
             get { return brush; }

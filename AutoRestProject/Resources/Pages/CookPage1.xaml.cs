@@ -26,7 +26,7 @@ namespace AutoRestProject.Resources.Pages
     public partial class CookPage1 : Page
     {
         public bool CanScroll { get; set; } = true;
-        CookPage1ViewModel ViewModel = new CookPage1ViewModel();
+        public CookPage1ViewModel ViewModel = new CookPage1ViewModel();
         DispatcherTimer timer = new DispatcherTimer();
 
 
@@ -75,13 +75,8 @@ namespace AutoRestProject.Resources.Pages
                         stack.Children.Add(new OrderStringUserControl(this, a));
                     }
                 }
-
-
             }
         }
-
-
-
 
         // Scroll Panel
         Point scrollMousePoint = new Point();
@@ -106,6 +101,11 @@ namespace AutoRestProject.Resources.Pages
         private void scrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             scrollviewer.ScrollToHorizontalOffset(scrollviewer.VerticalOffset + e.Delta);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.HidePanel();
         }
     }
 }

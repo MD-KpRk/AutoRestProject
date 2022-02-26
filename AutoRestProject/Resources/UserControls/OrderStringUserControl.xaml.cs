@@ -54,9 +54,9 @@ namespace AutoRestProject.Resources.UserControls
             ViewModel.UpdateTimer();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) // открытие панели действий
         {
-
+            page.ViewModel.ShowPanel();
         }
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)

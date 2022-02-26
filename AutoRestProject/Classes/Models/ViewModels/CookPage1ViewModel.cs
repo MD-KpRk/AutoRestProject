@@ -6,12 +6,36 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AutoRestProject.Classes.Models.ViewModels
 {
-    class CookPage1ViewModel : INotifyPropertyChanged
+    public class CookPage1ViewModel : INotifyPropertyChanged
     {
         string currPersName = "", currPersPos = "";
+
+
+        public void ShowPanel()
+        {
+            Visibility = Visibility.Visible;
+        }
+
+        public void HidePanel()
+        {
+            Visibility = Visibility.Collapsed;
+        }
+
+
+        Visibility visibility = Visibility.Collapsed;
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged("Visibility");
+            }
+        }
 
         public string CurrentPersName
         {
