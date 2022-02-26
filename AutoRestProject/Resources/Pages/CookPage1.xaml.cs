@@ -29,6 +29,8 @@ namespace AutoRestProject.Resources.Pages
         public CookPage1ViewModel ViewModel = new CookPage1ViewModel();
         DispatcherTimer timer = new DispatcherTimer();
 
+        Order_string? PanelOrder { get; set; }
+
 
         public CookPage1(Personal pers)
         {
@@ -55,7 +57,6 @@ namespace AutoRestProject.Resources.Pages
         {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-
                 stack.Children.Clear();
                 List<Order>? list = bd.Orders?
                     .Include(u => u.Table)
@@ -106,6 +107,38 @@ namespace AutoRestProject.Resources.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.HidePanel();
+        }
+
+        public void ShowPanel(Order_string ord)
+        {
+            PanelOrder = ord;
+            ViewModel.SelectedOrderString = ord.Order.Id.ToString();
+            ViewModel.SelectedString = ord.Food_count + "x " + ord.Food.Title;
+
+            if (ord.CookPers == null)
+                ViewModel.SelectedPersName = "Никто не готовит";
+            else
+                ViewModel.SelectedPersName = ord.CookPers.First_name + "\n" + ord.CookPers.Second_name;
+
+            ViewModel.ShowPanel();
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) // Приготовлено
+        {
+            if (PanelOrder == null) return;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) // Принять блюдо
+        {
+            if (PanelOrder == null) return;
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e) // Отменить отправку
+        {
+            if (PanelOrder == null) return;
+
         }
     }
 }

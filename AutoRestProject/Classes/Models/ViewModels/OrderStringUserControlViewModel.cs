@@ -105,7 +105,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         public string OrderString
         {
-            get => orderString;
+            get => this.Order_String.Food_count + "x " + orderString ;
             set
             {
                 orderString = value;
@@ -122,9 +122,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 OnPropertyChanged("OrderNum");
             }
         }
-
-
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

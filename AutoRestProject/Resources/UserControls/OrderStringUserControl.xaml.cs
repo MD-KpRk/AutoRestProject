@@ -56,7 +56,7 @@ namespace AutoRestProject.Resources.UserControls
 
         private void Button_Click(object sender, RoutedEventArgs e) // открытие панели действий
         {
-            page.ViewModel.ShowPanel();
+            page.ShowPanel(order_String);
         }
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)

@@ -13,7 +13,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
     public class CookPage1ViewModel : INotifyPropertyChanged
     {
         string currPersName = "", currPersPos = "";
-
+        string selectedString = "", selectedOrderString = "", selectedPersName = "";
 
         public void ShowPanel()
         {
@@ -27,6 +27,49 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
 
         Visibility visibility = Visibility.Collapsed;
+
+        public string SelectedPersName
+        {
+            
+            get { return selectedPersName; }
+            set
+            {
+                selectedPersName = value;
+                OnPropertyChanged("SelectedPersName");
+            }
+        }
+
+        public string SelectedString
+        {
+            get
+            {
+                return selectedString;
+            }
+            set
+            {
+                selectedString = value;
+                OnPropertyChanged("SelectedString");
+            }
+        }
+
+        public string SelectedOrderString
+        {
+            get
+            {
+                return selectedOrderString;
+            }
+
+            set
+            {
+                selectedOrderString = value;
+                OnPropertyChanged("SelectedOrderString");
+            }
+        }
+
+
+
+
+
         public Visibility Visibility
         {
             get => visibility;

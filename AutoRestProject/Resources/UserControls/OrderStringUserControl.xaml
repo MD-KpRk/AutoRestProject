@@ -26,7 +26,7 @@
                 <Viewbox Margin="0,20,0,0"  Grid.Column="1" Height="26" Stretch="Uniform">
                     <TextBlock Text="{Binding Path=OrderString}" Grid.Column="1" VerticalAlignment="Center" FontSize="12" TextAlignment="Center" Foreground="{StaticResource C_DarkGray}"  TextWrapping="Wrap" />
                 </Viewbox>
-                <Viewbox Margin="0,40,0,0"  Grid.Column="1" Height="26" Stretch="Uniform">
+                <Viewbox Margin="0,30,0,0"  Grid.Column="1" Height="26" Stretch="Uniform">
                     <TextBlock Text="{Binding Path=OrderPers}" Foreground="{Binding Path=CookBrush}" Grid.Column="1" VerticalAlignment="Center" FontSize="12" TextAlignment="Center"  TextWrapping="Wrap" />
                 </Viewbox>
             </StackPanel>

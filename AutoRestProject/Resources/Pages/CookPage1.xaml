@@ -19,32 +19,43 @@
 
         <!--Левая панель-->
         <Grid Panel.ZIndex="100" Visibility="{Binding Path=Visibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="13*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
 
-            <Border Background="#7F151515" Grid.Column="0" />
-            <StackPanel Background="{StaticResource C_Gray}" Grid.Column="1" >
+            <Border Background="#7F151515" Grid.Column="0" Grid.RowSpan="2" />
+            <StackPanel Background="{StaticResource C_Gray}" Grid.Column="1" Grid.RowSpan="2" >
                 <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xE8BB;" Margin="10,10,0,0" Width="60" Height="60" FontSize="40" HorizontalAlignment="Left" Click="Button_Click" />
 
                 <TextBlock TextAlignment="Center" LineHeight="24" Foreground="{StaticResource C_DarkGray}" Margin="0,0,0,0">
                         <Run Text="Заказ #" FontSize="50" />
-                        <Run Text="{Binding Path=OrderNum}" FontSize="50" FontFamily="{StaticResource Roboto}"/>
+                        <Run Text="{Binding Path=SelectedOrderString}" FontSize="50" FontFamily="{StaticResource Roboto}"/>
+                        <LineBreak/>
+                        <Run Text="{Binding Path=SelectedString}" FontSize="30" FontFamily="{StaticResource Roboto}"/>
                 </TextBlock>
-                <TextBlock Margin="0,20,0,0" TextAlignment="Center" Text="Установить статус:" FontFamily="{StaticResource Roboto}" FontSize="40" Foreground="#FF868686"  />
+                <TextBlock Margin="0,30,0,0" TextAlignment="Center" Text="Установить состояние:" FontFamily="{StaticResource Roboto}" FontSize="40" Foreground="#FF868686"  />
 
-                <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="В обработке" FontSize="35" Height="60" />
-                <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="В ожидании оплаты" FontSize="35" Height="60" />
-                <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="Оплачен (Закрыт)" FontSize="35" Height="60" />
-                <Separator Margin="0,30,0,0"  />
-                <TextBlock Margin="0,20,0,0" TextAlignment="Center" Text="Действия:" FontFamily="{StaticResource Roboto}" FontSize="40" Foreground="#FF868686"  />
-                <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="Удалить заказ" FontSize="35" Height="60" />
-                <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="Пополнить заказ" FontSize="35" Height="60" />
-                <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="Сгенерировать счёт" FontSize="35" Height="60" />
+                <Button Margin="50,30,50,0" Style="{StaticResource ButtonStyle}" Content="Приготовлено" FontSize="35" Height="60" Click="Button_Click_1" />
+
                 <Separator Margin="0,40,0,0"  />
-
+                <TextBlock Margin="0,30,0,0" TextAlignment="Center" Text="Действия:" FontFamily="{StaticResource Roboto}" FontSize="40" Foreground="#FF868686"  />
+                <Button Margin="50,30,50,0" Style="{StaticResource ButtonStyle}" Content="Принять блюдо" FontSize="35" Height="60" Click="Button_Click_2" />
+                <Button Margin="50,30,50,0" Style="{StaticResource ButtonStyle}" Content="Отменить готовку" FontSize="35" Height="60" Click="Button_Click_3" />
+                <Separator Margin="0,50,0,0"  />
             </StackPanel>
+
+
+            <TextBlock Grid.Row="1" Grid.Column="1" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center">
+                <Run Text="Блюдо готовит:"  FontSize="40"  />
+                <LineBreak/>
+                <LineBreak/>
+                <Run Text="{Binding Path=SelectedPersName}"  FontSize="30"  />
+            </TextBlock>
 
         </Grid>
 
@@ -70,14 +81,6 @@
                       PreviewMouseLeftButtonUp="scrollViewer_PreviewMouseLeftButtonUp" 
                       PreviewMouseMove ="scrollViewer_PreviewMouseMove">
                     <WrapPanel x:Name="stack" Orientation="Horizontal"  HorizontalAlignment="Center" MaxWidth="{Binding ActualWidth, ElementName=scrollviewer, Mode=OneWay}" Margin="40,0,0,0" >
-                        <!--<Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>
-                    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>
-                    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>
-                    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>
-                    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>
-                    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>
-                    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>
-                    <Grid Width="360" Height="260" Margin="0,0,40,40"  Background="{StaticResource C_White}"/>-->
                     </WrapPanel>
                 </ScrollViewer>
             </StackPanel>
