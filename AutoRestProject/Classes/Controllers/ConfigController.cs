@@ -29,6 +29,11 @@ namespace AutoRestProject
         public string? OrderWaitingPayment;
         public string? OrderDone;
 
+
+        public string? OrderStringDone;
+        public string? OrderStringProcessing;
+        public string? OrderStringNotDone;
+
         public string? OrgTitle;
         public string? ConStr;
 
@@ -45,6 +50,11 @@ namespace AutoRestProject
             GoodTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("GoodTimeSecond"));
             AverageTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AverageTimeSecond"));
             BadTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("BadTimeSecond"));
+
+
+            OrderStringDone = ConfigurationManager.AppSettings.Get("OrderStringDone");
+            OrderStringProcessing = ConfigurationManager.AppSettings.Get("OrderStringProcessing");
+            OrderStringNotDone = ConfigurationManager.AppSettings.Get("OrderStringNotDone");
 
             OrderProcessing = ConfigurationManager.AppSettings.Get("OrderProcessing");
             OrderWaitingPayment = ConfigurationManager.AppSettings.Get("OrderWaitingPayment");

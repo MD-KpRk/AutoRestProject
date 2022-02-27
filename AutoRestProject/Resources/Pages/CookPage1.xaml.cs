@@ -30,11 +30,13 @@ namespace AutoRestProject.Resources.Pages
         DispatcherTimer timer = new DispatcherTimer();
 
         Order_string? PanelOrder { get; set; }
+        Personal Emp;
 
 
         public CookPage1(Personal pers)
         {
-            ViewModel.SetPerson(pers);
+            Emp = pers;
+            ViewModel.SetPerson(Emp);
             DataContext = ViewModel;
 
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -58,22 +60,30 @@ namespace AutoRestProject.Resources.Pages
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 stack.Children.Clear();
+
                 List<Order>? list = bd.Orders?
                     .Include(u => u.Table)
                     .Include(u => u.Personal)
                         .ThenInclude(u => u.Position)
                     .Include(u => u.Order_status)
                     .Include(u => u.Order_strings)
-                        .ThenInclude(u => u.Food)
+                        .ThenInclude(y => y.Food)
                     .ToList();
+                _ = bd.Order_strings?
+                    .Include(u => u.CookPers)
+                    .Include(u => u.Food)
+                    .Include(u => u.Order_string_status).ToList();
+
 
                 if (list == null) return;
+
 
                 foreach (var o in list)
                 {
                     foreach (var a in o.Order_strings)
                     {
-                        stack.Children.Add(new OrderStringUserControl(this, a));
+                        if(a.Order_string_status.Title != ConfigController.getInstance().OrderStringDone)
+                            stack.Children.Add(new OrderStringUserControl(this, a));
                     }
                 }
             }
@@ -127,18 +137,72 @@ namespace AutoRestProject.Resources.Pages
         private void Button_Click_1(object sender, RoutedEventArgs e) // Приготовлено
         {
             if (PanelOrder == null) return;
+
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).FirstOrDefault();
+                if (os == null) return;
+                Order_string_status? ordstat = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringDone).FirstOrDefault();
+
+                if (ordstat == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи базы данных и программы");
+                    return;
+                }
+                os.Order_string_status = ordstat;
+                bd.SaveChanges();
+                ViewModel.HidePanel();
+                UpdateInfo();
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e) // Принять блюдо
         {
             if (PanelOrder == null) return;
 
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).FirstOrDefault();
+                if (os == null) return;
+                Order_string_status? ordstat = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringProcessing).FirstOrDefault();
+
+                if (ordstat == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи базы данных и программы");
+                    return;
+                }
+
+                os.Order_string_status = ordstat;
+                os.CookPers = Emp;
+                bd.SaveChanges();
+                ViewModel.HidePanel();
+                UpdateInfo();
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e) // Отменить отправку
         {
             if (PanelOrder == null) return;
 
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).FirstOrDefault();
+                if (os == null) return;
+                Order_string_status? ordstat = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringNotDone).FirstOrDefault();
+
+                if (ordstat == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи базы данных и программы");
+                    return;
+                }
+
+                os.Order_string_status = ordstat;
+                os.CookPers = null;
+
+                bd.SaveChanges();
+                ViewModel.HidePanel();
+                UpdateInfo();
+            }
         }
     }
 }

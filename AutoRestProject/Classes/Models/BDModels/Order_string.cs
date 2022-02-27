@@ -16,11 +16,11 @@ namespace AutoRestProject.Classes.Models.BDModels
         public int FoodId { get; set; }
         public int OrderId { get; set; }
         public Order Order { get; set; }
-        public int OrderStringStatusId { get; set; }
-        public OrderStringStatus OrderStringStatus { get; set; }
-        public int CookPersId { get; set; }
+        public Order_string_status Order_string_status { get; set; }
+        public int Order_String_StatusId { get; set; }
+        public int? CookPersId { get; set; }
 
-        public Personal? CookPers { get; set; } = null;
+        public Personal? CookPers { get; set; }
 
     }
 }
