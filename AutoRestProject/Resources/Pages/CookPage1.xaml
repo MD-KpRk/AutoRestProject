@@ -133,6 +133,9 @@
                         </Viewbox>
                         <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="Только принятые" FontSize="30" Foreground="{StaticResource C_DarkGray}" TextAlignment="Left" VerticalAlignment="Center" />
                     </Grid>
+
+                    <Button Grid.Column="4" Style="{StaticResource DarkButtonStyle}" Content="&#xF3B1;" FontSize="100" Click="Button_Click_4" />
+
                 </Grid>
                 
                 

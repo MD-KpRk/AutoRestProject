@@ -31,5 +31,14 @@ namespace AutoRestProject
         {
             target.Navigate(page);
         }
+
+        public void GoBack()
+        {
+            if (target.CanGoBack)
+            {
+                target.GoBack();
+            }
+        }
+
     }
 }
