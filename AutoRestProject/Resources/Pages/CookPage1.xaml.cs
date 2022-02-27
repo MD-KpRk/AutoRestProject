@@ -90,6 +90,14 @@ namespace AutoRestProject.Resources.Pages
                             {
                                 stack.Children.Add(new OrderStringUserControl(this, a));
                             }
+                            else if(ViewModel.CB2 && a.CookPers == null) // Только непринятые
+                            {
+                                stack.Children.Add(new OrderStringUserControl(this, a));
+                            }
+                            else if(ViewModel.CB3 && a.CookPers!=null) // Только принятые
+                            {
+                                stack.Children.Add(new OrderStringUserControl(this, a));
+                            }
                         }
                     }
                 }
