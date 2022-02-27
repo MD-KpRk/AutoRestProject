@@ -74,9 +74,7 @@ namespace AutoRestProject.Resources.Pages
                     .Include(u => u.Food)
                     .Include(u => u.Order_string_status).ToList();
 
-
                 if (list == null) return;
-
 
                 foreach (var o in list)
                 {
@@ -198,6 +196,7 @@ namespace AutoRestProject.Resources.Pages
 
                 os.Order_string_status = ordstat;
                 os.CookPers = null;
+                os.CookPersId = null;
 
                 bd.SaveChanges();
                 ViewModel.HidePanel();

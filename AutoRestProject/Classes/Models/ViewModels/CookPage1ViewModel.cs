@@ -14,6 +14,46 @@ namespace AutoRestProject.Classes.Models.ViewModels
     {
         string currPersName = "", currPersPos = "";
         string selectedString = "", selectedOrderString = "", selectedPersName = "";
+        bool cb1, cb2, cb3;
+
+        public bool CB1
+        {
+            get { return cb1; }
+            set
+            {
+                cb3 = cb2 =  false;
+                cb1 = value;
+                UpdateCB();
+            }
+        }
+        public bool CB2
+        {
+            get { return cb2; }
+            set
+            {
+                cb1 = cb3= false;
+                cb2 = value;
+                UpdateCB();
+            }
+        }
+        public bool CB3
+        {
+            get { return cb3; }
+            set
+            {
+                cb1 = cb2 = false;
+                cb3 = value;
+                UpdateCB();
+            }
+        }
+
+        public void UpdateCB()
+        {
+            for(int i=1;i<=3;i++)
+                OnPropertyChanged("CB" + i);
+        }
+
+
 
         public void ShowPanel()
         {

@@ -88,9 +88,53 @@
             <!--Нижняя панель-->
             <StackPanel Grid.Row="1">
                 <Separator Background="{DynamicResource C_Gray}" Height="5" />
-                <Grid>
+                
+                <Grid Height=" 200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--Только мои блюда-->
+                    <Grid Grid.Column="1" Margin="40,50,40,50" Background="{StaticResource C_White}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Margin="10">
+                            <CheckBox IsChecked="{Binding Path=CB1}" />
+                        </Viewbox>
+                        <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="Только мои блюда" FontSize="30" Foreground="{StaticResource C_DarkGray}" TextAlignment="Left" VerticalAlignment="Center" />
+                    </Grid>
+                    
+                    <Grid Grid.Column="2" Margin="40,50,40,50" Background="{StaticResource C_White}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Margin="10">
+                            <CheckBox IsChecked="{Binding Path=CB2}" />
+                        </Viewbox>
+                        <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="Только непринятые" FontSize="30" Foreground="{StaticResource C_DarkGray}" TextAlignment="Left" VerticalAlignment="Center" />
+                    </Grid>
 
+                    <Grid Grid.Column="3" Margin="40,50,40,50" Background="{StaticResource C_White}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Margin="10">
+                            <CheckBox IsChecked="{Binding Path=CB3}" />
+                        </Viewbox>
+                        <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="Только принятые" FontSize="30" Foreground="{StaticResource C_DarkGray}" TextAlignment="Left" VerticalAlignment="Center" />
+                    </Grid>
                 </Grid>
+                
+                
+                
             </StackPanel>
 
         </Grid>
