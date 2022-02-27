@@ -1,4 +1,5 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
+using AutoRestProject.Resources.Pages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,8 @@ namespace AutoRestProject.Classes.Models.ViewModels
         string selectedString = "", selectedOrderString = "", selectedPersName = "";
         bool cb1, cb2, cb3;
 
+        CookPage1 page;
+
         public bool CB1
         {
             get { return cb1; }
@@ -26,6 +29,12 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 UpdateCB();
             }
         }
+
+        public CookPage1ViewModel(CookPage1 page)
+        {
+            this.page = page;
+        }
+
         public bool CB2
         {
             get { return cb2; }
@@ -36,6 +45,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 UpdateCB();
             }
         }
+
         public bool CB3
         {
             get { return cb3; }
@@ -51,9 +61,8 @@ namespace AutoRestProject.Classes.Models.ViewModels
         {
             for(int i=1;i<=3;i++)
                 OnPropertyChanged("CB" + i);
+            page.UpdateInfo();
         }
-
-
 
         public void ShowPanel()
         {
@@ -64,7 +73,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
         {
             Visibility = Visibility.Collapsed;
         }
-
 
         Visibility visibility = Visibility.Collapsed;
 
@@ -105,10 +113,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 OnPropertyChanged("SelectedOrderString");
             }
         }
-
-
-
-
 
         public Visibility Visibility
         {

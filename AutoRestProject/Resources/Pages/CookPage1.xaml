@@ -105,29 +105,31 @@
                             <ColumnDefinition Width="8*"/>
                         </Grid.ColumnDefinitions>
                         <Viewbox Margin="10">
-                            <CheckBox IsChecked="{Binding Path=CB1}" />
+                            <CheckBox IsChecked="{Binding Path=CB1}" Checked="CheckBox_Checked" />
                         </Viewbox>
                         <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="Только мои блюда" FontSize="30" Foreground="{StaticResource C_DarkGray}" TextAlignment="Left" VerticalAlignment="Center" />
                     </Grid>
-                    
+
+                    <!--Только непринятые -->
                     <Grid Grid.Column="2" Margin="40,50,40,50" Background="{StaticResource C_White}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="8*"/>
                         </Grid.ColumnDefinitions>
                         <Viewbox Margin="10">
-                            <CheckBox IsChecked="{Binding Path=CB2}" />
+                            <CheckBox IsChecked="{Binding Path=CB2}" Checked="CheckBox_Checked"/>
                         </Viewbox>
                         <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="Только непринятые" FontSize="30" Foreground="{StaticResource C_DarkGray}" TextAlignment="Left" VerticalAlignment="Center" />
                     </Grid>
 
+                    <!--Только принятые-->
                     <Grid Grid.Column="3" Margin="40,50,40,50" Background="{StaticResource C_White}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="8*"/>
                         </Grid.ColumnDefinitions>
                         <Viewbox Margin="10">
-                            <CheckBox IsChecked="{Binding Path=CB3}" />
+                            <CheckBox IsChecked="{Binding Path=CB3}" Checked="CheckBox_Checked"/>
                         </Viewbox>
                         <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="Только принятые" FontSize="30" Foreground="{StaticResource C_DarkGray}" TextAlignment="Left" VerticalAlignment="Center" />
                     </Grid>

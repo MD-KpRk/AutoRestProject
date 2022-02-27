@@ -26,7 +26,7 @@ namespace AutoRestProject.Resources.Pages
     public partial class CookPage1 : Page
     {
         public bool CanScroll { get; set; } = true;
-        public CookPage1ViewModel ViewModel = new CookPage1ViewModel();
+        public CookPage1ViewModel ViewModel;
         DispatcherTimer timer = new DispatcherTimer();
 
         Order_string? PanelOrder { get; set; }
@@ -35,6 +35,7 @@ namespace AutoRestProject.Resources.Pages
 
         public CookPage1(Personal pers)
         {
+            ViewModel = new CookPage1ViewModel(this);
             Emp = pers;
             ViewModel.SetPerson(Emp);
             DataContext = ViewModel;
@@ -54,8 +55,7 @@ namespace AutoRestProject.Resources.Pages
                 (a as OrderStringUserControl)?.UpdateTime();
         }
 
-
-        void UpdateInfo()
+        public void UpdateInfo()
         {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
@@ -76,12 +76,21 @@ namespace AutoRestProject.Resources.Pages
 
                 if (list == null) return;
 
-                foreach (var o in list)
+                foreach (Order? o in list)
                 {
-                    foreach (var a in o.Order_strings)
+                    foreach (Order_string? a in o.Order_strings)
                     {
-                        if(a.Order_string_status.Title != ConfigController.getInstance().OrderStringDone)
-                            stack.Children.Add(new OrderStringUserControl(this, a));
+                        if (a.Order_string_status.Title != ConfigController.getInstance().OrderStringDone)
+                        {
+                            if(!ViewModel.CB1 && !ViewModel.CB2 && !ViewModel.CB3) // Нет фильтра
+                            {
+                                stack.Children.Add(new OrderStringUserControl(this, a));
+                            }
+                            else if(ViewModel.CB1 && a.CookPersId == Emp.id) // Только мои блюда
+                            {
+                                stack.Children.Add(new OrderStringUserControl(this, a));
+                            }
+                        }
                     }
                 }
             }
@@ -203,5 +212,11 @@ namespace AutoRestProject.Resources.Pages
                 UpdateInfo();
             }
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
