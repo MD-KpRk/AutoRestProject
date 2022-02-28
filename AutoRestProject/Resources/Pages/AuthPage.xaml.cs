@@ -60,6 +60,7 @@ namespace AutoRestProject.Resources.Pages
                     .Include(u => u.Position)
                     .FirstOrDefault(pers => pers.Pin == Convert.ToInt32(Password));
 
+
                 if (personal == null)
                 {
                     ErrorBox.getInstance().Show("Не найден сотрудник с таким PIN кодом");

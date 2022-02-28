@@ -25,8 +25,11 @@ namespace AutoRestProject.Resources.Pages
         ViewModels.WaiterPage1ViewModel ViewModel = new();
         public bool CanScroll { get; set; } = true;
 
+        Personal CurrentUser;
+
         public WaiterPage1(Personal emp)
         {
+            CurrentUser = emp;
             ViewModel.SetPerson(emp.First_name + " " + emp.Second_name,emp.Position.Title);
             DataContext = ViewModel;
 
@@ -98,6 +101,16 @@ namespace AutoRestProject.Resources.Pages
             ViewModel.OrderPersName = order.Personal.First_name + " " + order.Personal.Second_name;
             ViewModel.OrderPersPos = order.Personal.Position.Title;
             ViewModel.PanelShow();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) // + заказ
+        {
+            PageController.getInstance()?.Goto(new AddOrderPage1(CurrentUser));
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) // Выход
+        {
+            PageController.getInstance()?.Goto(new AuthPage());
         }
     }
 }

@@ -42,6 +42,18 @@
                     </StackPanel>
                 </ScrollViewer>
             </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="154*"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="159*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{StaticResource DarkButtonStyle}" Grid.Column="2" Content="&#xE710;" FontSize="100" Click="Button_Click_1" />
+                <Button Grid.Column="4" Style="{StaticResource DarkButtonStyle}" Content="&#xF3B1;" FontSize="80" Click="Button_Click_2" />
+            </Grid>
 
         </Grid>
 

@@ -223,7 +223,7 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            PageController.getInstance()?.GoBack();
+            PageController.getInstance()?.Goto(new AuthPage());
         }
     }
 }

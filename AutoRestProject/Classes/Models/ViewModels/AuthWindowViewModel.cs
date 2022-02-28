@@ -50,9 +50,6 @@ namespace AutoRestProject.ViewModels
             StarPassword = Password + digit;
         }
 
-        public AuthWindowViewModel()
-        { }
-
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
