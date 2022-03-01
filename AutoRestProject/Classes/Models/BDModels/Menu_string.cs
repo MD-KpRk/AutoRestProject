@@ -12,5 +12,8 @@ namespace AutoRestProject.Classes.Models.BDModels
         public int Id { get; set; }
         public int FoodId { get; set; }
         public Food Food { get; set; }
+
+        [NotMapped]
+        public int Count { get; set; }
     }
 }

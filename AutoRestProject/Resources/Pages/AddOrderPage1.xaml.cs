@@ -26,8 +26,11 @@ namespace AutoRestProject.Resources.Pages
     {
         AddOrderPage1ViewModel ViewModel = new AddOrderPage1ViewModel();
 
+        Personal? Curr_Emp;
+
         public AddOrderPage1(Personal? emp)
         {
+            Curr_Emp = emp;
             ViewModel.CurrPersName = emp?.First_name + " " + emp?.Second_name;
             ViewModel.CurrPersPos = emp?.Position?.Title + "";
             UpdateTables(1);
@@ -95,7 +98,12 @@ namespace AutoRestProject.Resources.Pages
 
         void Continue(Classes.Models.BDModels.Table table)
         {
-            PageController.getInstance()?.Goto(new AddOrderPage2());
+            if(Curr_Emp == null)
+            {
+                ErrorBox.getInstance().Show("Пользователь не опознан");
+                return;
+            }
+            PageController.getInstance()?.Goto(new AddOrderPage2(table, Curr_Emp));
         }
 
 
