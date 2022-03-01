@@ -1,0 +1,143 @@
+﻿<Page x:Class="AutoRestProject.Resources.Pages.AddOrderPage2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1040" d:DesignWidth="1920"
+      Title="AddOrderPage2">
+
+    <Grid Background="{StaticResource C_DarkGray}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="171*"/>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="800"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="83*"/>
+        </Grid.RowDefinitions>
+
+        <!--Верхнее меню-->
+        <StackPanel  Orientation="Horizontal" FlowDirection="LeftToRight">
+            <Button Style="{StaticResource DarkButtonStyle}" Width="170" Click="Button_Click" >
+                <Button.Content>
+                    <Grid Height="80" Width ="170" FlowDirection="RightToLeft">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontFamily="{StaticResource IconFont}" Text="&#xE973;" FontSize="40" Grid.Column="1" TextAlignment="Center" Padding="5,20,20,10" />
+                        <TextBlock FontFamily="{StaticResource Roboto}" FontSize="30" Text="Назад" Grid.Column="0" TextAlignment="Right" Padding="10,20,10,20" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+            <Rectangle VerticalAlignment="Stretch" Margin="0,10" Width="1" Stroke="{StaticResource C_Gray}" />
+            <TextBlock VerticalAlignment="Center" FontSize="30" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_Gray}" Margin="10,0,0,0">
+                <Run Text="{Binding Path=CurrPersPos}" />
+                <Run Text="{Binding Path=CurrPersName}" />
+            </TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Column="3" Grid.RowSpan="2" Background="{DynamicResource C_White}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85*"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+            <StackPanel  >
+                <TextBlock Text="Меню" TextAlignment="Center" FontSize="50" Margin="0,40,0,30" FontFamily="60" />
+                <Separator Background="{StaticResource C_DarkGray}" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" >
+                <TextBlock Text="Количество" TextAlignment="Center" FontSize="40" />
+                <Grid Margin=" 0,20,0,20" Height="70">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="140"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" Tag="-" Style="{StaticResource ButtonStyle}" FontSize="60" Content="-" Height="70" Click="Button_Click" />
+                    <Button Grid.Column="3" Tag="+" Style="{StaticResource ButtonStyle}" FontSize="60" Content="+" Height="70" Click="Button_Click"  />
+                    <TextBox Grid.Column="2" Margin="20,0,20,0" Height="70" BorderBrush="{StaticResource C_DarkGray}" FontFamily="{StaticResource Roboto}" FontSize="30" Text="{Binding Path=Count}" TextAlignment="Center" VerticalContentAlignment="Center" BorderThickness="2" />
+
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Button Style="{StaticResource DarkButtonStyle}" Content="&#xF743;" FontSize="160" Height="200" Padding="1,-60,1,1" Grid.Column="1" Grid.RowSpan="2" Click="Button_Click_1" />
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Border Margin="100,60,100,100" Background="{StaticResource C_White}" >
+                <Border.Effect>
+                    <DropShadowEffect Opacity="0.3"/>
+                </Border.Effect>
+            </Border>
+            <Border Margin="100,60,100,100" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="67*"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="110"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Новый заказ" Grid.ColumnSpan="2" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30" />
+                            <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="1"  Content="&#xE75C;" FontSize="60" Click="Button_Click_4" />
+                        </Grid>
+                        <Separator Background="{StaticResource C_DarkGray}"/>
+                        <DataGrid Margin="40,20,40,0" x:Name="dg2"
+                              Background="{StaticResource C_White}"
+                              FontFamily="{StaticResource Roboto}"
+                              GridLinesVisibility="None" 
+                              SelectionUnit="FullRow" 
+                              AutoGenerateColumns="False" 
+                              HeadersVisibility="None" 
+                              IsReadOnly="True" 
+                              CanUserResizeColumns="False"                               
+                              CanUserReorderColumns="False" 
+                              CanUserSortColumns="False" 
+                              CanUserResizeRows="False" 
+                              AlternatingRowBackground="{x:Null}" 
+                              AlternationCount="2" 
+                              BorderBrush="{x:Null}" 
+                              ItemsSource="{Binding Foods}" SelectionChanged="dg2_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Count}" Width="2*" />
+                                <DataGridTextColumn Binding="{Binding Title}" Width="8*" />
+
+                            </DataGrid.Columns>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="FontSize" Value="22"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=Selectable}" Value="False">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="Background" Value="Gray" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+
+                        </DataGrid>
+                    </StackPanel>
+                    <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="Подтвердить" Click="Button_Click_2" FontSize="40" Margin="80,6,80,30" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+
+</Page>

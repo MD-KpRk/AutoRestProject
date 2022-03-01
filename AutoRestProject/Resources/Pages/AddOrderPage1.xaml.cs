@@ -40,7 +40,7 @@ namespace AutoRestProject.Resources.Pages
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 List<Classes.Models.BDModels.Table>? list = bd.Tables?.Include(u => u.Table_Status)?.ToList();
-                List<Classes.Models.BDModels.Table>? list2 = bd.Tables?.Include(u => u.Table_Status)?.Where(u => u.Seats > Seats).ToList();
+                List<Classes.Models.BDModels.Table>? list2 = bd.Tables?.Include(u => u.Table_Status)?.Where(u => u.Seats >= Seats).ToList();
                 if (list == null || list2 == null) return;
 
                 ViewModel.Tables = new ObservableCollection<Classes.Models.BDModels.Table>(list);
@@ -74,13 +74,30 @@ namespace AutoRestProject.Resources.Pages
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Classes.Models.BDModels.Table? table = dg1.SelectedItem as Classes.Models.BDModels.Table;
-
+            if(table == null)
+            {
+                ErrorBox.getInstance().Show("Стол не выбран");
+                return;
+            }    
+            Continue(table);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Classes.Models.BDModels.Table? table = dg2.SelectedItem as Classes.Models.BDModels.Table;
+            if (table == null)
+            {
+                ErrorBox.getInstance().Show("Стол не выбран");
+                return;
+            }
+            Continue(table);
         }
+
+        void Continue(Classes.Models.BDModels.Table table)
+        {
+            PageController.getInstance()?.Goto(new AddOrderPage2());
+        }
+
 
 
     }
