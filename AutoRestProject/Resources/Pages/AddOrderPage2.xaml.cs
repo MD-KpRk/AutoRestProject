@@ -28,17 +28,20 @@ namespace AutoRestProject.Resources.Pages
 
         List<Menu_string> Order_Strings = new List<Menu_string>();
 
-        Classes.Models.BDModels.Table table;
+        Classes.Models.BDModels.Table? table;
 
-        Personal Curr_Emp;
+        Personal? Curr_Emp;
 
         public AddOrderPage2(Classes.Models.BDModels.Table table, Personal personal)
         {
+            ViewModel.CurrPersName = personal?.First_name + " " + personal?.Second_name;
+            ViewModel.CurrPersPos = personal?.Position?.Title + "";
             this.table = table;
             Curr_Emp = personal;
             UpdateMenu();
             DataContext = ViewModel;
             InitializeComponent();
+
         }
 
 
@@ -52,9 +55,6 @@ namespace AutoRestProject.Resources.Pages
                 ViewModel.Menu = new ObservableCollection<Menu_string>(list);
             }
         }
-
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e) // Back
         {
@@ -127,15 +127,37 @@ namespace AutoRestProject.Resources.Pages
                 bd.SaveChanges();
 
                 Order? ord = bd.Orders?.OrderBy(u => u.Id).Last();
+                Order_string_status? oss = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringNotDone).FirstOrDefault();
 
-                if (ord_status == null || curr_emp == null || tab == null)
+                if (ord == null || oss == null)
                 {
                     ErrorBox.getInstance().Show("Ошибка при добавлении заказа");
                     return;
                 }
 
-                // сюда написать механизм создания строк заказа к созданному выше заказу
 
+                for(int i = 0; i < Order_Strings.Count(); i++)
+                {
+                    Food? food = bd.Foods?.Where(u => u.Id == Order_Strings[i].FoodId).FirstOrDefault();
+
+                    if(food != null)
+                    bd.Order_strings?.Add(new Order_string() 
+                    { 
+                        CookPers = null, 
+                        CookPersId = null, 
+                        Food = food, 
+                        FoodId = food.Id,
+                        Food_count = Order_Strings[i].Count,
+                        Order = ord,
+                        OrderId = ord.Id,
+                        Order_string_status = oss, 
+                        Order_String_StatusId = oss.Id, 
+                    });
+                }
+
+                bd.SaveChanges();
+
+                PageController.getInstance()?.Goto(new WaiterPage1(Curr_Emp));
 
             }
 

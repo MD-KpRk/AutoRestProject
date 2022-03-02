@@ -12,10 +12,30 @@ namespace AutoRestProject.Classes.Models.ViewModels
 {
     internal class AddOrderPage2ViewModel : INotifyPropertyChanged
     {
+        string currPersName = "", currPersPos = "";
         ObservableCollection<Menu_string> menu = new ObservableCollection<Menu_string>();
         ObservableCollection<Menu_string> order = new ObservableCollection<Menu_string>();
 
         int count = 1;
+        public string CurrPersName
+        {
+            get => currPersName;
+            set
+            {
+                currPersName = value;
+                OnPropertyChanged("CurrPersName");
+            }
+        }
+
+        public string CurrPersPos
+        {
+            get => currPersPos;
+            set
+            {
+                currPersPos = value;
+                OnPropertyChanged("CurrPersPos");
+            }
+        }
 
         public ObservableCollection<Menu_string> Menu
         {
