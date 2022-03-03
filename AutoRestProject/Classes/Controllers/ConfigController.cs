@@ -38,14 +38,17 @@ namespace AutoRestProject
         public string? ConStr;
 
         public string? Waiter;
+        public string? Admin;
         public string? Chief;
         public DbContextOptions<AutoRestBDContext> ConOptions;
 
         ConfigController()
         {
             OrgTitle = ConfigurationManager.AppSettings.Get("OrgTitle");
+
             Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
             Chief = ConfigurationManager.AppSettings.Get("ChiefTitle");
+            Admin = ConfigurationManager.AppSettings.Get("Admin");
 
             GoodTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("GoodTimeSecond"));
             AverageTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AverageTimeSecond"));

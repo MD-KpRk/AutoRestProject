@@ -42,7 +42,7 @@
                 </Button.Content>
             </Button>
             <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
-            <Button Style="{StaticResource ButtonStyle}"  Width="170" Click="Button_Click_13" >
+            <Button Style="{StaticResource ButtonStyle}"  Width="170" Click="Button_Click_2" >
                 <Button.Content>
                     <Grid Height="80" Width ="170" FlowDirection="LeftToRight">
                         <Grid.ColumnDefinitions>

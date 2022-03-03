@@ -79,6 +79,11 @@ namespace AutoRestProject.Resources.Pages
                     PageController.getInstance()?.Goto(new ChiefPage1(personal));
                     return;
                 }
+                if (PosTitle == ConfigController.getInstance().Admin)
+                {
+                    PageController.getInstance()?.Goto(new AdminPage1(personal));
+                    return;
+                }
 
 
             }

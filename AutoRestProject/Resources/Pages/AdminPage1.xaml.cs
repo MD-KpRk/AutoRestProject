@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoRestProject.Classes.Models.BDModels;
+using AutoRestProject.Classes.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,32 @@ namespace AutoRestProject.Resources.Pages
     /// </summary>
     public partial class AdminPage1 : Page
     {
-        public AdminPage1()
+        AdminPage1ViewModel ViewModel = new AdminPage1ViewModel();
+        Personal Emp;
+
+        public AdminPage1(Personal Emp)
         {
+            this.Emp = Emp;
+            ViewModel.PersPos = Emp.Position.Title;
+            ViewModel.PersName = Emp.First_name + " " + Emp.Second_name;
+
+            DataContext = ViewModel;
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) // Выход
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) // Открыть заказы
+        {
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) // Открыть кухню
+        {
+
         }
     }
 }
