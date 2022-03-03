@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.UserControls
 {
-    /// <summary>
-    /// Логика взаимодействия для OrderUserControl.xaml
-    /// </summary>
     public partial class OrderUserControl : UserControl
     {
         ViewModels.OrderUserControlViewModel ViewModel = new();

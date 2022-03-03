@@ -26,7 +26,7 @@ namespace AutoRestProject.ViewModels
             {  
                 StringBuilder stringBuilder = new(); 
                 for (int i = 0; i < Password.Length; i++)
-                    stringBuilder.Append("∗");
+                    stringBuilder.Append('∗');
                 return stringBuilder.ToString();
             }
             set

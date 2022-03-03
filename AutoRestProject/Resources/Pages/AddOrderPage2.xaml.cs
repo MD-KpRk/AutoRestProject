@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddOrderPage2.xaml
-    /// </summary>
     public partial class AddOrderPage2 : Page
     {
         AddOrderPage2ViewModel ViewModel = new AddOrderPage2ViewModel();
@@ -38,6 +35,26 @@ namespace AutoRestProject.Resources.Pages
             ViewModel.CurrPersPos = personal?.Position?.Title + "";
             this.table = table;
             Curr_Emp = personal;
+            UpdateMenu();
+            DataContext = ViewModel;
+            InitializeComponent();
+
+        }
+
+        public AddOrderPage2(Classes.Models.BDModels.Table table, Personal personal, List<Order_string> strings)
+        {
+            ViewModel.CurrPersName = personal?.First_name + " " + personal?.Second_name;
+            ViewModel.CurrPersPos = personal?.Position?.Title + "";
+            this.table = table;
+            Curr_Emp = personal;
+
+            for (int i = 0; i < strings.Count(); i++)
+            {
+                Order_Strings.Add(new Menu_string() { Food = strings[i].Food, Count = strings[i].Food_count, FoodId = strings[i].FoodId} );
+            }
+
+            ViewModel.Order = new ObservableCollection<Menu_string>(Order_Strings);
+
             UpdateMenu();
             DataContext = ViewModel;
             InitializeComponent();

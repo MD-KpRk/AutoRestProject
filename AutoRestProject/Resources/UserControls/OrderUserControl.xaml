@@ -54,14 +54,47 @@
                               ItemsSource="{Binding Order_Strings}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Food_count}" Width="1*" />
-                            <DataGridTextColumn Binding="{Binding Food.Title}" Width="9*" />
+                            <DataGridTextColumn Binding="{Binding Food.Title}" Width="8*" />
+                            
+                            <DataGridTextColumn Binding="{Binding Path=Order_string_status.Title}" Width="1*" FontSize="0.01">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Готов">
+                                                <Setter Property="Background" Value="#9900FF00" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Готовится">
+                                                <Setter Property="Background" Value="#99FFA500" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Не готов">
+                                                <Setter Property="Background" Value="#99FF0000" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                         </DataGrid.Columns>
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="FontSize" Value="18"/>
                                 <Setter Property="Height" Value="26"/>
+<!--
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Готов">
+                                        <Setter Property="Background" Value="#33008000" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Готовится">
+                                        <Setter Property="Background" Value="#33FFA500" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Не готов">
+                                        <Setter Property="Background" Value="#33FF0000" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+-->
                             </Style>
+                            
                         </DataGrid.CellStyle>
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">

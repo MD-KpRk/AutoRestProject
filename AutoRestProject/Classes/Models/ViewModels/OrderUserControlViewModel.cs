@@ -17,10 +17,37 @@ namespace AutoRestProject.ViewModels
         int orderNum = 0, tableNum;
         string orderStatus = "", empName = "";
 
+        public string OrderStrinDone
+        {
+            get 
+            { 
+                string? str = ConfigController.getInstance()?.OrderStringDone;
+                if (str == null) return "ER";
+                return str;
+            }
+        }
+        public string OrderStringNotDone
+        {
+            get
+            {
+                string? str = ConfigController.getInstance()?.OrderStringNotDone;
+                if (str == null) return "ER";
+                return str;
+            }
+        }
+        public string OrderStringProcessing
+        {
+            get
+            {
+                string? str = ConfigController.getInstance()?.OrderStringProcessing;
+                if (str == null) return "ER";
+                return str;
+            }
+        }
+
+
+
         public ObservableCollection<Order_string> Order_Strings { get; set; } = new ObservableCollection<Order_string>();
-
-
-
 
         public SolidColorBrush Color
         {

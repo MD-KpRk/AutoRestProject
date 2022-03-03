@@ -26,6 +26,7 @@ namespace AutoRestProject.Resources.Pages
         public bool CanScroll { get; set; } = true;
 
         Personal CurrentUser;
+        Order? CurrentOrder;
 
         public WaiterPage1(Personal emp)
         {
@@ -34,6 +35,14 @@ namespace AutoRestProject.Resources.Pages
             DataContext = ViewModel;
 
             InitializeComponent();
+
+            Update();
+
+        }
+
+        public void Update()
+        {
+            stack.Children.Clear();
 
             List<Order>? list = new List<Order>();
 
@@ -47,22 +56,20 @@ namespace AutoRestProject.Resources.Pages
                     .Include(u => u.Order_strings)
                         .ThenInclude(u => u.Food)
                     .ToList();
+
+                List<Order_string>? l22 = bd.Order_strings?.Include(u => u.Order_string_status).ToList();
+
+
+                for (int i = 0; i < list?.Count(); i++)
+                {
+                    if(list[i].Order_status.Title != ConfigController.getInstance().OrderDone)
+                        stack.Children.Add(new UserControls.OrderUserControl(this, list[i]));
+                }
+
             }
-
-            //UserControls.OrderUserControl[] d = new UserControls.OrderUserControl[10];
-
-            for(int i=0;i<list?.Count();i++)
-            {
-                stack.Children.Add(new UserControls.OrderUserControl(this,list[i]));
-            }
-
-            //List <UserControls.OrderUserControl> = new List<UserControls.OrderUserControl>();
-
-
-            //stack.Children.Add(d); 
-
-
         }
+
+
 
 
         // Scroll Panel
@@ -97,6 +104,7 @@ namespace AutoRestProject.Resources.Pages
 
         public void ShowPanel(Order order)
         {
+            CurrentOrder = order;
             ViewModel.OrderNum = order.Id;
             ViewModel.OrderPersName = order.Personal.First_name + " " + order.Personal.Second_name;
             ViewModel.OrderPersPos = order.Personal.Position.Title;
@@ -111,6 +119,112 @@ namespace AutoRestProject.Resources.Pages
         private void Button_Click_2(object sender, RoutedEventArgs e) // Выход
         {
             PageController.getInstance()?.Goto(new AuthPage());
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e) // в обработке
+        {
+            ChangeOrderStatus(ConfigController.getInstance().OrderProcessing);
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e) // в ожидании оплаты
+        {
+            ChangeOrderStatus(ConfigController.getInstance().OrderWaitingPayment);
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e) // Оплачен
+        {
+            ViewModel.PanelClose();
+            ChangeOrderStatus(ConfigController.getInstance().OrderDone);
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e) // Удалить заказ
+        {
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                if (CurrentOrder == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                    return;
+                }
+
+                Order? order = bd.Orders?.Where(u => u.Id == CurrentOrder.Id).FirstOrDefault();
+
+                if (order == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                    return;
+                }
+
+                List<Order_string>? list = bd.Order_strings?.Where(u=> u.OrderId == order.Id).ToList();
+
+                if (order == null || list == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                    return;
+                }
+
+                bd.Order_strings?.RemoveRange(list);
+                bd.Orders?.Remove(order);
+                bd.SaveChanges();
+                ViewModel.PanelClose();
+                Update();
+
+            }
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e) // Пополнить заказ ?
+        {
+            List<Order_string>? list = new List<Order_string>();
+            if (CurrentOrder == null)
+            {
+                ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                return;
+            }
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                list = bd.Order_strings?.Include(u => u.Food).Where(u => u.OrderId == CurrentOrder.Id).ToList();
+            }
+
+            if ( CurrentUser == null || list == null)
+            {
+                ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                return;
+            }
+
+            PageController.getInstance()?.Goto(new AddOrderPage2(CurrentOrder.Table, CurrentUser, list));
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e) // Сгенерировать счёт
+        {
+
+        }
+
+
+
+        void ChangeOrderStatus(string? status = "")
+        {
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Order_status? ord = bd.Order_statuses?.Where(u => u.Title == status).FirstOrDefault();
+
+                if (ord == null || CurrentOrder == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                    return;
+                }
+                Order? order = bd.Orders?.Where(u => u.Id == CurrentOrder.Id).FirstOrDefault();
+
+                if (order == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                    return;
+                }
+
+                order.Order_status = ord;
+                order.Order_StatusId = ord.ID;
+                bd.SaveChanges();
+                Update();
+            }
         }
     }
 }
