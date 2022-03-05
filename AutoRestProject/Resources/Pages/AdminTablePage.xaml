@@ -37,9 +37,14 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xF745;" FontSize="160" Height="200" Click="Button_Click_1"  />
+                <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xF743;" FontSize="160" Height="200" Click="Button_Click_2"/>
+            </StackPanel>
 
             <Grid Grid.ColumnSpan="2">
                 <Border Width="560" Height="740" Background="{StaticResource C_White}" >
@@ -48,10 +53,15 @@
                     </Border.Effect>
                 </Border>
                 <Border Width="560" Height="740" >
-                    <StackPanel>
-                        <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Свободные столики" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30"/>
-                        <Separator Background="{StaticResource C_DarkGray}"/>
-                        <DataGrid Margin="40,20,40,0" x:Name="dg1"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="130"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel >
+                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Свободные столики" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30"/>
+                            <Separator Background="{StaticResource C_DarkGray}"/>
+                            <DataGrid Margin="40,20,40,0" x:Name="dg1"
                                 Background="{StaticResource C_White}"
                                 FontFamily="{StaticResource Roboto}"
                                 GridLinesVisibility="None" 
@@ -64,36 +74,42 @@
                                 CanUserResizeRows="False" 
                                 BorderBrush="{x:Null}" 
                                 ItemsSource="{Binding FreeTables}" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="№ Столика" Binding="{Binding Path=Id}" Width="3*" />
-                                <DataGridTextColumn Header="Количество мест" Binding="{Binding Path=Seats}" Width="5*" />
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="№ Столика" Binding="{Binding Path=Id}" Width="3*" />
+                                    <DataGridTextColumn Header="Количество мест" Binding="{Binding Path=Seats}" Width="5*" />
 
-                            </DataGrid.Columns>
+                                </DataGrid.Columns>
 
-                            <DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                    <Setter Property="FontSize" Value="22"/>
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontSize" Value="22"/>
 
-                                </Style>
-                            </DataGrid.ColumnHeaderStyle>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
 
-                            <DataGrid.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="FontSize" Value="22"/>
-                                    <Setter Property="Height" Value="30"/>
-                                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
-                                </Style>
-                            </DataGrid.CellStyle>
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="FontSize" Value="22"/>
+                                        <Setter Property="Height" Value="30"/>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGrid.CellStyle>
 
-                        </DataGrid>
-                    </StackPanel>
+                            </DataGrid>
+                        </StackPanel>
+
+                        <Grid Grid.Row="1">
+
+                        </Grid>
+
+                    </Grid>
                 </Border>
 
             </Grid>
 
-            <Grid Grid.ColumnSpan="2" Grid.Column="2">
+            <Grid Grid.ColumnSpan="2" Grid.Column="1">
                 <Border Width="560" Height="740" Background="{StaticResource C_White}" >
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.3"/>
@@ -119,7 +135,20 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="№ Столика" Binding="{Binding Path=Id}" Width="1.5*" />
                                 <DataGridTextColumn Header="Количество мест" Binding="{Binding Path=Seats}" Width="2*" />
-                                <DataGridTextColumn Header="Занятость" Binding="{Binding Path=Table_Status.Title}" Width="1.6*" />
+                                <DataGridTextColumn Header="Занятость" Binding="{Binding Path=Table_Status.Title}" Width="1.6*" FontSize="20" >
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=Table_Status.Title}" Value="Забронирован">
+                                                    <Setter Property="Background" Value="#99FFA500" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Table_Status.Title}" Value="Занят">
+                                                    <Setter Property="Background" Value="#99FF0000" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
 
                             </DataGrid.Columns>
 

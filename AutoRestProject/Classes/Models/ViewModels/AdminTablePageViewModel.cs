@@ -37,7 +37,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
             {
                 reservedtables = value;
                 OnPropertyChanged("ReservedTables");
-                MessageBox.Show("" + value.Count);
             }
         }
 

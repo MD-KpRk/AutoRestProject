@@ -42,8 +42,11 @@ namespace AutoRestProject.Resources.Pages
         {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                List<Classes.Models.BDModels.Table>? list = bd.Tables?.Include(u => u.Table_Status)?.ToList();
-                List<Classes.Models.BDModels.Table>? list2 = bd.Tables?.Include(u => u.Table_Status)?.Where(u => u.Seats >= Seats).ToList();
+                int? busyid = bd.Table_statuses?.Where(u => u.Title == ConfigController.getInstance().TableStatusBusy).FirstOrDefault()?.Id;
+
+
+                List<Classes.Models.BDModels.Table>? list = bd.Tables?.Include(u => u.Table_Status)?.Where(u => u.Table_StatusID != busyid).ToList();
+                List<Classes.Models.BDModels.Table>? list2 = bd.Tables?.Include(u => u.Table_Status)?.Where(u => u.Seats >= Seats && u.Table_StatusID != busyid).ToList();
                 if (list == null || list2 == null) return;
 
                 ViewModel.Tables = new ObservableCollection<Classes.Models.BDModels.Table>(list);

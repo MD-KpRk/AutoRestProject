@@ -119,12 +119,15 @@ namespace AutoRestProject.Resources.Pages
                 Order_status? ord_status = bd.Order_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderProcessing).FirstOrDefault();
                 Personal? curr_emp = bd.Personals?.Where(u => u.id == Curr_Emp.id).FirstOrDefault();
                 Classes.Models.BDModels.Table? tab = bd.Tables?.Where(u => u.Id == table.Id).FirstOrDefault();
+                Table_status? busy_status = bd.Table_statuses?.Where(u => u.Title == ConfigController.getInstance().TableStatusBusy).FirstOrDefault();
 
-                if (ord_status == null || curr_emp == null || tab == null)
+                if (ord_status == null || curr_emp == null || tab == null || busy_status == null)
                 {
                     ErrorBox.getInstance().Show("Ошибка связи программы и бд");
                     return;
                 }
+
+                tab.Table_StatusID = busy_status.Id;
 
                 bd.Orders?.Add(
                     new Order()

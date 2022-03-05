@@ -78,8 +78,22 @@
                                 BorderBrush="{x:Null}" 
                                 ItemsSource="{Binding Tables}" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="№ Столика" Binding="{Binding Path=Id}" Width="3*" />
-                                    <DataGridTextColumn Header="Количество мест" Binding="{Binding Path=Seats}" Width="5*" />
+                                    <DataGridTextColumn Header="№ Столика" Binding="{Binding Path=Id}" Width="1.5*" />
+                                    <DataGridTextColumn Header="Количество мест" Binding="{Binding Path=Seats}" Width="2*" />
+                                    <DataGridTextColumn Header="Занятость" Binding="{Binding Path=Table_Status.Title}" Width="1.6*" FontSize="20" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=Table_Status.Title}" Value="Забронирован">
+                                                        <Setter Property="Background" Value="#99FFA500" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=Table_Status.Title}" Value="Свободен">
+                                                        <Setter Property="Background" Value="#9900FF00" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
 
                                 </DataGrid.Columns>
 
@@ -153,10 +167,24 @@
                                 CanUserReorderColumns="False" 
                                 CanUserResizeRows="False" 
                                 BorderBrush="{x:Null}" 
-                                ItemsSource="{Binding SortedTables}" >
+                                ItemsSource="{Binding Path=SortedTables}" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="№ Столика" Binding="{Binding Path=Id}" Width="3*" />
-                                    <DataGridTextColumn Header="Количество мест" Binding="{Binding Path=Seats}" Width="5*" />
+                                    <DataGridTextColumn Header="№ Столика" Binding="{Binding Path=Id}" Width="1.5*" />
+                                    <DataGridTextColumn Header="Количество мест" Binding="{Binding Path=Seats}" Width="2*" />
+                                    <DataGridTextColumn Header="Занятость" Binding="{Binding Path=Table_Status.Title}" Width="1.6*" FontSize="20" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=Table_Status.Title}" Value="Забронирован">
+                                                        <Setter Property="Background" Value="#99FFA500" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=Table_Status.Title}" Value="Свободен">
+                                                        <Setter Property="Background" Value="#9900FF00" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
 
                                 </DataGrid.Columns>
 

@@ -128,12 +128,35 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_4(object sender, RoutedEventArgs e) // в ожидании оплаты
         {
+            ViewModel.PanelClose();
             ChangeOrderStatus(ConfigController.getInstance().OrderWaitingPayment);
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e) // Оплачен
         {
             ViewModel.PanelClose();
+
+            if(CurrentOrder == null)
+            {
+                ErrorBox.getInstance().Show("Ошибка связи программы и бд");
+                return;
+            }
+
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Classes.Models.BDModels.Table? table = bd.Tables?.Where(u => u.Id == CurrentOrder.TableId).FirstOrDefault();
+                int? status_freeid = bd.Table_statuses?.Where(u => u.Title == ConfigController.getInstance().TableStatusFree).FirstOrDefault()?.Id;
+
+                if(table == null || status_freeid == null)
+                {
+                    ChangeOrderStatus(ConfigController.getInstance().OrderDone);
+                    return;
+                }
+
+                table.Table_StatusID = (int)status_freeid;
+                bd.SaveChanges();
+            }
+
             ChangeOrderStatus(ConfigController.getInstance().OrderDone);
         }
 
