@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AdminPage1.xaml
-    /// </summary>
     public partial class AdminPage1 : Page
     {
         AdminPage1ViewModel ViewModel = new AdminPage1ViewModel();
@@ -36,17 +33,22 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e) // Выход
         {
-
+            PageController.getInstance()?.Goto(new AuthPage());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e) // Открыть заказы
         {
-
+            PageController.getInstance()?.Goto(new WaiterPage1(Emp));
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e) // Открыть кухню
         {
+            PageController.getInstance()?.Goto(new CookPage1(Emp));
+        }
 
+        private void Button_Click_3(object sender, RoutedEventArgs e) // Столики
+        {
+            PageController.getInstance()?.Goto(new AdminTablePage(Emp));
         }
     }
 }

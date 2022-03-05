@@ -34,6 +34,10 @@ namespace AutoRestProject
         public string? OrderStringProcessing;
         public string? OrderStringNotDone;
 
+        public string? TableStatusFree;
+        public string? TableStatusReserved;
+        public string? TableStatusBusy;
+
         public string? OrgTitle;
         public string? ConStr;
 
@@ -49,6 +53,10 @@ namespace AutoRestProject
             Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
             Chief = ConfigurationManager.AppSettings.Get("ChiefTitle");
             Admin = ConfigurationManager.AppSettings.Get("Admin");
+
+            TableStatusFree = ConfigurationManager.AppSettings.Get("TableStatusFree");
+            TableStatusReserved = ConfigurationManager.AppSettings.Get("TableStatusReserved");
+            TableStatusBusy = ConfigurationManager.AppSettings.Get("TableStatusBusy");
 
             GoodTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("GoodTimeSecond"));
             AverageTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AverageTimeSecond"));

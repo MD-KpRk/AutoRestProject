@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AutoRestProject.Resources.Pages"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:AutoRestProject.Resources.Pages" xmlns:viewmodels="clr-namespace:AutoRestProject.Classes.Models.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AdminPage1ViewModel}"
+      mc:Ignorable="d"
         Title="AdminPage1" Height="1040" Width="1920">
     <Grid>
         <Grid.RowDefinitions>
@@ -57,11 +57,26 @@
             </Button>
             <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
             <TextBlock VerticalAlignment="Center" FontSize="30" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_Gray}" Margin="10,0,0,0">
-                <Run Text="{Binding Path=CurrPersPos}" />
-                <Run Text="{Binding Path=CurrPersName}" />
+                <Run Text="{Binding Path=PersPos}" />
+                <Run Text="{Binding Path=PersName}" />
             </TextBlock>
 
         </StackPanel>
+
+        <Grid Grid.Row="1" Background="{StaticResource C_Gray}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Background="{StaticResource C_White}" Height="400" Width="400" Margin="0 0 100 0" Click="Button_Click_3"  >
+                    <TextBlock Text="Бронирование столиков" Foreground="{StaticResource C_DarkGray}" TextWrapping="Wrap" TextAlignment="Center"  FontFamily="{StaticResource Roboto}" FontSize="50"/>
+                </Button>
+                <Button Background="{StaticResource C_White}" Margin="0 0 100 0" Height="400" Width="400"  >
+                    <TextBlock Text="Управление персоналом" Foreground="{StaticResource C_DarkGray}" TextWrapping="Wrap" TextAlignment="Center"  FontFamily="{StaticResource Roboto}" FontSize="50"/>
+                </Button>
+                <Button Background="{StaticResource C_White}" Height="400" Width="400"  >
+                    <TextBlock Text="Статистика" Foreground="{StaticResource C_DarkGray}" TextWrapping="Wrap" TextAlignment="Center"  FontFamily="{StaticResource Roboto}" FontSize="50"/>
+                </Button>
+            </StackPanel>
+
+        </Grid>
 
     </Grid>
 </Page>
