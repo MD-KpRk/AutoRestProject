@@ -14,11 +14,43 @@ namespace AutoRestProject.Classes.Models.ViewModels
     class AdminTablePageViewModel : INotifyPropertyChanged
     {
         string perspos = "", persname = "";
-
+        int seats = 1;
         public ObservableCollection<Classes.Models.BDModels.Table> freetables = new ObservableCollection<Classes.Models.BDModels.Table>();
         public ObservableCollection<Classes.Models.BDModels.Table> reservedtables = new ObservableCollection<Classes.Models.BDModels.Table>();
 
+        public int Seats
+        {
+            get { return seats; }
+            set
+            {
+                seats = value;
+                OnPropertyChanged("Seats");
+            }
+        }
 
+        bool cb1 = false;
+
+        public bool CB1
+        {
+            get { return cb1;}
+            set
+            {
+                cb1 = value;
+                OnPropertyChanged("CB1");
+            }
+        }
+
+
+        public void Add()
+        {
+            Seats++;
+            Update();
+        }
+        public void Sub()
+        {
+            if (Seats - 1 > 0) Seats--;
+            Update();
+        }
 
         public ObservableCollection<Classes.Models.BDModels.Table> FreeTables
         {
@@ -70,9 +102,18 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
             foreach (Classes.Models.BDModels.Table table in tables)
             {
-                if (table.Table_StatusID == freeid)
-                    freelist.Add(table);
-                else reservlist.Add(table);
+                if (table.Seats >= Seats)
+                {
+                    if (table.Table_StatusID == freeid)
+                    {
+                        freelist.Add(table);
+
+                    }
+                    else
+                    {
+                        reservlist.Add(table);
+                    }
+                }
             }
 
             FreeTables = new ObservableCollection<Classes.Models.BDModels.Table>(freelist);

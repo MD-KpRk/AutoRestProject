@@ -1,0 +1,93 @@
+﻿<Page x:Class="AutoRestProject.Resources.Pages.PersonalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages" xmlns:viewmodels="clr-namespace:AutoRestProject.Classes.Models.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PersonalPageViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="1040" d:DesignWidth="1920"
+      Title="PersonalPage">
+
+    <Grid Background="{StaticResource C_Gray}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <StackPanel Background="{StaticResource C_Brown}" Orientation="Horizontal" FlowDirection="LeftToRight">
+                <Button Style="{StaticResource ButtonStyle}" Width="170" Click="Button_Click" >
+                    <Button.Content>
+                        <Grid Height="80" Width ="170" FlowDirection="LeftToRight">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.ColumnSpan="2" />
+                            <TextBlock FontFamily="{StaticResource IconFont}" Text="&#xE973;" FontSize="40" Grid.Column="0" TextAlignment="Center" Padding="5,19,20,10" />
+                            <TextBlock FontFamily="{StaticResource Roboto}" FontSize="30" Text="Назад" Grid.Column="1" TextAlignment="Center" Padding="10,20,20,20" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Rectangle VerticalAlignment="Stretch" Width="1" Stroke="{StaticResource C_Gray}" />
+                <TextBlock VerticalAlignment="Center" FontSize="30" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_Gray}" Margin="10,0,0,0">
+                <Run Text="{Binding Path=PersPos}" />
+                <Run Text="{Binding Path=PersName}" />
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer x:Name="scrollviewer" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Hidden" Height="800" 
+                      Margin="90,0,90,0"
+                      VerticalScrollBarVisibility="Hidden"
+                      PreviewMouseLeftButtonDown="scrollViewer_PreviewMouseLeftButtonDown" 
+                      PreviewMouseLeftButtonUp="scrollViewer_PreviewMouseLeftButtonUp" 
+                      PreviewMouseMove ="scrollViewer_PreviewMouseMove">
+                <StackPanel x:Name="stack" HorizontalAlignment="Center" MaxWidth="{Binding ActualWidth, ElementName=scrollviewer, Mode=OneWay}" Margin="0,0,0,0" >
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.ColumnSpan="2" Grid.Column="1">
+                <Border Width="590" Height="800" Background="{StaticResource C_White}" >
+                    <Border.Effect>
+                        <DropShadowEffect Opacity="0.3"/>
+                    </Border.Effect>
+                </Border>
+                <!--AddMode-->
+                <Border Width="590" Height="800" > 
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="120"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Добавление сотрудника" FontFamily="{StaticResource Roboto}" FontSize="46" TextAlignment="Center" Margin="0,30,0,30"/>
+                            <Separator Background="{StaticResource C_DarkGray}"/>
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Имя" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Фамилия" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Отчество" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Телефон" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="PIN" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <ComboBox Margin="60 26 60 0" Height="50" FontSize="26" ItemsSource="{Binding Path=Positions}" SelectedItem="{Binding SelectedPos}" />
+                        </StackPanel>
+
+                        <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Width="400" Height="60" Content="Подтвердить" FontSize="30" Click="Button_Click_1" />
+
+                    </Grid>
+                </Border>
+                <!--Edit Mode-->
+                
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Page>

@@ -92,6 +92,71 @@ namespace AutoRestProject.Resources.Pages
 
         }
 
+        private void Button_Click_3(object sender, RoutedEventArgs e) 
+        {
+            string? Tag = (sender as Button)?.Tag.ToString();
+            if (Tag == null) return;
+            if(Tag == "+")
+            {
+                ViewModel.Add();
+            }
+            else if(Tag == "-")
+            {
+                ViewModel.Sub();
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e) // Удалить стол
+        {
+            if (ViewModel.CB1 == false)
+            {
+                ErrorBox.getInstance().Show("Для удаления столика включите режим редактирования.");
+                return;
+            }
+
+            Classes.Models.BDModels.Table? table = dg1.SelectedItem as Classes.Models.BDModels.Table;
+            if (table == null)
+            {
+                ErrorBox.getInstance().Show("Свободный столик не выбран");
+                return;
+            }
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Classes.Models.BDModels.Table? contexttable = bd.Tables?.Where(u => u.Id == table.Id).FirstOrDefault();
+                if(contexttable == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи бд и программы");
+                    return;
+                }
+
+                bd.Tables?.Remove(contexttable);
+                bd.SaveChanges();
+                ViewModel.Update();
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e) // Добавить стол
+        {
+            if(ViewModel.CB1 == false)
+            {
+                ErrorBox.getInstance().Show("Для добавления столика включите режим редактирования.");
+                return;
+            }
+
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                Table_status? freestatus = bd.Table_statuses?.Where(u => u.Title == ConfigController.getInstance().TableStatusFree).FirstOrDefault();
+                if (freestatus == null)
+                {
+                    ErrorBox.getInstance().Show("Ошибка связи бд и программы");
+                    return;
+                }
+
+                bd.Tables?.Add(new Classes.Models.BDModels.Table() { Seats = ViewModel.Seats, Table_Status = freestatus, Table_StatusID = freestatus.Id});
+                bd.SaveChanges();
+                ViewModel.Update();
+            }
+        }
 
     }
 }

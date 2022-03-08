@@ -50,5 +50,10 @@ namespace AutoRestProject.Resources.Pages
         {
             PageController.getInstance()?.Goto(new AdminTablePage(Emp));
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e) // Управление персоналом
+        {
+            PageController.getInstance()?.Goto(new PersonalPage(Emp));
+        }
     }
 }
