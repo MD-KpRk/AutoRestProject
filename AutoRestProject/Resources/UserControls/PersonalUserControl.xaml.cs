@@ -44,6 +44,7 @@ namespace AutoRestProject.Resources.UserControls
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //page.ShowPanel(Order);
+            Page.SetEditMode(Emp);
 
         }
 

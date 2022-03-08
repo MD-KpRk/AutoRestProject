@@ -68,14 +68,15 @@
                             <RowDefinition Height="120"/>
                         </Grid.RowDefinitions>
                         <StackPanel>
-                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Добавление сотрудника" FontFamily="{StaticResource Roboto}" FontSize="46" TextAlignment="Center" Margin="0,30,0,30"/>
+                            <TextBlock Foreground="{StaticResource C_DarkGray}" Text="{Binding PanelMode}" FontFamily="{StaticResource Roboto}" FontSize="46" TextAlignment="Center" Margin="0,30,0,30"/>
                             <Separator Background="{StaticResource C_DarkGray}"/>
-                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Имя" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
-                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Фамилия" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
-                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Отчество" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
-                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Телефон" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
-                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="PIN" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Имя" Text="{Binding Path=ComboName}" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Фамилия" Text="{Binding Path=ComboSecName}" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Отчество" Text="{Binding Path=ComboPatr}" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="Телефон" Text="{Binding Path=ComboTel}" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
+                            <TextBox Margin="60 26 60 0" Style="{StaticResource PlaceHolder}" Tag="PIN" Text="{Binding Path=ComboPIN}" FontFamily="{StaticResource Roboto}" FontSize="30" Height="50" VerticalContentAlignment="Center"   />
                             <ComboBox Margin="60 26 60 0" Height="50" FontSize="26" ItemsSource="{Binding Path=Positions}" SelectedItem="{Binding SelectedPos}" />
+                            <Button Margin="60 26 60 0" Visibility="{Binding PanelVisible}" Style="{StaticResource ButtonStyle}" Grid.Row="1" Width="400" Height="60" Content="Отменить изменение" FontSize="30" Click="Button_Click_2" />
                         </StackPanel>
 
                         <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Width="400" Height="60" Content="Подтвердить" FontSize="30" Click="Button_Click_1" />
