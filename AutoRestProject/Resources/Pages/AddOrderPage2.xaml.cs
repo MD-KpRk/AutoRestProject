@@ -147,9 +147,10 @@ namespace AutoRestProject.Resources.Pages
                 bd.SaveChanges();
 
                 Order? ord = bd.Orders?.OrderBy(u => u.Id).Last();
-                Order_string_status? oss = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringNotDone).FirstOrDefault();
+                Order_string_status? notdone = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringNotDone).FirstOrDefault();
+                Order_string_status? done = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringDone).FirstOrDefault();
 
-                if (ord == null || oss == null)
+                if (ord == null || notdone == null || done == null)
                 {
                     ErrorBox.getInstance().Show("Ошибка при добавлении заказа");
                     return;
@@ -160,19 +161,39 @@ namespace AutoRestProject.Resources.Pages
                 {
                     Food? food = bd.Foods?.Where(u => u.Id == Order_Strings[i].FoodId).FirstOrDefault();
 
-                    if(food != null)
-                    bd.Order_strings?.Add(new Order_string() 
-                    { 
-                        CookPers = null, 
-                        CookPersId = null, 
-                        Food = food, 
-                        FoodId = food.Id,
-                        Food_count = Order_Strings[i].Count,
-                        Order = ord,
-                        OrderId = ord.Id,
-                        Order_string_status = oss, 
-                        Order_String_StatusId = oss.Id, 
-                    });
+                    if (food != null)
+                    {
+                        if (food.Is_cooking == false)
+                        {
+                            bd.Order_strings?.Add(new Order_string()
+                            {
+                                CookPers = null,
+                                CookPersId = null,
+                                Food = food,
+                                FoodId = food.Id,
+                                Food_count = Order_Strings[i].Count,
+                                Order = ord,
+                                OrderId = ord.Id,
+                                Order_string_status = done,
+                                Order_String_StatusId = done.Id,
+                            });
+                        }
+                        else
+                        {
+                            bd.Order_strings?.Add(new Order_string()
+                            {
+                                CookPers = null,
+                                CookPersId = null,
+                                Food = food,
+                                FoodId = food.Id,
+                                Food_count = Order_Strings[i].Count,
+                                Order = ord,
+                                OrderId = ord.Id,
+                                Order_string_status = notdone,
+                                Order_String_StatusId = notdone.Id,
+                            });
+                        }
+                    }
                 }
 
                 bd.SaveChanges();

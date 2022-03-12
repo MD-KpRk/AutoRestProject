@@ -22,5 +22,7 @@ namespace AutoRestProject.Classes.Models.BDModels
 
         public Personal? CookPers { get; set; }
 
+        [NotMapped]
+        public string Price { get; set; } ="";
     }
 }

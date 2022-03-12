@@ -123,6 +123,7 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_3(object sender, RoutedEventArgs e) // в обработке
         {
+            ViewModel.PanelClose();
             ChangeOrderStatus(ConfigController.getInstance().OrderProcessing);
         }
 
@@ -231,7 +232,8 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_8(object sender, RoutedEventArgs e) // Сгенерировать счёт
         {
-
+            if (CurrentOrder == null) return;
+            PageController.getInstance()?.Goto(new CheckPage(CurrentUser, CurrentOrder));
         }
 
 

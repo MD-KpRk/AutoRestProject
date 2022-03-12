@@ -85,7 +85,7 @@
                     <TextBlock Margin="0,20,0,0" TextAlignment="Center" Text="Действия:" FontFamily="{StaticResource Roboto}" FontSize="40" Foreground="#FF868686"  />
                     <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="Удалить заказ" FontSize="35" Height="60" Click="Button_Click_6" />
                     <Button Margin="50,20,50,0" Visibility="Collapsed" Style="{StaticResource ButtonStyle}" Content="Пополнить заказ" FontSize="35" Height="60" Click="Button_Click_7" />
-                    <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="Сгенерировать счёт" FontSize="35" Height="60" Click="Button_Click_8" />
+                    <Button Margin="50,20,50,0" Style="{StaticResource ButtonStyle}" Content="Посмотреть сумму" FontSize="35" Height="60" Click="Button_Click_8" />
                     <Separator Margin="0,40,0,0"  />
 
                 </StackPanel>
