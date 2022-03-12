@@ -10,6 +10,7 @@ namespace AutoRestProject
 
         public MainWindow()
         {
+
             DataContext = ViewModel;
             InitializeBD();
             InitializeComponent();

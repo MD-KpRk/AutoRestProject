@@ -188,6 +188,18 @@ namespace AutoRestProject.Resources.Pages
 
                 bd.Order_strings?.RemoveRange(list);
                 bd.Orders?.Remove(order);
+
+                Classes.Models.BDModels.Table? table = bd.Tables?.Where(u => u.Id == CurrentOrder.TableId).FirstOrDefault();
+                int? status_freeid = bd.Table_statuses?.Where(u => u.Title == ConfigController.getInstance().TableStatusFree).FirstOrDefault()?.Id;
+
+                if (table == null || status_freeid == null)
+                {
+                    ChangeOrderStatus(ConfigController.getInstance().OrderDone);
+                    return;
+                }
+
+                table.Table_StatusID = (int)status_freeid;
+
                 bd.SaveChanges();
                 ViewModel.PanelClose();
                 Update();

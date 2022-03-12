@@ -178,10 +178,7 @@ namespace AutoRestProject.Resources.Pages
                 bd.SaveChanges();
 
                 PageController.getInstance()?.Goto(new WaiterPage1(Curr_Emp));
-
             }
-
-
         }
 
 

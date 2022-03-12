@@ -19,31 +19,13 @@ namespace AutoRestProject
             return instance;
         }
 
-        public int? GoodTimeSecond;  
-        public int? AverageTimeSecond;  
-        public int? BadTimeSecond;  
+        public int? GoodTimeSecond, AverageTimeSecond, BadTimeSecond;  
+        public string? OrderProcessing, OrderWaitingPayment, OrderDone;
+        public string? OrderStringDone, OrderStringProcessing, OrderStringNotDone;
+        public string? TableStatusFree, TableStatusReserved, TableStatusBusy;
+        public string? OrgTitle, ConStr;
+        public string? Waiter, Admin, Chief;
 
-
-
-        public string? OrderProcessing;
-        public string? OrderWaitingPayment;
-        public string? OrderDone;
-
-
-        public string? OrderStringDone;
-        public string? OrderStringProcessing;
-        public string? OrderStringNotDone;
-
-        public string? TableStatusFree;
-        public string? TableStatusReserved;
-        public string? TableStatusBusy;
-
-        public string? OrgTitle;
-        public string? ConStr;
-
-        public string? Waiter;
-        public string? Admin;
-        public string? Chief;
         public DbContextOptions<AutoRestBDContext> ConOptions;
 
         ConfigController()
@@ -61,7 +43,6 @@ namespace AutoRestProject
             GoodTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("GoodTimeSecond"));
             AverageTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AverageTimeSecond"));
             BadTimeSecond = Convert.ToInt32(ConfigurationManager.AppSettings.Get("BadTimeSecond"));
-
 
             OrderStringDone = ConfigurationManager.AppSettings.Get("OrderStringDone");
             OrderStringProcessing = ConfigurationManager.AppSettings.Get("OrderStringProcessing");

@@ -34,9 +34,7 @@ namespace AutoRestProject.ViewModels
                 Password = value;
                 OnPropertyChanged("StarPassword");
             }
-
         }
-
 
         public void RemovePassDigit()
         {
