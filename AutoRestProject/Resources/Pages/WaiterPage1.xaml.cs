@@ -147,11 +147,22 @@ namespace AutoRestProject.Resources.Pages
             {
                 Classes.Models.BDModels.Table? table = bd.Tables?.Where(u => u.Id == CurrentOrder.TableId).FirstOrDefault();
                 int? status_freeid = bd.Table_statuses?.Where(u => u.Title == ConfigController.getInstance().TableStatusFree).FirstOrDefault()?.Id;
+                Order_string_status? ords = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringDone).FirstOrDefault();
 
-                if(table == null || status_freeid == null)
+                List<Order_string>? ord_strgs = bd.Order_strings?.Where(u => u.OrderId == CurrentOrder.Id).ToList();
+
+
+
+                if(table == null || status_freeid == null || ords == null || ord_strgs == null)
                 {
                     ChangeOrderStatus(ConfigController.getInstance().OrderDone);
                     return;
+                }
+
+                for(int i=0;i<ord_strgs.Count;i++)
+                {
+                    if(ord_strgs[i].Order_String_StatusId != ords.Id)
+                        ord_strgs[i].Order_String_StatusId = ords.Id;
                 }
 
                 table.Table_StatusID = (int)status_freeid;
