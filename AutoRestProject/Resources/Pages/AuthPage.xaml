@@ -138,7 +138,7 @@
                     </Grid.Effect>
                 </Grid>
                 <Grid>
-                    <Button Background="{StaticResource C_White}">
+                    <Button Background="{StaticResource C_White}" Click="Button_Click_1">
                         <TextBlock Margin="0 0 0 0" FontSize="40" FontFamily="{StaticResource Roboto}" Foreground="#FF5151BB" TextAlignment="Center">
                         <Run Text="Получить справку" />
                         </TextBlock>
