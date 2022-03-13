@@ -14,9 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Office.Interop.Excel;
 using System.ComponentModel;
-using Range = Microsoft.Office.Interop.Excel.Range;
 using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +23,7 @@ namespace AutoRestProject.Resources.Pages
     /// <summary>
     /// Логика взаимодействия для StatPage.xaml
     /// </summary>
-    public partial class StatPage : System.Windows.Controls.Page
+    public partial class StatPage : Page
     {
         StatPageViewModel ViewModel = new StatPageViewModel();
         Personal Emp;
@@ -57,16 +55,14 @@ namespace AutoRestProject.Resources.Pages
 
         void CreatePovarReport()
         {
-            Microsoft.Office.Interop.Excel.Application excelApplication = null;
+            Microsoft.Office.Interop.Excel.Application? excelApplication = null;
 
             try
             {
                 excelApplication = new
                     Microsoft.Office.Interop.Excel.Application();
-                Workbook excelWorkBook = excelApplication.Workbooks.Add();
-                Worksheet worksheet = (Worksheet)excelWorkBook.Worksheets[1];
-
-                //строка, столбец
+                Microsoft.Office.Interop.Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+                Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.Worksheets[1];
 
                 worksheet.Cells[1, 1] = "ФИО сотрудника";
                 worksheet.Cells[1, 2] = "Должность сотрудника";
@@ -92,7 +88,7 @@ namespace AutoRestProject.Resources.Pages
                 }
 
                 worksheet.Columns.AutoFit();
-                string str = @"D:\" + @"Povar_" + string.Format("{0:dd_MM_yyyy_HH_mm_ss}", DateTime.Now) + ".xls";
+                string str = @"Povar_" + string.Format("{0:dd_MM_yyyy_HH_mm_ss}", DateTime.Now) + ".xls";
                 excelWorkBook.SaveAs(str);
                 ErrorBox.getInstance().ShowInfo("Файл отчёта создан");
             }
@@ -110,20 +106,16 @@ namespace AutoRestProject.Resources.Pages
             }
         }
 
-
-#warning Переделать под официантов
         void CreateWaiterReport() 
         {
-            Microsoft.Office.Interop.Excel.Application excelApplication = null;
+            Microsoft.Office.Interop.Excel.Application? excelApplication = null;
 
             try
             {
                 excelApplication = new
                     Microsoft.Office.Interop.Excel.Application();
-                Workbook excelWorkBook = excelApplication.Workbooks.Add();
-                Worksheet worksheet = (Worksheet)excelWorkBook.Worksheets[1];
-
-                //строка, столбец
+                Microsoft.Office.Interop.Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+                Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.Worksheets[1];
 
                 worksheet.Cells[1, 1] = "ФИО сотрудника";
                 worksheet.Cells[1, 2] = "Должность сотрудника";
@@ -149,7 +141,7 @@ namespace AutoRestProject.Resources.Pages
                 }
 
                 worksheet.Columns.AutoFit();
-                string str = @"D:\" + @"Waiter_" + string.Format("{0:dd_MM_yyyy_HH_mm_ss}", DateTime.Now) + ".xls";
+                string str = @"Waiter_" + string.Format("{0:dd_MM_yyyy_HH_mm_ss}", DateTime.Now) + ".xls";
                 excelWorkBook.SaveAs(str);
                 ErrorBox.getInstance().ShowInfo("Файл отчёта создан");
             }
