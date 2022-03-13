@@ -117,12 +117,19 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Process p = new Process();
-            p.StartInfo = new ProcessStartInfo("help.chm")
+            try
             {
-                UseShellExecute = true
-            };
-            p.Start();
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo("help.chm")
+                {
+                    UseShellExecute = true
+                };
+                p.Start();
+            }
+            catch (Exception)
+            {
+                ErrorBox.getInstance().Show("Ошибка при открытии справки");
+            }
         }
     }
 }
