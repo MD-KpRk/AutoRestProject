@@ -155,8 +155,15 @@ namespace AutoRestProject.Resources.Pages
 
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).FirstOrDefault();
+                Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).Include(u => u.CookPers).FirstOrDefault();
                 if (os == null) return;
+
+                if(os.CookPers == null)
+                {
+                    os.CookPersId = Emp.id;
+                    bd.SaveChanges();
+                }
+
                 Order_string_status? ordstat = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringDone).FirstOrDefault();
 
                 if (ordstat == null)

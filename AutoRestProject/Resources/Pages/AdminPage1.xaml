@@ -71,7 +71,7 @@
                 <Button Background="{StaticResource C_White}" Margin="0 0 100 0" Height="400" Width="400" Click="Button_Click_4"  >
                     <TextBlock Text="Управление персоналом" Foreground="{StaticResource C_DarkGray}" TextWrapping="Wrap" TextAlignment="Center"  FontFamily="{StaticResource Roboto}" FontSize="50"/>
                 </Button>
-                <Button Background="{StaticResource C_White}" Height="400" Width="400"  >
+                <Button Background="{StaticResource C_White}" Height="400" Width="400" Click="Button_Click_5"  >
                     <TextBlock Text="Статистика" Foreground="{StaticResource C_DarkGray}" TextWrapping="Wrap" TextAlignment="Center"  FontFamily="{StaticResource Roboto}" FontSize="50"/>
                 </Button>
             </StackPanel>

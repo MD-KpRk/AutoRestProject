@@ -55,5 +55,10 @@ namespace AutoRestProject.Resources.Pages
         {
             PageController.getInstance()?.Goto(new PersonalPage(Emp));
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e) // Статистика
+        {
+            PageController.getInstance()?.Goto(new StatPage(Emp));
+        }
     }
 }
