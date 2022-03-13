@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Width="600" Height="760">
+            <Grid Width="600" Height="760" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="120"/>
@@ -87,7 +87,61 @@
 
                     </DataGrid>
                 </StackPanel>
-                <Button Style="{StaticResource ButtonStyle}" Content="Выгрузить" FontSize="36" Grid.Row="1" Height="60" Width="400"/>
+                <Button Style="{StaticResource ButtonStyle}" Content="Выгрузить" FontSize="36" Grid.Row="1" Height="60" Width="400" Click="Button_Click_1"/>
+            </Grid>
+
+            <Grid Width="600" Height="760" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="120"/>
+                </Grid.RowDefinitions>
+                <Border Background="{StaticResource C_White}" Grid.RowSpan="2">
+                    <Border.Effect>
+                        <DropShadowEffect Opacity="0.3"/>
+                    </Border.Effect>
+                </Border>
+                <StackPanel >
+                    <TextBlock Margin="0 20 0 20" Text="Статистика по официантам" FontSize="40" TextAlignment="Center" Foreground="{StaticResource C_DarkGray}" FontFamily="{StaticResource Roboto}" />
+                    <Separator Margin="0 0 0 20" Background="{StaticResource C_DarkGray}" />
+                    <DataGrid Margin="40,0,40,0" x:Name="dg2" Height="520"
+                                Background="{StaticResource C_White}"
+                                FontFamily="{StaticResource Roboto}"
+                                GridLinesVisibility="None" 
+                                SelectionUnit="FullRow" 
+                                AutoGenerateColumns="False" 
+                                SelectionMode="Single"
+                                IsReadOnly="True"
+                                CanUserResizeColumns="False"                               
+                                CanUserReorderColumns="False" 
+                                CanUserResizeRows="False" 
+                                BorderBrush="{x:Null}" 
+                                ItemsSource="{Binding Path=Waiters}" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Имя сотрудника" Binding="{Binding Path=Name}" Width="5*" />
+                            <DataGridTextColumn Header="Заказов в смену" Binding="{Binding Path=Count}" Width="3*" />
+
+                        </DataGrid.Columns>
+
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="FontSize" Value="22"/>
+
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="Height" Value="30"/>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </DataGrid.CellStyle>
+
+                    </DataGrid>
+                </StackPanel>
+                <Button Style="{StaticResource ButtonStyle}" Content="Выгрузить" FontSize="36" Grid.Row="1" Height="60" Width="400" Click="Button_Click_2" />
             </Grid>
 
         </Grid>

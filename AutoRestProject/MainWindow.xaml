@@ -30,7 +30,7 @@
         <Grid x:Name="ErrorGrid" Visibility="{Binding Path=ErrorBox.Visibility}">
             <Border Background="#66000000"/>
             <StackPanel  Panel.ZIndex="2" Background="{StaticResource C_White}" Width="600" Height="300">
-                <TextBlock Text="Ошибка" FontFamily="{StaticResource Roboto}" FontSize="52" TextAlignment="Center" Margin="0,10,0,10"/>
+                <TextBlock Text="{Binding Path=ErrorBox.Header}" FontFamily="{StaticResource Roboto}" FontSize="52" TextAlignment="Center" Margin="0,10,0,10"/>
                 <Separator />
                 <TextBlock Text="{Binding Path=ErrorBox.Message}" TextWrapping="Wrap" FontFamily="{StaticResource Roboto}" FontSize="30" TextAlignment="Center" Margin="40,10,40,10" Height="130"/>
                 <Button Height="50" Width="200" Content="OK" FontSize="32" Style="{StaticResource ButtonStyle}" Click="Button_Click"/>

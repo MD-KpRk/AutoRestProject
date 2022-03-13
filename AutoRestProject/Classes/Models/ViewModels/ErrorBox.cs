@@ -15,7 +15,7 @@ namespace AutoRestProject
         }
 
 
-        string message = "";
+        string message = "", header = "";
         Visibility visibility = Visibility.Collapsed;
         public string Message
         {
@@ -26,6 +26,17 @@ namespace AutoRestProject
                 OnPropertyChanged("Message");
             }
         }
+
+        public string Header
+        {
+            get => header;
+            set
+            {
+                header = value;
+                OnPropertyChanged("Header");
+            }
+        }
+
         public Visibility Visibility
         {
             get => visibility;
@@ -42,7 +53,16 @@ namespace AutoRestProject
         {
             Visibility = Visibility.Visible;
             Message = message;
+            Header = "Ошибка";
         }
+
+        public void ShowInfo(string message)
+        {
+            Visibility = Visibility.Visible;
+            Message = message;
+            Header = "Информация";
+        }
+
         public void Hide()
         {
             Visibility = Visibility.Collapsed;

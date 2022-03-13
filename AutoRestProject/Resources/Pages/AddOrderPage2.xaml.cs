@@ -117,8 +117,8 @@ namespace AutoRestProject.Resources.Pages
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 Order_status? ord_status = bd.Order_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderProcessing).FirstOrDefault();
-                Personal? curr_emp = bd.Personals?.Where(u => u.id == Curr_Emp.id).FirstOrDefault();
-                Classes.Models.BDModels.Table? tab = bd.Tables?.Where(u => u.Id == table.Id).FirstOrDefault();
+                Personal? curr_emp = bd.Personals?.Where(u => u.id == Curr_Emp.id)?.FirstOrDefault();
+                Classes.Models.BDModels.Table? tab = bd.Tables?.Where(u => u.Id == table.Id)?.FirstOrDefault();
                 Table_status? busy_status = bd.Table_statuses?.Where(u => u.Title == ConfigController.getInstance().TableStatusBusy).FirstOrDefault();
 
                 if (ord_status == null || curr_emp == null || tab == null || busy_status == null)
@@ -198,6 +198,7 @@ namespace AutoRestProject.Resources.Pages
 
                 bd.SaveChanges();
 
+                if (Curr_Emp == null) return;
                 PageController.getInstance()?.Goto(new WaiterPage1(Curr_Emp));
             }
         }
