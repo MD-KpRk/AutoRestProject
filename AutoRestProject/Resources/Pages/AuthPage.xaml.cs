@@ -28,8 +28,31 @@ namespace AutoRestProject.Resources.Pages
         public AuthPage()
         {
             DataContext = ViewModel;
+            Update();
             InitializeComponent();
         }
+
+        public void Update()
+        {
+            using(AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            {
+                int? pcount = bd.Personals?.Count();
+                int? ocount = bd.Orders?.Include(u=>u.Order_status).Where(u => u.Order_status.Title != ConfigController.getInstance().OrderDone).Count();
+                int? bcount = bd.Order_strings?.Include(u=>u.Order_string_status).Include(u=>u.CookPers).Where(u => u.Order_string_status.Title != ConfigController.getInstance().OrderStringDone && u.CookPers == null).Count();
+                int? tcount = bd.Tables?.Include(u => u.Table_Status).Where(u => u.Table_Status.Title == ConfigController.getInstance().TableStatusFree).Count();
+                int? mcount = bd.Menu_strings?.Count();
+                if (pcount == null || ocount == null || bcount == null || tcount == null || mcount == null) return;
+
+                ViewModel.TotalPers = (int)pcount;
+                ViewModel.Orders = (int)ocount;
+                ViewModel.Bluds = (int)bcount;
+                ViewModel.Tables = (int)tcount;
+                ViewModel.Menus = (int)mcount;
+
+            }
+        }
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string tag = (string)((Button)sender).Tag;
@@ -82,6 +105,11 @@ namespace AutoRestProject.Resources.Pages
                 if (PosTitle == ConfigController.getInstance().Admin)
                 {
                     PageController.getInstance()?.Goto(new AdminPage1(personal));
+                    return;
+                }
+                if (PosTitle == ConfigController.getInstance().Cook)
+                {
+                    PageController.getInstance()?.Goto(new CookPage1(personal));
                     return;
                 }
 

@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages"
+      xmlns:local="clr-namespace:AutoRestProject.Resources.Pages" xmlns:viewmodels="clr-namespace:AutoRestProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AuthWindowViewModel}"
       mc:Ignorable="d" 
       d:Height="1040" d:Width="1920"
       Title="AuthPage">
@@ -11,7 +11,7 @@
     <Grid Background="{StaticResource C_Gray}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border Background="{StaticResource C_White}" Grid.Column="1"/>
@@ -74,8 +74,77 @@
                 </StackPanel>
             </Border>
         </Viewbox>
-        <StackPanel Grid.Column="2">
-
+        <StackPanel Margin="0 60 0 0" Grid.Column="2">
+            <Grid Width="560" Height="140" Margin="0 50 0 40">
+                <Grid Background="{StaticResource C_White}" >
+                    <Grid.Effect>
+                        <DropShadowEffect Opacity="0.4"/>
+                    </Grid.Effect>
+                </Grid>
+                <Grid>
+                    <TextBlock Margin="0 20 0 0" FontSize="40" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center">
+                        <Run Text="Всего сотрудников" />
+                        <LineBreak/>
+                        <Run Text="{Binding Path=TotalPers}" />
+                    </TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Width="560" Height="140" Margin="0 0 0 40">
+                <Grid Background="{StaticResource C_White}" >
+                    <Grid.Effect>
+                        <DropShadowEffect Opacity="0.4"/>
+                    </Grid.Effect>
+                </Grid>
+                <Grid>
+                    <TextBlock Margin="0 20 0 0" FontSize="40" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center">
+                        <Run Text="Активных заказов" />
+                        <LineBreak/>
+                        <Run Text="{Binding Path=Orders}" />
+                    </TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Width="560" Height="140" Margin="0 0 0 40">
+                <Grid Background="{StaticResource C_White}" >
+                    <Grid.Effect>
+                        <DropShadowEffect Opacity="0.4"/>
+                    </Grid.Effect>
+                </Grid>
+                <Grid>
+                    <TextBlock Margin="0 20 0 0" FontSize="40" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center">
+                        <Run Text="Непринятых блюд" />
+                        <LineBreak/>
+                        <Run Text="{Binding Path=Bluds}" />
+                    </TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Width="560" Height="140" Margin="0 0 0 40">
+                <Grid Background="{StaticResource C_White}" >
+                    <Grid.Effect>
+                        <DropShadowEffect Opacity="0.4"/>
+                    </Grid.Effect>
+                </Grid>
+                <Grid>
+                    <TextBlock Margin="0 20 0 0" FontSize="40" FontFamily="{StaticResource Roboto}" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center">
+                        <Run Text="Свободных столиков" />
+                        <LineBreak/>
+                        <Run Text="{Binding Path=Tables}" />
+                    </TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Width="560" Height="140" Margin="0 0 0 0">
+                <Grid Background="{StaticResource C_White}" >
+                    <Grid.Effect>
+                        <DropShadowEffect Opacity="0.4"/>
+                    </Grid.Effect>
+                </Grid>
+                <Grid>
+                    <Button Background="{StaticResource C_White}">
+                        <TextBlock Margin="0 0 0 0" FontSize="40" FontFamily="{StaticResource Roboto}" Foreground="#FF5151BB" TextAlignment="Center">
+                        <Run Text="Получить справку" />
+                        </TextBlock>
+                    </Button>
+                </Grid>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>

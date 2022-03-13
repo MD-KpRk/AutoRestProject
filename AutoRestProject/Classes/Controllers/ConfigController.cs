@@ -24,7 +24,7 @@ namespace AutoRestProject
         public string? OrderStringDone, OrderStringProcessing, OrderStringNotDone;
         public string? TableStatusFree, TableStatusReserved, TableStatusBusy;
         public string? OrgTitle, ConStr;
-        public string? Waiter, Admin, Chief;
+        public string? Waiter, Admin, Chief, Cook;
 
         public DbContextOptions<AutoRestBDContext> ConOptions;
 
@@ -35,6 +35,7 @@ namespace AutoRestProject
             Waiter = ConfigurationManager.AppSettings.Get("WaiterTitle");
             Chief = ConfigurationManager.AppSettings.Get("ChiefTitle");
             Admin = ConfigurationManager.AppSettings.Get("Admin");
+            Cook = ConfigurationManager.AppSettings.Get("CookTitle");
 
             TableStatusFree = ConfigurationManager.AppSettings.Get("TableStatusFree");
             TableStatusReserved = ConfigurationManager.AppSettings.Get("TableStatusReserved");

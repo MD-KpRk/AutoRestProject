@@ -13,6 +13,57 @@ namespace AutoRestProject.ViewModels
     {
         string password = "";
 
+        int totalPers = 0, orders = 0, bluds = 0, tables = 0, menus = 0;
+
+        public int TotalPers
+        {
+            get { return totalPers; }
+            set
+            {
+                totalPers = value;
+                OnPropertyChanged("TotalPers");
+            }
+        }
+
+        public int Menus
+        {
+            get { return menus; }
+            set
+            {
+                menus = value;
+                OnPropertyChanged("Menus");
+            }
+        }
+
+        public int Tables
+        {
+            get { return tables; }
+            set
+            {
+                tables = value;
+                OnPropertyChanged("Tables");
+            }
+        }
+
+        public int Orders
+        {
+            get { return orders; }
+            set
+            {
+                orders = value;
+                OnPropertyChanged("Orders");
+            }
+        }
+
+        public int Bluds
+        {
+            get { return bluds; }
+            set
+            {
+                bluds = value;
+                OnPropertyChanged("Bluds");
+            }
+        }
 
         public string Password
         {
