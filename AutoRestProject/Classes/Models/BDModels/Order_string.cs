@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoRestProject.Classes.Models.BDModels
 {
@@ -23,6 +17,6 @@ namespace AutoRestProject.Classes.Models.BDModels
         public Personal? CookPers { get; set; }
 
         [NotMapped]
-        public string Price { get; set; } ="";
+        public string Price { get; set; } = "";
     }
 }

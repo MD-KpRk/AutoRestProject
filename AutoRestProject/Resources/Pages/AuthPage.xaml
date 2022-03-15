@@ -69,7 +69,6 @@
                         <Button Style="{StaticResource AuthButton}" FontFamily="{StaticResource IconFont}" Content="&#xE8FB;" Grid.Column="0" Grid.Row="3" Click="Button_Click" Tag="Apply"/>
                         <Button Style="{StaticResource AuthButton}" Content="0" Grid.Column="1" Grid.Row="3" Click="Button_Click" Tag="0"/>
                         <Button Style="{StaticResource AuthButton}" FontFamily="{StaticResource IconFont}" Content="&#xE750;" Grid.Column="2" Grid.Row="3" Click="Button_Click" Tag="Delete"/>
-
                     </Grid>
                 </StackPanel>
             </Border>

@@ -9,8 +9,11 @@ namespace AutoRestProject
         private static ErrorBox? instance;
         public static ErrorBox getInstance()
         {
-            if(instance == null)
+            if (instance == null)
+            {
                 instance = new ErrorBox();
+            }
+
             return instance;
         }
 
@@ -48,7 +51,7 @@ namespace AutoRestProject
         }
 
         ErrorBox() { }
-       
+
         public void Show(string message)
         {
             Visibility = Visibility.Visible;

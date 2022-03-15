@@ -1,12 +1,7 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AutoRestProject.Classes.Models.ViewModels
@@ -64,9 +59,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 OnPropertyChanged("SelectedPos");
             }
         }
-            
-
-
         public string PersName
         {
             get { return persName; }
@@ -114,8 +106,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
             get { return comboPIN; }
             set { comboPIN = value; OnPropertyChanged("ComboPIN"); }
         }
-
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

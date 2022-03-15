@@ -1,25 +1,11 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
 using AutoRestProject.Classes.Models.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AdminTablePage.xaml
-    /// </summary>
     public partial class AdminTablePage : Page
     {
         Personal Emp;
@@ -43,7 +29,7 @@ namespace AutoRestProject.Resources.Pages
         private void Button_Click_1(object sender, RoutedEventArgs e) // Забронировать
         {
             Classes.Models.BDModels.Table? table = dg1.SelectedItem as Classes.Models.BDModels.Table;
-            if(table == null)
+            if (table == null)
             {
                 ErrorBox.getInstance().Show("Свободный столик не выбран");
                 return;
@@ -81,7 +67,7 @@ namespace AutoRestProject.Resources.Pages
                     ErrorBox.getInstance().Show("Ошибка связи бд с программой");
                     return;
                 }
-                if(tabcontext.Table_StatusID == tabstatusbusycontext.Id)
+                if (tabcontext.Table_StatusID == tabstatusbusycontext.Id)
                 {
                     ErrorBox.getInstance().Show("Вы не можете освободить занятый людьми стол. Чтобы этот стол освободился нужно закрыть заказ");
                     return;
@@ -92,15 +78,19 @@ namespace AutoRestProject.Resources.Pages
 
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e) 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             string? Tag = (sender as Button)?.Tag.ToString();
-            if (Tag == null) return;
-            if(Tag == "+")
+            if (Tag == null)
+            {
+                return;
+            }
+
+            if (Tag == "+")
             {
                 ViewModel.Add();
             }
-            else if(Tag == "-")
+            else if (Tag == "-")
             {
                 ViewModel.Sub();
             }
@@ -123,7 +113,7 @@ namespace AutoRestProject.Resources.Pages
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 Classes.Models.BDModels.Table? contexttable = bd.Tables?.Where(u => u.Id == table.Id).FirstOrDefault();
-                if(contexttable == null)
+                if (contexttable == null)
                 {
                     ErrorBox.getInstance().Show("Ошибка связи бд и программы");
                     return;
@@ -137,7 +127,7 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_5(object sender, RoutedEventArgs e) // Добавить стол
         {
-            if(ViewModel.CB1 == false)
+            if (ViewModel.CB1 == false)
             {
                 ErrorBox.getInstance().Show("Для добавления столика включите режим редактирования.");
                 return;
@@ -152,7 +142,7 @@ namespace AutoRestProject.Resources.Pages
                     return;
                 }
 
-                bd.Tables?.Add(new Classes.Models.BDModels.Table() { Seats = ViewModel.Seats, Table_Status = freestatus, Table_StatusID = freestatus.Id});
+                bd.Tables?.Add(new Classes.Models.BDModels.Table() { Seats = ViewModel.Seats, Table_Status = freestatus, Table_StatusID = freestatus.Id });
                 bd.SaveChanges();
                 ViewModel.Update();
             }

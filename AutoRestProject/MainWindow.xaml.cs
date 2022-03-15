@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using AutoRestProject.Resources.Pages;
+using System.Linq;
 using System.Windows;
-using AutoRestProject.Resources.Pages;
 
 namespace AutoRestProject
 {
@@ -10,28 +10,28 @@ namespace AutoRestProject
 
         public MainWindow()
         {
-
             DataContext = ViewModel;
             InitializeBD();
             InitializeComponent();
-
             PageController.getInstance(MainFrame).Goto(new AuthPage());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) 
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.ErrorBox.Hide();
         }
 
         void InitializeBD()
         {
-            using(AutoRestBDContext bd = new(ConfigController.getInstance().ConOptions))
+            using (AutoRestBDContext bd = new(ConfigController.getInstance().ConOptions))
             {
-                if (bd.Personals == null) return;
+                if (bd.Personals == null)
+                {
+                    return;
+                }
+
                 bd.Personals.FirstOrDefault();
             }
         }
-
-
     }
 }

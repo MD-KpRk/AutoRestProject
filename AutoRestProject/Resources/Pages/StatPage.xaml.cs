@@ -1,28 +1,14 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
 using AutoRestProject.Classes.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using Microsoft.EntityFrameworkCore;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для StatPage.xaml
-    /// </summary>
     public partial class StatPage : Page
     {
         StatPageViewModel ViewModel = new StatPageViewModel();
@@ -41,8 +27,6 @@ namespace AutoRestProject.Resources.Pages
             PageController.getInstance()?.Goto(new AdminPage1(Emp));
         }
 
-
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             CreatePovarReport();
@@ -59,8 +43,7 @@ namespace AutoRestProject.Resources.Pages
 
             try
             {
-                excelApplication = new
-                    Microsoft.Office.Interop.Excel.Application();
+                excelApplication = new Microsoft.Office.Interop.Excel.Application();
                 Microsoft.Office.Interop.Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
                 Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.Worksheets[1];
 
@@ -69,13 +52,12 @@ namespace AutoRestProject.Resources.Pages
                 worksheet.Cells[1, 3] = "Телефон сотрудника";
                 worksheet.Cells[1, 4] = "Количество сделаных блюд за смену";
 
-
                 using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
                 {
-                    for (int i = 0, j=2; i < ViewModel.Povars.Count; i++)
+                    for (int i = 0, j = 2; i < ViewModel.Povars.Count; i++)
                     {
-                        Personal? pers = bd.Personals?.Where(u=> u.id == ViewModel.Povars[i].Id).Include(u=>u.Position).FirstOrDefault();
-                        if(pers != null)
+                        Personal? pers = bd.Personals?.Where(u => u.id == ViewModel.Povars[i].Id).Include(u => u.Position).FirstOrDefault();
+                        if (pers != null)
                         {
                             worksheet.Cells[j, 1] = pers.First_name + " " + pers.Second_name + " " + pers.Patronymic;
                             worksheet.Cells[j, 2] = pers.Position.Title;
@@ -105,8 +87,7 @@ namespace AutoRestProject.Resources.Pages
                 }
             }
         }
-
-        void CreateWaiterReport() 
+        void CreateWaiterReport()
         {
             Microsoft.Office.Interop.Excel.Application? excelApplication = null;
 
@@ -116,13 +97,10 @@ namespace AutoRestProject.Resources.Pages
                     Microsoft.Office.Interop.Excel.Application();
                 Microsoft.Office.Interop.Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
                 Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.Worksheets[1];
-
                 worksheet.Cells[1, 1] = "ФИО сотрудника";
                 worksheet.Cells[1, 2] = "Должность сотрудника";
                 worksheet.Cells[1, 3] = "Телефон сотрудника";
                 worksheet.Cells[1, 4] = "Количество закрытых заказов за смену";
-
-
                 using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
                 {
                     for (int i = 0, j = 2; i < ViewModel.Waiters.Count; i++)
@@ -158,6 +136,5 @@ namespace AutoRestProject.Resources.Pages
                 }
             }
         }
-
     }
 }

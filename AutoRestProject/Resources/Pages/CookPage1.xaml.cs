@@ -5,24 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для CookPage1.xaml
-    /// </summary>
     public partial class CookPage1 : Page
     {
         public bool CanScroll { get; set; } = true;
@@ -52,7 +41,9 @@ namespace AutoRestProject.Resources.Pages
         void timer_Tick(object? sender, EventArgs e)
         {
             foreach (object? a in stack.Children)
+            {
                 (a as OrderStringUserControl)?.UpdateTime();
+            }
         }
 
         public void UpdateInfo()
@@ -74,7 +65,10 @@ namespace AutoRestProject.Resources.Pages
                     .Include(u => u.Food)
                     .Include(u => u.Order_string_status).ToList();
 
-                if (list == null) return;
+                if (list == null)
+                {
+                    return;
+                }
 
                 foreach (Order? o in list)
                 {
@@ -82,19 +76,19 @@ namespace AutoRestProject.Resources.Pages
                     {
                         if (a.Order_string_status.Title != ConfigController.getInstance().OrderStringDone)
                         {
-                            if(!ViewModel.CB1 && !ViewModel.CB2 && !ViewModel.CB3) // Нет фильтра
+                            if (!ViewModel.CB1 && !ViewModel.CB2 && !ViewModel.CB3) // Нет фильтра
                             {
                                 stack.Children.Add(new OrderStringUserControl(this, a));
                             }
-                            else if(ViewModel.CB1 && a.CookPersId == Emp.id) // Только мои блюда
+                            else if (ViewModel.CB1 && a.CookPersId == Emp.id) // Только мои блюда
                             {
                                 stack.Children.Add(new OrderStringUserControl(this, a));
                             }
-                            else if(ViewModel.CB2 && a.CookPers == null) // Только непринятые
+                            else if (ViewModel.CB2 && a.CookPers == null) // Только непринятые
                             {
                                 stack.Children.Add(new OrderStringUserControl(this, a));
                             }
-                            else if(ViewModel.CB3 && a.CookPers!=null) // Только принятые
+                            else if (ViewModel.CB3 && a.CookPers != null) // Только принятые
                             {
                                 stack.Children.Add(new OrderStringUserControl(this, a));
                             }
@@ -112,12 +106,16 @@ namespace AutoRestProject.Resources.Pages
             scrollMousePoint = e.GetPosition(scrollviewer);
             hOff = scrollviewer.VerticalOffset;
             if (CanScroll == true)
+            {
                 scrollviewer.CaptureMouse();
+            }
         }
         private void scrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (scrollviewer.IsMouseCaptured)
+            {
                 scrollviewer.ScrollToVerticalOffset(hOff + (scrollMousePoint.Y - e.GetPosition(scrollviewer).Y));
+            }
         }
         private void scrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -141,9 +139,13 @@ namespace AutoRestProject.Resources.Pages
             ViewModel.SelectedString = ord.Food_count + "x " + ord.Food.Title;
 
             if (ord.CookPers == null)
+            {
                 ViewModel.SelectedPersName = "Никто не готовит";
+            }
             else
+            {
                 ViewModel.SelectedPersName = ord.CookPers.First_name + "\n" + ord.CookPers.Second_name;
+            }
 
             ViewModel.ShowPanel();
 
@@ -151,14 +153,20 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e) // Приготовлено
         {
-            if (PanelOrder == null) return;
+            if (PanelOrder == null)
+            {
+                return;
+            }
 
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).Include(u => u.CookPers).FirstOrDefault();
-                if (os == null) return;
+                if (os == null)
+                {
+                    return;
+                }
 
-                if(os.CookPers == null)
+                if (os.CookPers == null)
                 {
                     os.CookPersId = Emp.id;
                     bd.SaveChanges();
@@ -180,12 +188,19 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_2(object sender, RoutedEventArgs e) // Принять блюдо
         {
-            if (PanelOrder == null) return;
+            if (PanelOrder == null)
+            {
+                return;
+            }
 
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).FirstOrDefault();
-                if (os == null) return;
+                if (os == null)
+                {
+                    return;
+                }
+
                 Order_string_status? ordstat = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringProcessing).FirstOrDefault();
 
                 if (ordstat == null)
@@ -202,14 +217,21 @@ namespace AutoRestProject.Resources.Pages
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e) // Отменить отправку
+        private void Button_Click_3(object sender, RoutedEventArgs e) // Отменить готовку
         {
-            if (PanelOrder == null) return;
+            if (PanelOrder == null)
+            {
+                return;
+            }
 
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 Order_string? os = bd.Order_strings?.Where(u => u.ID == PanelOrder.ID).FirstOrDefault();
-                if (os == null) return;
+                if (os == null)
+                {
+                    return;
+                }
+
                 Order_string_status? ordstat = bd.Order_string_statuses?.Where(u => u.Title == ConfigController.getInstance().OrderStringNotDone).FirstOrDefault();
 
                 if (ordstat == null)

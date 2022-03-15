@@ -6,8 +6,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoRestProject.Classes.Models.ViewModels
 {
@@ -51,16 +49,20 @@ namespace AutoRestProject.Classes.Models.ViewModels
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 summa = "";
-                list = bd.Order_strings?.Where(u => u.OrderId == ord.Id).Include(u=>u.Food).ToList();
-                if (list == null) return;
+                list = bd.Order_strings?.Where(u => u.OrderId == ord.Id).Include(u => u.Food).ToList();
+                if (list == null)
+                {
+                    return;
+                }
+
                 double total = 0;
-                for(int i =0;i<list.Count;i++)
+                for (int i = 0; i < list.Count; i++)
                 {
                     double iter = Math.Round(list[i].Food.Price * list[i].Food_count, 2);
                     total += iter;
                     list[i].Price = iter + " BYN";
                 }
-                Summa = Math.Round(total,2) + " BYN";
+                Summa = Math.Round(total, 2) + " BYN";
             }
             Strings = new ObservableCollection<Order_string>(list);
         }

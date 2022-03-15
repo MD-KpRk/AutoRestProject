@@ -61,7 +61,7 @@
                     </Border.Effect>
                 </Border>
                 <!--AddMode-->
-                <Border Width="590" Height="800" > 
+                <Border Width="590" Height="800" >
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -83,12 +83,7 @@
 
                     </Grid>
                 </Border>
-                <!--Edit Mode-->
-                
-
             </Grid>
-
         </Grid>
-
     </Grid>
 </Page>

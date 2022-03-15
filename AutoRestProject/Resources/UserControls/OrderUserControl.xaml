@@ -13,7 +13,6 @@
         </Style>
     </UserControl.Resources>
 
-
     <Border Height="520" Width="460">
         <Border Margin="20,10,20,20" Background="{DynamicResource C_Gray}">
             <Grid>
@@ -80,19 +79,6 @@
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="FontSize" Value="18"/>
                                 <Setter Property="Height" Value="26"/>
-<!--
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Готов">
-                                        <Setter Property="Background" Value="#33008000" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Готовится">
-                                        <Setter Property="Background" Value="#33FFA500" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Order_string_status.Title}" Value="Не готов">
-                                        <Setter Property="Background" Value="#33FF0000" />
-                                    </DataTrigger>
-                                </Style.Triggers>
--->
                             </Style>
                             
                         </DataGrid.CellStyle>

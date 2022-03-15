@@ -1,26 +1,13 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthPage.xaml
-    /// </summary>
     public partial class AuthPage : Page
     {
         ViewModels.AuthWindowViewModel ViewModel = new();
@@ -34,14 +21,17 @@ namespace AutoRestProject.Resources.Pages
 
         public void Update()
         {
-            using(AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 int? pcount = bd.Personals?.Count();
-                int? ocount = bd.Orders?.Include(u=>u.Order_status).Where(u => u.Order_status.Title != ConfigController.getInstance().OrderDone).Count();
-                int? bcount = bd.Order_strings?.Include(u=>u.Order_string_status).Include(u=>u.CookPers).Where(u => u.Order_string_status.Title != ConfigController.getInstance().OrderStringDone && u.CookPers == null).Count();
+                int? ocount = bd.Orders?.Include(u => u.Order_status).Where(u => u.Order_status.Title != ConfigController.getInstance().OrderDone).Count();
+                int? bcount = bd.Order_strings?.Include(u => u.Order_string_status).Include(u => u.CookPers).Where(u => u.Order_string_status.Title != ConfigController.getInstance().OrderStringDone && u.CookPers == null).Count();
                 int? tcount = bd.Tables?.Include(u => u.Table_Status).Where(u => u.Table_Status.Title == ConfigController.getInstance().TableStatusFree).Count();
                 int? mcount = bd.Menu_strings?.Count();
-                if (pcount == null || ocount == null || bcount == null || tcount == null || mcount == null) return;
+                if (pcount == null || ocount == null || bcount == null || tcount == null || mcount == null)
+                {
+                    return;
+                }
 
                 ViewModel.TotalPers = (int)pcount;
                 ViewModel.Orders = (int)ocount;
@@ -51,8 +41,6 @@ namespace AutoRestProject.Resources.Pages
 
             }
         }
-
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string tag = (string)((Button)sender).Tag;
@@ -114,7 +102,6 @@ namespace AutoRestProject.Resources.Pages
                 }
             }
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try

@@ -7,24 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для PersonalPage.xaml
-    /// </summary>
     public partial class PersonalPage : Page
     {
         EnumState State { get; set; } = EnumState.ADD;
@@ -40,7 +29,7 @@ namespace AutoRestProject.Resources.Pages
             DataContext = ViewModel;
             this.Emp = Emp;
 
-            
+
             UpdatePos();
             InitializeComponent();
             Update();
@@ -56,7 +45,11 @@ namespace AutoRestProject.Resources.Pages
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 List<Position>? positions = bd.Positions?.ToList();
-                if (positions == null) return;
+                if (positions == null)
+                {
+                    return;
+                }
+
                 ViewModel.Positions = new ObservableCollection<Position>(positions);
                 ViewModel.SelectedPos = positions[0];
             }
@@ -69,7 +62,11 @@ namespace AutoRestProject.Resources.Pages
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 List<Personal>? personals = bd.Personals?.Include(u => u.Position).ToList();
-                if (personals == null) return;
+                if (personals == null)
+                {
+                    return;
+                }
+
                 foreach (Personal personal in personals)
                 {
                     stack.Children.Add(new PersonalUserControl(this, personal));
@@ -86,12 +83,16 @@ namespace AutoRestProject.Resources.Pages
             scrollMousePoint = e.GetPosition(scrollviewer);
             hOff = scrollviewer.VerticalOffset;
             if (CanScroll == true)
+            {
                 scrollviewer.CaptureMouse();
+            }
         }
         private void scrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (scrollviewer.IsMouseCaptured)
+            {
                 scrollviewer.ScrollToVerticalOffset(hOff + (scrollMousePoint.Y - e.GetPosition(scrollviewer).Y));
+            }
         }
         private void scrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -118,7 +119,7 @@ namespace AutoRestProject.Resources.Pages
 
             ViewModel.PanelMode = "Изменение сотрудника";
             ViewModel.PanelVisible = Visibility.Visible;
-            
+
         }
 
         public void SetAddMode()
@@ -145,13 +146,13 @@ namespace AutoRestProject.Resources.Pages
             }
 
             int intPIN;
-            if(!int.TryParse(PIN,out intPIN))
+            if (!int.TryParse(PIN, out intPIN))
             {
                 ErrorBox.getInstance().Show("PIN может содержать только цифры");
                 return;
             }
 
-            if(!Regex.IsMatch(Tel, @"^(\+)(\d){10,14}", RegexOptions.IgnoreCase))
+            if (!Regex.IsMatch(Tel, @"^(\+)(\d){10,14}", RegexOptions.IgnoreCase))
             {
                 ErrorBox.getInstance().Show("Неправильный формат номера мобильного телефона. Пример номера +375291051243");
                 return;
@@ -169,9 +170,13 @@ namespace AutoRestProject.Resources.Pages
                 {
                     List<Personal>? checklist = bd.Personals?.Where(u => u.Pin == intPIN).ToList();
 
-                    if(State == EnumState.ADD)
+                    if (State == EnumState.ADD)
                     {
-                        if(checklist == null) return;
+                        if (checklist == null)
+                        {
+                            return;
+                        }
+
                         if (checklist?.Count > 0)
                         {
                             ErrorBox.getInstance().Show("Пользователь с таким PIN уже существует");
@@ -181,23 +186,31 @@ namespace AutoRestProject.Resources.Pages
 
                     if (State == EnumState.EDIT)
                     {
-                        if(checklist == null) return;
-                        for(int i=0; i<checklist.Count;i++)
+                        if (checklist == null)
                         {
-                            if(checklist[i].id != EditEmp.id)
+                            return;
+                        }
+                        for (int i = 0; i < checklist.Count; i++)
+                        {
+                            if (checklist[i].id != EditEmp.id)
                             {
-                                ErrorBox.getInstance().Show("PIN "+ intPIN +" занят другим сотрудником");
+                                ErrorBox.getInstance().Show("PIN " + intPIN + " занят другим сотрудником");
                                 return;
                             }
                         }
                     }
 
                     if (State == EnumState.ADD)
+                    {
                         bd.Personals?.Add(new Personal() { First_name = Name, Second_name = SecName, Patronymic = Patr, Phone_number = Tel, Pin = intPIN, PositionId = pos.Id });
+                    }
                     else
                     {
                         Personal? contextPers = bd.Personals?.Where(u => u.id == EditEmp.id)?.FirstOrDefault();
-                        if (contextPers == null) return;
+                        if (contextPers == null)
+                        {
+                            return;
+                        }
 
                         contextPers.First_name = Name;
                         contextPers.Second_name = SecName;
@@ -206,12 +219,12 @@ namespace AutoRestProject.Resources.Pages
                         contextPers.PositionId = pos.Id;
                         contextPers.Phone_number = Tel;
                     }
-                    
+
                     bd.SaveChanges();
                     ViewModel.ClearPanel();
                     Update();
                     SetAddMode();
-                
+
                 }
             }
             catch (Exception)
@@ -219,8 +232,7 @@ namespace AutoRestProject.Resources.Pages
                 ErrorBox.getInstance().Show("Ошибка добавления");
             }
         }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e) 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             SetAddMode();
         }

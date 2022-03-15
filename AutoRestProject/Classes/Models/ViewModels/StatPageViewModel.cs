@@ -6,9 +6,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace AutoRestProject.Classes.Models.ViewModels
 {
@@ -21,21 +18,28 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         public static List<StatClass> AddToStat(List<StatClass> list, Personal? pers, int plus = 0)
         {
-            if (pers == null) return list;
+            if (pers == null)
+            {
+                return list;
+            }
+
             bool ets = list.Exists(u => u.Id == pers.id);
             if (ets == true)
             {
-                for(int i=0;i< list.Count();i++)
-                    if(list[i].Id == pers.id)
+                for (int i = 0; i < list.Count(); i++)
+                {
+                    if (list[i].Id == pers.id)
+                    {
                         list[i].Count += plus;
+                    }
+                }
             }
             else
             {
-                list.Add(new StatClass() { Id = pers.id, Count = plus , Name = pers.Second_name +" "+ pers.First_name});
+                list.Add(new StatClass() { Id = pers.id, Count = plus, Name = pers.Second_name + " " + pers.First_name });
             }
 
             return list;
-
         }
     }
 
@@ -69,7 +73,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
                 string datetime = string.Format("{0:dd.MM.yyyy}", DateTime.Now);
-                List<Order_string>? ostr = 
+                List<Order_string>? ostr =
                     bd.Order_strings?
                     .Include(u => u.Order.Personal.Position)?
                     .Include(u => u.CookPers)
@@ -84,50 +88,41 @@ namespace AutoRestProject.Classes.Models.ViewModels
                     .Where(u => u.Order_status.Title == ConfigController.getInstance().OrderDone).ToList();
 
                 List<Personal>? povars2 = bd.Personals?.Include(u => u.Position)
-                    .Where(u=>u.Position.Title == ConfigController.getInstance().Cook || u.Position.Title == ConfigController.getInstance().Chief).ToList();
+                    .Where(u => u.Position.Title == ConfigController.getInstance().Cook || u.Position.Title == ConfigController.getInstance().Chief).ToList();
 
                 List<Personal>? waiters2 = bd.Personals?.Include(u => u.Position)
                     .Where(u => u.Position.Title == ConfigController.getInstance().Waiter || u.Position.Title == ConfigController.getInstance().Chief).ToList();
 
-                if (ostr == null || otr == null || povars2 == null || waiters2 == null) return;
+                if (ostr == null || otr == null || povars2 == null || waiters2 == null)
+                {
+                    return;
+                }
 
                 List<StatClass> statpovarlist = new List<StatClass>();
                 List<StatClass> statwaiterlist = new List<StatClass>();
 
                 for (int i = 0; i < ostr.Count; i++)
                 {
-                    statpovarlist = StatClass.AddToStat(statpovarlist, ostr[i].CookPers,1);
+                    statpovarlist = StatClass.AddToStat(statpovarlist, ostr[i].CookPers, 1);
                 }
 
                 for (int i = 0; i < otr.Count; i++)
                 {
                     statwaiterlist = StatClass.AddToStat(statwaiterlist, otr[i].Personal, 1);
                 }
-
-
-
-
                 for (int i = 0; i < povars2.Count; i++)
                 {
-                    statpovarlist = StatClass.AddToStat(statpovarlist, povars2[i],0);
+                    statpovarlist = StatClass.AddToStat(statpovarlist, povars2[i], 0);
                 }
 
                 for (int i = 0; i < waiters2.Count; i++)
                 {
                     statwaiterlist = StatClass.AddToStat(statwaiterlist, waiters2[i], 0);
                 }
-
-
                 Povars = new ObservableCollection<StatClass>(statpovarlist);
                 Waiters = new ObservableCollection<StatClass>(statwaiterlist);
-
-
-
-
-
             }
         }
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

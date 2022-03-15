@@ -1,12 +1,7 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -19,10 +14,14 @@ namespace AutoRestProject.ViewModels
 
         public string OrderStrinDone
         {
-            get 
-            { 
+            get
+            {
                 string? str = ConfigController.getInstance()?.OrderStringDone;
-                if (str == null) return "ER";
+                if (str == null)
+                {
+                    return "ER";
+                }
+
                 return str;
             }
         }
@@ -31,7 +30,11 @@ namespace AutoRestProject.ViewModels
             get
             {
                 string? str = ConfigController.getInstance()?.OrderStringNotDone;
-                if (str == null) return "ER";
+                if (str == null)
+                {
+                    return "ER";
+                }
+
                 return str;
             }
         }
@@ -40,13 +43,14 @@ namespace AutoRestProject.ViewModels
             get
             {
                 string? str = ConfigController.getInstance()?.OrderStringProcessing;
-                if (str == null) return "ER";
+                if (str == null)
+                {
+                    return "ER";
+                }
+
                 return str;
             }
         }
-
-
-
         public ObservableCollection<Order_string> Order_Strings { get; set; } = new ObservableCollection<Order_string>();
 
         public SolidColorBrush Color
@@ -56,15 +60,18 @@ namespace AutoRestProject.ViewModels
                 ConfigController config = ConfigController.getInstance();
 
                 if (orderStatus == config.OrderProcessing)
+                {
                     return (SolidColorBrush)Application.Current.Resources["C_Green"];
+                }
+
                 if (orderStatus == config.OrderWaitingPayment)
+                {
                     return (SolidColorBrush)Application.Current.Resources["C_Orange"];
-                
+                }
+
                 return new SolidColorBrush(Colors.Red);
             }
         }
-
-
         public int OrderNum
         {
             get => orderNum;
@@ -104,7 +111,6 @@ namespace AutoRestProject.ViewModels
                 OnPropertyChanged("EmpName");
             }
         }
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

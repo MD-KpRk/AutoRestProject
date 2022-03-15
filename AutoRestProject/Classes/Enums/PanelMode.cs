@@ -1,7 +1,7 @@
 ﻿namespace AutoRestProject.Classes.Enums
 {
-    public enum EnumState
+    public enum PanelMode
     {
-        EDIT=1, ADD
+        EDIT = 1, ADD
     }
 }

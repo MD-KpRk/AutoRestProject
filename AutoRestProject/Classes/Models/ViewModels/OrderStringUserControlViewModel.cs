@@ -1,12 +1,7 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -14,7 +9,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
 {
     public class OrderStringUserControlViewModel : INotifyPropertyChanged
     {
-
         string orderString = "", orderNum = "", currTime = "", orderPers = "";
 
         public Order_string Order_String;
@@ -80,10 +74,10 @@ namespace AutoRestProject.Classes.Models.ViewModels
             string[] date = Order_String.Order.Date.Split('.');
             string[] time = Order_String.Order.Time.Split(':');
 
-            DateTime dat = new DateTime(Convert.ToInt32(date[2]), Convert.ToInt32(date[1]), Convert.ToInt32(date[0]), 
+            DateTime dat = new DateTime(Convert.ToInt32(date[2]), Convert.ToInt32(date[1]), Convert.ToInt32(date[0]),
                 Convert.ToInt32(time[0]), Convert.ToInt32(time[1]), Convert.ToInt32(time[2]));
 
-            string currtime =  (DateTime.Now.Subtract(dat).Days*24 + DateTime.Now.Subtract(dat).Hours).ToString() + 
+            string currtime = (DateTime.Now.Subtract(dat).Days * 24 + DateTime.Now.Subtract(dat).Hours).ToString() +
                 ":" + DateTime.Now.Subtract(dat).Minutes + ":" + DateTime.Now.Subtract(dat).Seconds;
 
             SetTimerColor((int)DateTime.Now.Subtract(dat).TotalSeconds);
@@ -93,19 +87,27 @@ namespace AutoRestProject.Classes.Models.ViewModels
         void SetTimerColor(int Seconds)
         {
             if (Seconds < ConfigController.getInstance().GoodTimeSecond)
+            {
                 TimerBrush = new SolidColorBrush(Colors.Green);
+            }
             else if (Seconds < ConfigController.getInstance().AverageTimeSecond)
+            {
                 TimerBrush = new SolidColorBrush(Colors.Orange);
+            }
             else if (Seconds < ConfigController.getInstance().BadTimeSecond)
+            {
                 TimerBrush = new SolidColorBrush(Colors.Red);
+            }
             else
+            {
                 TimerBrush = new SolidColorBrush(Colors.DarkRed);
+            }
         }
 
 
         public string OrderString
         {
-            get => this.Order_String.Food_count + "x " + orderString ;
+            get => this.Order_String.Food_count + "x " + orderString;
             set
             {
                 orderString = value;
@@ -115,7 +117,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         public string OrderNum
         {
-            get => "#"+orderNum;
+            get => "#" + orderNum;
             set
             {
                 orderNum = value;

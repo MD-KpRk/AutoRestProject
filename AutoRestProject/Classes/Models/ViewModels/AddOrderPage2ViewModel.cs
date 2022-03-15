@@ -1,12 +1,7 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoRestProject.Classes.Models.ViewModels
 {
@@ -26,7 +21,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 OnPropertyChanged("CurrPersName");
             }
         }
-
         public string CurrPersPos
         {
             get => currPersPos;
@@ -69,7 +63,11 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         public void Sub()
         {
-            if (count - 1 > 0) count--;
+            if (count - 1 > 0)
+            {
+                count--;
+            }
+
             OnPropertyChanged("Count");
         }
         public void Add()
@@ -77,9 +75,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
             count++;
             OnPropertyChanged("Count");
         }
-
-
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

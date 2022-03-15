@@ -1,26 +1,12 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
 using AutoRestProject.Classes.Models.ViewModels;
 using AutoRestProject.Resources.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.UserControls
 {
-    /// <summary>
-    /// Логика взаимодействия для PersonalUserControl.xaml
-    /// </summary>
     public partial class PersonalUserControl : UserControl
     {
 
@@ -43,14 +29,7 @@ namespace AutoRestProject.Resources.UserControls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //page.ShowPanel(Order);
             Page.SetEditMode(Emp);
-
-        }
-
-
-        private void Button_MouseDown(object sender, RoutedEventArgs e)
-        {
         }
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
@@ -62,6 +41,5 @@ namespace AutoRestProject.Resources.UserControls
         {
             Page.CanScroll = true;
         }
-
     }
 }

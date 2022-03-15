@@ -1,25 +1,13 @@
-﻿using AutoRestProject.Classes.Models.BDModels;
+﻿using AutoRestProject.Classes.Enums;
+using AutoRestProject.Classes.Models.BDModels;
 using AutoRestProject.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ChiefPage1.xaml
-    /// </summary>
     public partial class ChiefPage1 : Page
     {
         ChiefPage1ViewModel ViewModel = new ChiefPage1ViewModel();
@@ -54,7 +42,7 @@ namespace AutoRestProject.Resources.Pages
         {
             Menu_string? menu_String = (dg1.SelectedItem as Menu_string);
 
-            if(menu_String == null)
+            if (menu_String == null)
             {
                 ErrorBox.getInstance().Show("Блюдо из меню не выбрано. Для выбора блюда нажмите на него в списке");
                 return;
@@ -105,15 +93,19 @@ namespace AutoRestProject.Resources.Pages
                 {
                     ErrorBox.getInstance().Show(ex.Message);
                 }
-        }
+            }
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e) // Переключить меню
         {
             if (ViewModel.MenuVisible == Visibility.Collapsed)
+            {
                 ViewModel.MenuVisible = Visibility.Visible;
+            }
             else
+            {
                 ViewModel.MenuVisible = Visibility.Collapsed;
+            }
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e) // Закрыть меню
@@ -173,7 +165,7 @@ namespace AutoRestProject.Resources.Pages
         {
             PanelMode panelmode = ViewModel.mode;
 
-            if(panelmode == PanelMode.EDIT)
+            if (panelmode == PanelMode.EDIT)
             {
                 Food? food = dg2.SelectedItem as Food;
 
@@ -186,7 +178,11 @@ namespace AutoRestProject.Resources.Pages
                 using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
                 {
                     var food2 = db.Foods?.Where(u => u.Id == food.Id).FirstOrDefault();
-                    if (food2 == null) return;
+                    if (food2 == null)
+                    {
+                        return;
+                    }
+
                     food2.Title = ViewModel.PanelFoodTitle;
                     food2.Price = ViewModel.PanelFoodPrice;
                     food2.Is_cooking = ViewModel.PanelFoodCook;
@@ -196,11 +192,11 @@ namespace AutoRestProject.Resources.Pages
                     ViewModel.PanelVisible = Visibility.Collapsed;
                 }
             }
-            else if(panelmode == PanelMode.ADD)
+            else if (panelmode == PanelMode.ADD)
             {
                 using (AutoRestBDContext db = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
                 {
-                    db.Foods?.Add(new Food { Price = ViewModel.PanelFoodPrice, Title = ViewModel.PanelFoodTitle, Is_cooking = ViewModel.PanelFoodCook});
+                    db.Foods?.Add(new Food { Price = ViewModel.PanelFoodPrice, Title = ViewModel.PanelFoodTitle, Is_cooking = ViewModel.PanelFoodCook });
                     db.SaveChanges();
                     ViewModel.UpdateFoods();
                     ViewModel.UpdateMenuStrings();

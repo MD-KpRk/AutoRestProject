@@ -1,13 +1,8 @@
-﻿using AutoRestProject.Classes.Models.BDModels;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace AutoRestProject.Classes.Models.ViewModels
 {
@@ -32,7 +27,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         public bool CB1
         {
-            get { return cb1;}
+            get { return cb1; }
             set
             {
                 cb1 = value;
@@ -48,7 +43,11 @@ namespace AutoRestProject.Classes.Models.ViewModels
         }
         public void Sub()
         {
-            if (Seats - 1 > 0) Seats--;
+            if (Seats - 1 > 0)
+            {
+                Seats--;
+            }
+
             Update();
         }
 
@@ -72,12 +71,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
             }
         }
 
-        public AdminTablePageViewModel()
-        {
-
-        }
-
-
         public void Update()
         {
             ConfigController config = ConfigController.getInstance();
@@ -98,7 +91,10 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 busyid = bd.Table_statuses?.Where(u => u.Title == config.TableStatusBusy).FirstOrDefault()?.Id;
             }
 
-            if (tables == null || freeid == null || reservedid == null || busyid == null) return;
+            if (tables == null || freeid == null || reservedid == null || busyid == null)
+            {
+                return;
+            }
 
             foreach (Classes.Models.BDModels.Table table in tables)
             {
@@ -118,10 +114,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
             FreeTables = new ObservableCollection<Classes.Models.BDModels.Table>(freelist);
             ReservedTables = new ObservableCollection<Classes.Models.BDModels.Table>(reservlist);
-
-
         }
-
 
         public string PersPos
         {
@@ -142,7 +135,6 @@ namespace AutoRestProject.Classes.Models.ViewModels
                 OnPropertyChanged("PersName");
             }
         }
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

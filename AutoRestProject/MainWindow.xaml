@@ -36,6 +36,5 @@
                 <Button Height="50" Width="200" Content="OK" FontSize="32" Style="{StaticResource ButtonStyle}" Click="Button_Click"/>
             </StackPanel>
         </Grid>
-
     </Grid>
 </Window>

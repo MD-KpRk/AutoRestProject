@@ -31,9 +31,6 @@
                 <Run Text="{Binding Path=PersTel}" />
                 </TextBlock>
             </StackPanel>
-
-
-
         </Grid>
     </Grid>
 </UserControl>

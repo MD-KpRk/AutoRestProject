@@ -15,7 +15,6 @@
         </Style>
     </Page.Resources>
 
-
     <Grid>
         <Grid Width="1920" Height="1040" Background="{StaticResource C_DarkGray}">
             <Grid.RowDefinitions>
@@ -98,7 +97,5 @@
                 </TextBlock>
             </Grid>
         </Grid>
-
     </Grid>
-
 </Page>

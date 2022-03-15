@@ -14,9 +14,8 @@
             <Setter Property="FontFamily" Value="{StaticResource Roboto}" />
         </Style>
     </Page.Resources>
-
+    
     <Grid>
-
         <!--Левая панель-->
         <Grid Panel.ZIndex="100" Visibility="{Binding Path=Visibility}">
             <Grid.RowDefinitions>
@@ -48,8 +47,6 @@
                 <Button Margin="50,30,50,0" Style="{StaticResource ButtonStyle}" Content="Отменить готовку" FontSize="35" Height="60" Click="Button_Click_3" />
                 <Separator Margin="0,50,0,0"  />
             </StackPanel>
-
-
             <TextBlock Grid.Row="1" Grid.Column="1" Foreground="{StaticResource C_DarkGray}" TextAlignment="Center">
                 <Run Text="Блюдо готовит:"  FontSize="40"  />
                 <LineBreak/>
@@ -88,7 +85,6 @@
             <!--Нижняя панель-->
             <StackPanel Grid.Row="1">
                 <Separator Background="{DynamicResource C_Gray}" Height="5" />
-                
                 <Grid Height=" 200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>

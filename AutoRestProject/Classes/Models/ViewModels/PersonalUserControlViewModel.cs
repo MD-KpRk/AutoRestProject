@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoRestProject.Classes.Models.ViewModels
 {
     class PersonalUserControlViewModel : INotifyPropertyChanged
     {
-        string persPos = "", persPIN = "", persName = "", persTel="";
+        string persPos = "", persPIN = "", persName = "", persTel = "";
 
         public string PersPos
         {

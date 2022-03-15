@@ -77,8 +77,6 @@
                             <Run Text="Итого: " />
                             <Run Text="{Binding Path=Summa}" />
                         </TextBlock>
-
-
                     </StackPanel>
                 </ScrollViewer>
             </Border>

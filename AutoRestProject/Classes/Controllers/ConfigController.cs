@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace AutoRestProject
 {
@@ -15,11 +10,13 @@ namespace AutoRestProject
         public static ConfigController getInstance()
         {
             if (instance == null)
+            {
                 instance = new ConfigController();
+            }
             return instance;
         }
 
-        public int? GoodTimeSecond, AverageTimeSecond, BadTimeSecond;  
+        public int? GoodTimeSecond, AverageTimeSecond, BadTimeSecond;
         public string? OrderProcessing, OrderWaitingPayment, OrderDone;
         public string? OrderStringDone, OrderStringProcessing, OrderStringNotDone;
         public string? TableStatusFree, TableStatusReserved, TableStatusBusy;

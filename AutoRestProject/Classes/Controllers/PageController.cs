@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace AutoRestProject
 {
@@ -16,7 +10,10 @@ namespace AutoRestProject
         public static PageController getInstance(Frame target)
         {
             if (instance == null)
+            {
                 instance = new PageController(target);
+            }
+
             return instance;
         }
 

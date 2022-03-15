@@ -104,7 +104,6 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                 <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xF745;" FontSize="160" Height="200" Padding="1,-60,1,1" Click="Button_Click_2"  />
                 <Button Style="{StaticResource WhiteButtonStyle}" Content="&#xF743;" FontSize="160" Height="200" Padding="1,-60,1,1" Click="Button_Click_3"/>
@@ -174,10 +173,7 @@
                             <Button Style="{StaticResource WhiteButtonStyle2}" Grid.Column="0"  Content="&#xE711;" FontSize="50" Click="Button_Click_5" Panel.ZIndex="2" />
                             <TextBlock Foreground="{StaticResource C_DarkGray}" Text="Действия" FontFamily="{StaticResource Roboto}" FontSize="50" TextAlignment="Center" Margin="0,30,0,30" Grid.ColumnSpan="2"/>
                         </Grid>
-
-
                         <Separator Background="{StaticResource C_DarkGray}" Margin="0,0,0,40"/>
-
                         <Button Style="{StaticResource ButtonStyle}" Content="Удалить выделенное" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_6" />
                         <Button Style="{StaticResource ButtonStyle}" Content="Обновление данных" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_7" />
                         <Button Style="{StaticResource ButtonStyle}" Content="Редактировать элемент" Width="400" FontSize="30" Height="60" Margin="0,0,0,30" Click="Button_Click_8" />
@@ -242,13 +238,10 @@
                                     </Style.Triggers>
                                 </Style>
                             </DataGrid.RowStyle>
-
                         </DataGrid>
                     </StackPanel>
                 </Border>
             </Grid>
-
         </Grid>
-
     </Grid>
 </Page>

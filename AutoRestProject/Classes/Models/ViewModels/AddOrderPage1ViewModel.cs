@@ -1,12 +1,6 @@
-﻿using AutoRestProject.Classes.Models.BDModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoRestProject.ViewModels
 {
@@ -14,7 +8,6 @@ namespace AutoRestProject.ViewModels
     {
         string currPersName = "", currPersPos = "";
         int seats = 1;
-
         ObservableCollection<Classes.Models.BDModels.Table> tables = new ObservableCollection<Classes.Models.BDModels.Table>();
         ObservableCollection<Classes.Models.BDModels.Table> sortedtables = new ObservableCollection<Classes.Models.BDModels.Table>();
         public ObservableCollection<Classes.Models.BDModels.Table> Tables
@@ -35,8 +28,6 @@ namespace AutoRestProject.ViewModels
                 OnPropertyChanged("SortedTables");
             }
         }
-
-
         public int Seats
         {
             get { return seats; }
@@ -46,17 +37,18 @@ namespace AutoRestProject.ViewModels
                 OnPropertyChanged("Seats");
             }
         }
-
         public void Sub()
         {
-            if(Seats-1 > 0) Seats--;
+            if (Seats - 1 > 0)
+            {
+                Seats--;
+            }
         }
 
         public void Add()
         {
             Seats++;
         }
-
         public string CurrPersName
         {
             get => currPersName;
@@ -66,7 +58,6 @@ namespace AutoRestProject.ViewModels
                 OnPropertyChanged("CurrPersName");
             }
         }
-
         public string CurrPersPos
         {
             get => currPersPos;

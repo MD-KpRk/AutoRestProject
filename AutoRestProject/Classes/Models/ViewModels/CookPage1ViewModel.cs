@@ -1,12 +1,7 @@
 ﻿using AutoRestProject.Classes.Models.BDModels;
 using AutoRestProject.Resources.Pages;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AutoRestProject.Classes.Models.ViewModels
@@ -24,7 +19,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
             get { return cb1; }
             set
             {
-                cb3 = cb2 =  false;
+                cb3 = cb2 = false;
                 cb1 = value;
                 UpdateCB();
             }
@@ -40,7 +35,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
             get { return cb2; }
             set
             {
-                cb1 = cb3= false;
+                cb1 = cb3 = false;
                 cb2 = value;
                 UpdateCB();
             }
@@ -59,8 +54,11 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         public void UpdateCB()
         {
-            for(int i=1;i<=3;i++)
+            for (int i = 1; i <= 3; i++)
+            {
                 OnPropertyChanged("CB" + i);
+            }
+
             page.UpdateInfo();
         }
 
@@ -78,7 +76,7 @@ namespace AutoRestProject.Classes.Models.ViewModels
 
         public string SelectedPersName
         {
-            
+
             get { return selectedPersName; }
             set
             {

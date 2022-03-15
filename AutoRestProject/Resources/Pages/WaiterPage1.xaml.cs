@@ -1,25 +1,13 @@
-﻿using System;
+﻿using AutoRestProject.Classes.Models.BDModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using AutoRestProject.Classes.Models.BDModels;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.EntityFrameworkCore;
 
 namespace AutoRestProject.Resources.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для WaiterPage1.xaml
-    /// </summary>
     public partial class WaiterPage1 : Page
     {
         ViewModels.WaiterPage1ViewModel ViewModel = new();
@@ -31,13 +19,11 @@ namespace AutoRestProject.Resources.Pages
         public WaiterPage1(Personal emp)
         {
             CurrentUser = emp;
-            ViewModel.SetPerson(emp.First_name + " " + emp.Second_name,emp.Position.Title);
+            ViewModel.SetPerson(emp.First_name + " " + emp.Second_name, emp.Position.Title);
             DataContext = ViewModel;
 
             InitializeComponent();
-
             Update();
-
         }
 
         public void Update()
@@ -62,36 +48,36 @@ namespace AutoRestProject.Resources.Pages
 
                 for (int i = 0; i < list?.Count(); i++)
                 {
-                    if(list[i].Order_status.Title != ConfigController.getInstance().OrderDone)
+                    if (list[i].Order_status.Title != ConfigController.getInstance().OrderDone)
+                    {
                         stack.Children.Add(new UserControls.OrderUserControl(this, list[i]));
+                    }
                 }
-
             }
         }
 
-
-
-
-        // Scroll Panel
         Point scrollMousePoint = new Point();
         double hOff = 1;
         private void scrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             scrollMousePoint = e.GetPosition(scrollviewer);
             hOff = scrollviewer.HorizontalOffset;
-            if(CanScroll == true)
+            if (CanScroll == true)
+            {
                 scrollviewer.CaptureMouse();
+            }
         }
         private void scrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (scrollviewer.IsMouseCaptured)
+            {
                 scrollviewer.ScrollToHorizontalOffset(hOff + (scrollMousePoint.X - e.GetPosition(scrollviewer).X));
+            }
         }
         private void scrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             scrollviewer.ReleaseMouseCapture();
         }
-
         private void scrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             scrollviewer.ScrollToHorizontalOffset(scrollviewer.HorizontalOffset + e.Delta);
@@ -115,7 +101,6 @@ namespace AutoRestProject.Resources.Pages
         {
             PageController.getInstance()?.Goto(new AddOrderPage1(CurrentUser));
         }
-
         private void Button_Click_2(object sender, RoutedEventArgs e) // Выход
         {
             PageController.getInstance()?.Goto(new AuthPage());
@@ -137,7 +122,7 @@ namespace AutoRestProject.Resources.Pages
         {
             ViewModel.PanelClose();
 
-            if(CurrentOrder == null)
+            if (CurrentOrder == null)
             {
                 ErrorBox.getInstance().Show("Ошибка связи программы и бд");
                 return;
@@ -153,16 +138,18 @@ namespace AutoRestProject.Resources.Pages
 
 
 
-                if(table == null || status_freeid == null || ords == null || ord_strgs == null)
+                if (table == null || status_freeid == null || ords == null || ord_strgs == null)
                 {
                     ChangeOrderStatus(ConfigController.getInstance().OrderDone);
                     return;
                 }
 
-                for(int i=0;i<ord_strgs.Count;i++)
+                for (int i = 0; i < ord_strgs.Count; i++)
                 {
-                    if(ord_strgs[i].Order_String_StatusId != ords.Id)
+                    if (ord_strgs[i].Order_String_StatusId != ords.Id)
+                    {
                         ord_strgs[i].Order_String_StatusId = ords.Id;
+                    }
                 }
 
                 table.Table_StatusID = (int)status_freeid;
@@ -190,7 +177,7 @@ namespace AutoRestProject.Resources.Pages
                     return;
                 }
 
-                List<Order_string>? list = bd.Order_strings?.Where(u=> u.OrderId == order.Id).ToList();
+                List<Order_string>? list = bd.Order_strings?.Where(u => u.OrderId == order.Id).ToList();
 
                 if (order == null || list == null)
                 {
@@ -232,7 +219,7 @@ namespace AutoRestProject.Resources.Pages
                 list = bd.Order_strings?.Include(u => u.Food).Where(u => u.OrderId == CurrentOrder.Id).ToList();
             }
 
-            if ( CurrentUser == null || list == null)
+            if (CurrentUser == null || list == null)
             {
                 ErrorBox.getInstance().Show("Ошибка связи программы и бд");
                 return;
@@ -243,11 +230,13 @@ namespace AutoRestProject.Resources.Pages
 
         private void Button_Click_8(object sender, RoutedEventArgs e) // Сгенерировать счёт
         {
-            if (CurrentOrder == null) return;
+            if (CurrentOrder == null)
+            {
+                return;
+            }
+
             PageController.getInstance()?.Goto(new CheckPage(CurrentUser, CurrentOrder));
         }
-
-
 
         void ChangeOrderStatus(string? status = "")
         {

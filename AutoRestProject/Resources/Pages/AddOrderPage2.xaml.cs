@@ -5,17 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoRestProject.Resources.Pages
 {
@@ -50,7 +41,7 @@ namespace AutoRestProject.Resources.Pages
 
             for (int i = 0; i < strings.Count(); i++)
             {
-                Order_Strings.Add(new Menu_string() { Food = strings[i].Food, Count = strings[i].Food_count, FoodId = strings[i].FoodId} );
+                Order_Strings.Add(new Menu_string() { Food = strings[i].Food, Count = strings[i].Food_count, FoodId = strings[i].FoodId });
             }
 
             ViewModel.Order = new ObservableCollection<Menu_string>(Order_Strings);
@@ -60,19 +51,19 @@ namespace AutoRestProject.Resources.Pages
             InitializeComponent();
 
         }
-
-
         public void UpdateMenu()
         {
             using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
             {
-                List<Menu_string>? list = bd.Menu_strings?.Include( u => u.Food).ToList();
-                if (list == null) return; 
+                List<Menu_string>? list = bd.Menu_strings?.Include(u => u.Food).ToList();
+                if (list == null)
+                {
+                    return;
+                }
 
                 ViewModel.Menu = new ObservableCollection<Menu_string>(list);
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e) // Back
         {
             PageController.getInstance()?.GoBack();
@@ -88,9 +79,9 @@ namespace AutoRestProject.Resources.Pages
             }
 
 
-            for(int i=0;i< Order_Strings.Count();i++)
+            for (int i = 0; i < Order_Strings.Count(); i++)
             {
-                if(Order_Strings[i].FoodId == menu_String.FoodId)
+                if (Order_Strings[i].FoodId == menu_String.FoodId)
                 {
                     Menu_string o = Order_Strings[i];
                     Order_Strings[i] = new Menu_string() { Count = o.Count + ViewModel.Count, Food = o.Food, FoodId = o.FoodId, Id = o.Id };
@@ -104,11 +95,9 @@ namespace AutoRestProject.Resources.Pages
             ViewModel.Order = new ObservableCollection<Menu_string>(Order_Strings);
         }
 
-
-
         private void Button_Click_2(object sender, RoutedEventArgs e) // Confirm order
         {
-            if(Order_Strings.Count() == 0)
+            if (Order_Strings.Count() == 0)
             {
                 ErrorBox.getInstance().Show("Заказ пуст");
                 return;
@@ -157,7 +146,7 @@ namespace AutoRestProject.Resources.Pages
                 }
 
 
-                for(int i = 0; i < Order_Strings.Count(); i++)
+                for (int i = 0; i < Order_Strings.Count(); i++)
                 {
                     Food? food = bd.Foods?.Where(u => u.Id == Order_Strings[i].FoodId).FirstOrDefault();
 
@@ -198,13 +187,14 @@ namespace AutoRestProject.Resources.Pages
 
                 bd.SaveChanges();
 
-                if (Curr_Emp == null) return;
+                if (Curr_Emp == null)
+                {
+                    return;
+                }
+
                 PageController.getInstance()?.Goto(new WaiterPage1(Curr_Emp));
             }
         }
-
-
-
 
         private void Button_Click_3(object sender, RoutedEventArgs e) // clear order strings
         {
@@ -212,14 +202,23 @@ namespace AutoRestProject.Resources.Pages
             Order_Strings.Clear();
         }
 
-
         private void Button_Click_4(object sender, RoutedEventArgs e) // clear order strings
         {
             Button? button = sender as Button;
             string? tag = button?.Tag.ToString();
-            if (tag == null) return;
-            if (tag == "+") ViewModel.Add();
-            else ViewModel.Sub();
+            if (tag == null)
+            {
+                return;
+            }
+
+            if (tag == "+")
+            {
+                ViewModel.Add();
+            }
+            else
+            {
+                ViewModel.Sub();
+            }
         }
 
     }
