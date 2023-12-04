@@ -21,24 +21,30 @@ namespace AutoRestProject.Resources.Pages
 
         public void Update()
         {
-            using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
+            try
             {
-                int? pcount = bd.Personals?.Count();
-                int? ocount = bd.Orders?.Include(u => u.Order_status).Where(u => u.Order_status.Title != ConfigController.getInstance().OrderDone).Count();
-                int? bcount = bd.Order_strings?.Include(u => u.Order_string_status).Include(u => u.CookPers).Where(u => u.Order_string_status.Title != ConfigController.getInstance().OrderStringDone && u.CookPers == null).Count();
-                int? tcount = bd.Tables?.Include(u => u.Table_Status).Where(u => u.Table_Status.Title == ConfigController.getInstance().TableStatusFree).Count();
-                int? mcount = bd.Menu_strings?.Count();
-                if (pcount == null || ocount == null || bcount == null || tcount == null || mcount == null)
+                using (AutoRestBDContext bd = new AutoRestBDContext(ConfigController.getInstance().ConOptions))
                 {
-                    return;
+                    int? personalCount = bd.Personals?.Count();
+                    int? ordersCount = bd.Orders?.Include(u => u.Order_status).Where(u => u.Order_status.Title != ConfigController.getInstance().OrderDone).Count();
+                    int? bludsCount = bd.Order_strings?.Include(u => u.Order_string_status).Include(u => u.CookPers).Where(u => u.Order_string_status.Title != ConfigController.getInstance().OrderStringDone && u.CookPers == null).Count();
+                    int? tablesCount = bd.Tables?.Include(u => u.Table_Status).Where(u => u.Table_Status.Title == ConfigController.getInstance().TableStatusFree).Count();
+                    int? menusCount = bd.Menu_strings?.Count();
+                    if (personalCount == null || ordersCount == null || bludsCount == null || tablesCount == null || menusCount == null)
+                    {
+                        return;
+                    }
+                    ViewModel.TotalPers = (int)personalCount;
+                    ViewModel.Orders = (int)ordersCount;
+                    ViewModel.Bluds = (int)bludsCount;
+                    ViewModel.Tables = (int)tablesCount;
+                    ViewModel.Menus = (int)menusCount;
+
                 }
-
-                ViewModel.TotalPers = (int)pcount;
-                ViewModel.Orders = (int)ocount;
-                ViewModel.Bluds = (int)bcount;
-                ViewModel.Tables = (int)tcount;
-                ViewModel.Menus = (int)mcount;
-
+            }
+            catch (Exception)
+            {
+                ErrorBox.getInstance().Show("Ошибка обновления информции");
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
