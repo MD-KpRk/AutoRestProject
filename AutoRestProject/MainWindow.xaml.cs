@@ -17,10 +17,11 @@ namespace AutoRestProject
             {
                 InitializeBD();
             }
-            catch (SqlException)
+            catch (SqlException EX)
             {
                 InitializeComponent();
-                ViewModel.ErrorBox.Show("Ошибка соединения с базой данных");
+                MessageBox.Show(EX.Message);
+                //ViewModel.ErrorBox.Show("Ошибка соединения с базой данных");
                 return;
             }
 
